@@ -1,0 +1,80 @@
+---
+title: "Cis-regulation 2015 - Course content"
+author: "Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 5
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 5
+  word_document: default
+---
+
+## Resources
+
+| Resource | URL |
+|----------|-----|
+| Regulatory Sequence Analysis Tools (RSAT) | [http://rsat.eu/](http://rsat.eu/) |
+| RSAT course (slides) | [http://rsa-tools.github.io/course/](http://rsa-tools.github.io/course/) |
+| footprintDB | [http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/) |
+| ... | ... |
+
+## Content summary
+
+| Date | From  | To    | Subject | Teachers | Tools  |
+|------|-------|-------|---------|----------|--------|
+| Mon 19/10 | 09:00 | 13:00 | Characterizing and representing TF-DNA interactions (from sites to modifs) | Jacques + Bruno | *RSAT convert-matrix* |
+| Mon 19/10 | 14:00 | 18:00 | Scanning sequences to predict binding sites (from motifs to sites) + Motif discovery principle (oligo-analysis, position-analysis) | Jacques  | RSAT *matrix-scan*, *matrix-distrib*, *matrix-quality* |
+| Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships (from structures to motifs) | Bruno | |
+| Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | Denis | |
+| Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | Denis | |
+| Fri 23/10 | 09:00 | 13:00 | Motif comparison and clustering | Jacques + Jaime | RSAT *matrix-clustering* |
+| Fri 23/10 | 09:00 | 13:00 | The rest + discussion about personal work |  | |
+| Tur 05/11 | 14:00 | 18:00 | Presentation des travaux personnels | Denis + Jacques | |
+
+## Concepts
+
+Basic concepts for the analysis of cis-regulatory elements.
+Teachers: Bruno Contreras Moreira & Jacques van Helden.
+
+
+### Topics
+
+1. JvH Introduction to the course
+2. Bruno: Transcription factor binding: structure and sequence. **Practical:** opening a connection to structure databases and play with some TF. 
+
+3. JvH: Experimental methods to characterize TFBS (EMSA, footprints, SELEX, ChIP-chip, ChIP-seq, PBA).
+4. JvH: Representations of TF binding specificity: from binding sites to mofifs (consensus, IUPAC, PSSM, sequence logos). Practical: **RSAT convert-matrix**
+
+
+5. Bruno: TF databases: 
+
+      - JASPAR, 
+      - TRANSFAC (mainly vertebrate, commercial), 
+      - **3D footprints**
+      - AthaMap (A. thaliana)
+      - RegulonDB (E.coli)
+      - HOCOMOCO (Human)
+      - footprintDB (compendium)
+      - ...
+
+### Practicals
+
+- how to build a matrix from binding sites
+- deriving frequencies and logos from count matrices
+- deriving frequencies and logos from structures of protein/DNA complexes
+
+
+## 
+
+## Motif comparison and clustering 
+
+Jaime & Jacques
+2h theory + 2h practicals
