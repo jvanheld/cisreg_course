@@ -1,0 +1,135 @@
+---
+title: "Structure-based analysis of transcriptional regulation"
+author:
+- affiliation: Fundación ARAID & Estación Experimental de Aula Dei-CSIC, Zaragoza,
+    España <http://www.eead.csic.es/compbio> | chercheur invité AMU, Marseille, France
+  name: Bruno Contreras Moreira
+date: "October, 2015"
+output:
+  html_document:
+    fig_caption: yes
+    toc: yes
+  pdf_document:
+    fig_caption: yes
+    toc: yes
+bibliography: bib_myarticles_md.bib
+<!-- csl: biomed-central.csl , por defecto chicago bib style-->
+---
+
+___
+
+## Protein-DNA recognition
+
+DNA-binding proteins contain DNA-binding domains and thus have a specific or general affinity for either single or double stranded DNA.
+
+### Dissecting a protein-DNA interface
+
+![Details of the interface of Lac repressor and its operator site, @Lewis1996](pics/Lac-1.png) 
+
+![deatils of the interface of Lac repressor and its operator site, @Lewis1996](pics/Lac-2.png) 
+
+
+![Cartoon dissection of the interface of a NarL dimer (PDB entry 1JE8)](pics/interface_movie.gif) 
+
+### Atomic interactions between protein and DNA residues
+
+**Direct readout** 
+
+* Hydrogen bonds: direct + water-mediated
+* Hydrophobic interactions
+
+**Indirect readout**
+
+* Sequence-specific deformation of DNA base steps
+
+**Stabilizing interactions**
+
+* Not sequence-specific, involving DNA backbone
+
+### Direct readout: hydrogen bonds
+
+![Donor and acceptor hydrogen bond atoms in nitrogen bases, from @Luscombe2001](pics/bases-groove-HB.jpg) 
+
+### Direct readout: Van der Waals interactions
+
+![DNA bases display VdW interactions involving mainly C atoms, from @Luscombe2001](pics/bases-VW.gif)
+
+![Sequence-specific VdW interactions involve fundamentally thymine-C5M group, adapted from @Luscombe2001](pics/bases-groove-VW.jpg)
+
+### Indirect/shape readout
+
+![DNA step geometry descriptors, from @Lu2008](pics/bp_step_hel.png)
+
+$deformation = \displaystyle\sum_{i=0}^6 \displaystyle\sum_{j=0}^6 spring_{ij} \Delta\theta_{i,st} \Delta\theta_{j,st}$ @Olson1998
+
+![Roll and twist of DNA steps, from @Olson1998](pics/roll-twist-steps.jpg)
+
+![Prediction of geometry descriptors of a DNA duplex by sliding a sequence window, from @Zhou2013](pics/DNApentamers.jpg)
+
+### Protein-DNA interface graphs
+
+![Generic graph representation of the interface among protein residues (yellow) and DNA bases (blue), from @Sathyapriya2008](pics/bipartite-graph.png)
+
+![Interface graph of NarL, where solid bases indicate indirect readout and arrows direct readout interactions, from @ContrerasMoreira2010. Adapted from <http://floresta.eead.csic.es/3dfootprint/complexes/1je8_F.html> ](pics/1je8-intf.png)
+
+
+
+### Comparison of DNA-binding proteins
+
+![Example HTH transcription factors from the work of @Luscombe2000](pics/DNAbinding-classes.jpg)
+
+The  [Structural Classification of Proteins (SCOP)](http://scop.berkeley.edu) systematically groups protein folds in superfamilies, of which somre are the most common DNA-binding proteins. The next table shows superfamilies with more than 20 non-redundant complexes in the Protein Data Bank as of October, 20015:
+
+SCOP superfamily | Number of complexes
+---------------- | -------------------
+Winged helix (WH) | 77
+Homeodomain-like (H) | 63
+Glucocorticoid-receptor-like (GR) | 33
+Restriction endonuclease-like (RE) | 24 
+Homing endonuclease (HE) | 23 
+p53-like (P53) | 21
+Lambda-repressor-like (LR) | 21
+
+![Number of hydrogen bonds and VdW interactions across some SCOP superfamilies of DNA-binding proteins (right) and total atomic contacts per monomer (left). ZF=C2H2 Zinc Finger, RHH=Ribbon-helix-helix, from @ContrerasMoreira2010b](pics/direct-stats.png)
+
+![Frequency of distorted DNA steps (indirect readout) of target DNA sites of some SCOP superfamilies of DNA-binding proteins, from @ContrerasMoreira2010b](pics/indirect-stats.png)
+
+## Family wide analysis of protein-DNA interfaces
+
+![Relation between the...](pics/homeo-intf.png)
+
+## Exercise
+
+Ejercicio con TFcompare con TFs del paper
+http://161.111.227.80/compbio/material/regulatory_proteins/node6.html
+
+Homology prediction of binding interfaces and readout
+BLAST, AI
+Ejercicio con 3d-footprint
+
+___
+
+## Mining sequence motifs from the structure of protein-DNA complexes
+
+### Total contacts model
+Morozov, Lichtarge
+
+### Readout model
+DNAPROT, Sarai, Lavery
+
+### Specificity-based classification of DNA-binding proteins
+DNAPROT
+
+### Genomic benchmarks 
+
+Ejercicio con 3d-footprint & matrix-quality, con alugnp por ejemplo
+http://161.111.227.80/compbio/material/regulatory_proteins/node7.html
+
+### 3D-footprint and footprintDB
+a repository of DNA motifs, including structure-based, which annotates the corresponding binding protein and its interface
+
+Ejercicio con footprintDB (capítulo de libro?)
+
+___
+
+## References
