@@ -17,6 +17,11 @@ output:
   word_document: default
 ---
 
+
+## Web site for this course
+
+[http://jvanheld.github.io/cisreg_course/](http://jvanheld.github.io/cisreg_course/)
+
 ## Teachers
 
 - Bruno Contreras-Moreira, Invited professor
@@ -29,6 +34,7 @@ output:
 | Resource | URL |
 |----------|-----|
 | Regulatory Sequence Analysis Tools (RSAT) | [http://rsat.eu/](http://rsat.eu/) |
+| RSAT teaching material | [http://rsa-tools.github.io/teaching/](http://rsa-tools.github.io/teaching/) |
 | RSAT course (slides) | [http://rsa-tools.github.io/course/](http://rsa-tools.github.io/course/) |
 | footprintDB | [http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/) |
 | ... | ... |
