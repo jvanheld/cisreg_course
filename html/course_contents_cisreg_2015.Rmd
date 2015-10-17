@@ -17,6 +17,13 @@ output:
   word_document: default
 ---
 
+## Teachers
+
+- Bruno Contreras-Moreira, Invited professor
+- Jaime Castro Mondragon
+- Denis Puthier
+- [Jacques van Helden](http://jacques.van-helden.perso.luminy.univ-amu.fr/)
+
 ## Resources
 
 | Resource | URL |
