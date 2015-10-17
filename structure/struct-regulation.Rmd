@@ -20,18 +20,22 @@ ___
 
 ## Protein-DNA recognition
 
-DNA-binding proteins contain DNA-binding domains and thus have a specific or general affinity for either single or double stranded DNA.
+DNA-binding proteins contain DNA-binding domains and have a specific or general affinity for either single or double stranded DNA. Here we will concentrate mostly on transcription factors, which generally recognize cis-regulatory elements in double-stranded DNA molecules.
 
 ### Dissecting a protein-DNA interface
+
+Transcription factors recognize target DNA sequences through a binding interface, composed of protein residues and DNA stretches in intimate contact.
+The best descriptions of protein-DNA interfaces are provided by structural biology, usually by X-ray or NMR experiments.
 
 ![Details of the interface of Lac repressor and its operator site, @Lewis1996](pics/Lac-1.png) 
 
 ![deatils of the interface of Lac repressor and its operator site, @Lewis1996](pics/Lac-2.png) 
 
-
 ![Cartoon dissection of the interface of a NarL dimer (PDB entry 1JE8)](pics/interface_movie.gif) 
 
 ### Atomic interactions between protein and DNA residues
+
+The process of recognition of DNA sequences by proteins involves readout mechanisms, and also accessory stabilizing atomic interaction that do not confer specificty.
 
 **Direct readout** 
 
@@ -58,17 +62,27 @@ DNA-binding proteins contain DNA-binding domains and thus have a specific or gen
 
 ### Indirect/shape readout
 
+Besides atomic interactions between protein and DNA, Sequence-dependent deformability of duplexes, deduced from crystal complexes, implies that sequence recognition also involves DNA shape.
+
 ![DNA step geometry descriptors, from @Lu2008](pics/bp_step_hel.png)
+
+DNA deformation is described by the increase in energy brought about by instantaneous fluctuations of the step parameters from their equilibrium values:
 
 $deformation = \displaystyle\sum_{i=0}^6 \displaystyle\sum_{j=0}^6 spring_{ij} \Delta\theta_{i,st} \Delta\theta_{j,st}$ @Olson1998
 
-![Roll and twist of DNA steps, from @Olson1998](pics/roll-twist-steps.jpg)
+![Roll and twist of DNA steps are different for purine and pyrimidine steps, from @Olson1998](pics/roll-twist-steps.jpg)
+
+The accumulation of experimental and structural and molecular dynamics simulations
 
 ![Prediction of geometry descriptors of a DNA duplex by sliding a sequence window, from @Zhou2013](pics/DNApentamers.jpg)
 
 ### Protein-DNA interface graphs
 
+Interfaces have been can be explored as generic bipartite graphs:
+
 ![Generic graph representation of the interface among protein residues (yellow) and DNA bases (blue), from @Sathyapriya2008](pics/bipartite-graph.png)
+
+Or sub-graphs that focus on specific sequence recognition:
 
 ![Interface graph of NarL, where solid bases indicate indirect readout and arrows direct readout interactions, from @ContrerasMoreira2010. Adapted from <http://floresta.eead.csic.es/3dfootprint/complexes/1je8_F.html> ](pics/1je8-intf.png)
 
@@ -76,9 +90,11 @@ $deformation = \displaystyle\sum_{i=0}^6 \displaystyle\sum_{j=0}^6 spring_{ij} \
 
 ### Comparison of DNA-binding proteins
 
+The literature describes a great variety of natural DNA-binding proteins, which can be analyzed and compared in terms of the features introduced above, such as readout, or instead with an evolutionary or topological perspective.  
+
 ![Example HTH transcription factors from the work of @Luscombe2000](pics/DNAbinding-classes.jpg)
 
-The  [Structural Classification of Proteins (SCOP)](http://scop.berkeley.edu) systematically groups protein folds in superfamilies, of which somre are the most common DNA-binding proteins. The next table shows superfamilies with more than 20 non-redundant complexes in the Protein Data Bank as of October, 20015:
+The  [Structural Classification of Proteins (SCOP)](http://scop.berkeley.edu) systematically groups protein folds in superfamilies, of which some are the most common DNA-binding proteins. The next table shows superfamilies with more than 20 non-redundant complexes in the [Protein Data Bank](http://www.rcsb.org) as of October, 2015, as annotated in the database [3d-footprint](http://floresta.eead.csic.es/3dfootprint/):
 
 SCOP superfamily | Number of complexes
 ---------------- | -------------------
@@ -94,11 +110,17 @@ Lambda-repressor-like (LR) | 21
 
 ![Frequency of distorted DNA steps (indirect readout) of target DNA sites of some SCOP superfamilies of DNA-binding proteins, from @ContrerasMoreira2010b](pics/indirect-stats.png)
 
-## Family wide analysis of protein-DNA interfaces
+### Family wide analysis of protein-DNA interfaces
 
-![Relation between the...](pics/homeo-intf.png)
+The available experimental structures of protein-DNA complexes in the PDB support the annotation of interface residues, those involved directly in sequence recognition, within protein families.
 
-## Exercise
+![Annotation of interface residues upon dissection of PDB complexes and their distribution, from @Sebastian2014](pics/intf-annot-hist.png)
+
+ejemplos 
+
+![Relation between (annotated) interface residues and cognate DNA motifs or homeobox transcription factors, from @Noyes2008](pics/homeo-intf.png)
+
+### Exercise
 
 Ejercicio con TFcompare con TFs del paper
 http://161.111.227.80/compbio/material/regulatory_proteins/node6.html
