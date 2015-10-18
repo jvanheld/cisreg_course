@@ -1,0 +1,81 @@
+---
+title: "Concept definitions"
+author: "Jacques van Helden"
+date: "October, 2015"
+output:
+  html_document:
+    fig_caption: yes
+    toc: yes
+  pdf_document:
+    fig_caption: yes
+    toc: yes
+<!-- csl: biomed-central.csl , por defecto chicago bib style-->
+---
+
+
+
+### Regulon
+
+A regulon is the set of all the genes regulated by a given transcription
+factor (e.g. the LexA regulon).
+
+### Operon
+
+An operon is a set of genes transcribed in a single transcription unit.
+A transcription unit comprizing several coding sequences is qualified of
+polycistronic.
+
+Operons are very frequent in Bacteria, where they usually regroup sets
+of genes involved in a same biological process (e.g. the his operon
+contains the genes required to code for all the enzymes of histidine
+biosynthesis).
+
+In eukaryotes, genes ere generally transcribed as mono-cistronic units
+(an mRNA only codes for a single polypeptide). A notable exception if
+found in Trypanosoma, where large polycistronic units are transcribed,
+which regroup functionally unrelated genes, and regulation occurs
+essentially at the post-transcriptional level.
+
+### IUPAC code for ambiguous nucleotides
+
+| Symbol | Nucleotide(s) | Description |
+|--------|------------|-------------|
+| A | A |  Adenosine |
+| C | C |  Cytidine |
+| G | G |  Guanosine |
+| T | T |  Thymidine |
+| R  |  A or G| puRines |
+| Y  |  C or T| pYrimidines |
+| W  |  A or T| Weak hydrogen bonding |
+| S  |  G or C| Strong hydrogen bonding |
+| M  |  A or C| aMino group at common position |
+| K |   = G or T| Keto group at common position |
+| H |   = A, C or T | not G |
+| B |   = G, C or T | not A |
+| V |   = G, A, C |   not T |
+| D |   = G, A or T | not C |
+| N |   = G, A, C or T |  aNy |
+| | | | 
+
+### Evaluation of predictions
+
+
+
+| Symbol | Definition | Description | 
+|--------|------------|-------------|
+| $FP$ | False positive | Actual features (e.g. sites, target genes) predicted as positives |
+| $FN$ | False negative | Non-actual features predicted as negatives |
+| $TP$ | True positive | Actual features predicted as positives |
+| $TN$ | True negative | Non-actual features predicted as negatives |
+| $Sn$ | $Sn = \frac{TP}{TP+FN}$  | *Sensitivity*: fraction of true positives ($TP$) among the actual features ($TP+FN$).   Also called *coverage*. |
+| $PPV$ | $PPV=\frac{TP}{TP+FP}$ | *Positive predictive value*: fraction of true positives ($TP$) among the predicted features ($TP+FP$).     | 
+| | | |
+
+
+## To be added
+
+### TF binding site
+
+### TF binding motif
+
+
