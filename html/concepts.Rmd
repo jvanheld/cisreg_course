@@ -62,18 +62,29 @@ essentially at the post-transcriptional level.
 | N |   = G, A, C or T |  aNy |
 | | | | 
 
-### Evaluation of predictions
+### Evaluation statistics
+
+The statistics defined below are of very wide use in bioinformatics and biomedical sciences. They are used to evaluate the reliability of supervised classification and predictive approaches. In the context of this course, we will consider them under the angle of the prediction: let us assume that we used an approach to predict binding sites -- or target genes -- for a given transcription factor, and we compare the prediction to the "truth", for a dataset that we consider as the golden standard.
 
 
+| Prediction status | Actual feature<br>(binding site, target gene) | Actual non-feature |
+|-------------------|-----------------------------------------------|-------------|
+| **Positive**<br>(predicted as feature) | True positive ($TP$) | False positive ($FP$) | 
+| **Negative**<br>(predicted as non-feature) | False negative ($FN$) | True negative ($TN$) | 
+| | | | |
+
+These four categories of predictions can in turn serve to define a set of derived statistics, providing complementary insight into the reliability of the predictions. 
 
 | Symbol | Definition | Description | 
 |--------|------------|-------------|
 | $FP$ | False positive | Actual features (e.g. sites, target genes) predicted as positives |
-| $FN$ | False negative | Non-actual features predicted as negatives |
+| $FN$ | False negative | Actual non-features predicted as negatives |
 | $TP$ | True positive | Actual features predicted as positives |
-| $TN$ | True negative | Non-actual features predicted as negatives |
-| $Sn$ | $Sn = \frac{TP}{TP+FN}$  | *Sensitivity*: fraction of true positives ($TP$) among the actual features ($TP+FN$).   Also called *coverage*. |
-| $PPV$ | $PPV=\frac{TP}{TP+FP}$ | *Positive predictive value*: fraction of true positives ($TP$) among the predicted features ($TP+FP$).     | 
+| $TN$ | True negative | Actual non-features predicted as negatives |
+| $Sn$ | $Sn = \frac{TP}{TP+FN}$  | *Sensitivity*: proportion of true positives ($TP$) among the actual features ($TP+FN$).   Also called *coverage*. |
+| $PPV$ | $PPV=\frac{TP}{TP+FP}$ | *Positive predictive value*: proportion of true positives ($TP$) among the predicted features ($TP+FP$).     | 
+| $FPR$ | $FPR = \frac{FP}{TN+FP}$ | *False positve rate*: proportion of false positive *under the null model*, i.e. among the actual non-features |
+| $FDR$ | $FDR = \frac{FP}{TP+FP} = 1 - PPV$ | *False discovery rate*: proportion of false positive among the features declared positive |
 | | | |
 
 
