@@ -1,0 +1,184 @@
+---
+title: "From  TF binding sites to consensuses and matrices"
+author: "Jacques van Helden"
+date: "October, 2015"
+output:
+  html_document:
+    fig_caption: yes
+    toc: yes
+  pdf_document:
+    fig_caption: yes
+    toc: yes
+<!-- csl: biomed-central.csl , por defecto chicago bib style-->
+---
+
+
+
+* * * 
+## Objectives
+
+In this tutorial, we will get familiar with the different
+representations of transcription factor binding motifs (consensus,
+position-specific scoring matrix). For this, we will build motifs from a
+collection of TF binding sites, and evaluate the quality of these
+motifs, i.e. their capability to recover the relevant binding sites for
+the considered transcription factor.
+
+We will proceed in the following way.
+
+1.  Collect binding sites and annotated motif (position-specific scoring
+    matrix) for a transcription factor of interest.
+2.  Produce an "*ad hoc*" consensus of the matrix, based on rules (*ad
+    hoc* thresholds on residue frequencies).
+3.  Produce a consensus with the tool convert-matrix.
+4.  Estimate the generality of these consensus by counting the number of
+    matches among the sites used to build them.
+5.  Estimate the sensitivity of these consensus by counting the number
+    of operons containing at least one occurrence in the leading gene.
+
+* * * * *
+
+
+
+## Resources
+
+| Symbol | Description | Links |
+|------------|---------------|----------------------------|
+| IUPAC |IUPAC code for ambiguous nucleotides | [on RSAT](http://teaching.rsat.eu/help.dna-pattern.html) / [on wikipedia](http://en.wikiversity.org/wiki/Degenerate_nucleotides#Nucleic_acid_notation) |
+| RSAT | Regulatory Sequence Analysis Tools | [http://rsat.eu/](http://rsat.eu/) |
+| RegulonDB | Database of transcriptional regulation in the bacteria *Escherichia coli* | [http://regulondb.ccg.unam.mx/](http://regulondb.ccg.unam.mx/)|
+| footprintDB | A database of transcription factors with annotated cis elements and binding interfaces | [http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/) |
+| | | |
+
+
+* * * * *
+
+
+## Tutorial: collecting motifs from RegulonDB
+
+### Protocol : collecting motifs from footprintDB
+
+1. Open a connection to **footprintDB**
+   ([http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/))
+2. In the menu on the left side, click **Databases**.
+3. Inspect the table of databases in order to get an idea of the diversity of data sources, organisms, and evaluate the number of transcription factors, motifs and binding sites for the different source databases. 
+4. In the row corresponding to **RegulonDB**, click on the link *Transcription factors*. At this stage, each student should select a transcription factor of interest, and write its name on the white board (to avoid duplicates). Note that the factor *AraC* will be used as study case by the teacher, please thus avoid to select the same factor. 
+5. Read the description of your TF of interest. Evaluate the number of annotated binding sites for this factor. 
+
+
+***Note**: for the next exercises we recommend to select a factor with a reasonable number of annotated sites (5 to 20). Factor with less than 5 binding sites are not suitable to build a reliable weight matrix. Factors with numerous binding sites are fine, but since there is a part of manual work in the subsequent steps, you might spend a lot of time on it.*
+
+### Protocol: collecting information from RegulonDB
+
+1.  Open a connection to RegulonDB
+    ([http://regulondb.ccg.unam.mx/](http://regulondb.ccg.unam.mx/)).
+
+2.  In the pop-up menu under Search by type of object, select Regulon.
+3.  Enter the name of a transcription factor of your choice, and open
+    the record of the corresponding
+    [regulon](../../html/concepts.html#regulon).
+
+    Each student (or student group) should choose a specific motif.
+    Individual results will be collected in a shared documents for the
+    sake of comparison and interpretation. We recommend to choose a
+    regulon containing a reasonably low number of sites (max 50).
+
+    -   If you have no idea about TF names, leave th equery box empty
+        and click Search, to obtain a full list of operon names. You can
+        then pick up some regulons at random, and check if they have a
+        reasonable number of sites.
+    -   If you still feel short of inspiration, you can choose a factor
+        among the following ones.
+        -   [FadR](http://regulondb.ccg.unam.mx/regulon?term=ECK120011824&format=jsp&organism=ECK12&type=regulon)
+        -   [TyrR](http://regulondb.ccg.unam.mx/regulon?term=ECK120011194&format=jsp&organism=ECK12&type=regulon)
+        -   [LexA](http://regulondb.ccg.unam.mx/regulon?term=ECK120012770&format=jsp&organism=ECK12&type=regulon)
+        -   [OmpR](http://regulondb.ccg.unam.mx/regulon?term=ECK125110257&format=jsp&objectName=&organism=ECK12&type=regulon)
+        -   ...
+
+4.  Collect all the *aligned* binding sites.
+
+    By default, the regulon records of RegulonDB only display 10 sites.
+    In order to collect all sites, increase the number of shown entries
+    (under the title "Aligned TFBs").
+
+5.  Open a connection to Regulatory Sequence Analysis Tools (RSAT,
+    [http://www.rsat.eu/](http://www.rsat.eu/)), and use the tool
+    convert sequences to convert the site sequences in fasta format.
+
+    RegulonDB displays site sequences in a simple format, where each
+    sequence comes on a separate line, withou header line or identifier.
+    We need to convert these sequences to fasta, the most widely used
+    sequence format. For this, set the input format to multi and the
+    output format to fasta.
+
+    Store the result in a text file on your computer.
+
+6.  Come back to the RegulonDB record of your regulon. Copy the 4-row
+    descripton of the position weight matrix (PWM) and store it in a
+    separate text file with extension .tab (this is the classical
+    extension for tab-delimited text file).
+
+7.  On the RSAT Web site,
+
+    -   open the tool convert matrix, and paste the RegulonDB matrix in
+        the Matrix box;
+    -   Check that the input format is set to tab;
+    -   Select an organism-specific background model trained on all
+        promoters (upstream-noorf) of the reference strain Escherichia
+        coli K-12 substr MG1655 uid57779;
+    -   In the output fields, check "frequencies", "margins" and
+        "parameters", in addition to the pre-selected options.
+
+* * * * *
+
+
+
+## Exercises
+
+Using the [IUPAC code for ambiguous
+nucleotides](../../html/concepts.html#iupac), draw an "*ad hoc*"
+consensus by applying the following (quite arbitrary) rules to each
+column of the position weight matrix
+
+1.  If a single letter covers \>60% of the occurrences, use a single
+    letter
+2.  else if the sum of occurrences of 2 letters cover \>70% of the
+    occurrences, use a two-letter code;
+3.  else if the sum of occurrences of 3 letters cover \>90% of the
+    occurrences, use a three-letter code;
+4.  else write "N"
+
+Compute the probability to find this consnsus at a random position of a
+sequence, assuming that nucleotides are equiprobable.
+
+Use the RSAT tool sequence probability to compute the background
+probability of the first site using three alternative background models:
+
+1.  Bernoulli model (== Markov model of order 0) whose parameters were
+    estimated on the set of non-coding upstream sequences of
+    *Escherichia coli*.
+2.  Markov model of order 1 whose parameters were estimated on the set
+    of non-coding upstream sequences of *Escherichia coli*.
+
+Use the RSAT tool convert matrix to generate the logo of your motif,
+using a Markov model trained on all the promoters of Escherichia coli
+K-12 MG1655 (option upstream-noorf.
+
+Use the RSAT tool matrix distribution to compute the theoreticla
+distribution of probability for your motif.
+
+Using the tool dna-pattern, scan the annotated sites (the fasta file you
+generated above) with the *ad hoc* consensus, and count the number of
+recovered sites.
+
+Do the same with the logo produced by convert-matrix.
+
+The option match count table enables to directly obtain the count of
+occurrences for one or more patterns in each input sequence.
+
+Use the tool retrieve-seq followed by the tool dna-pattern to scan all
+E.coli promoters (same strain as above) with the two consensus defined
+above (*ad hoc* and produced by convert-matrix), and estimate the number
+of recovered operons.
+
+* * * * *
