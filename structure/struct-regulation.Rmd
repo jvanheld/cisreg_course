@@ -72,25 +72,25 @@ $deformation = \displaystyle\sum_{i=0}^6 \displaystyle\sum_{j=0}^6 spring_{ij} \
 
 ![Roll and twist of DNA steps are different for purine and pyrimidine steps, from @Olson1998](pics/roll-twist-steps.jpg)
 
-The accumulation of experimental and structural and molecular dynamics simulations
+The accumulation of experimental and molecular dynamics data of DNA molecules currently supports predictive algorithms, such as [DNAshape](http://rohslab.cmb.usc.edu/DNAshape/), which predict the geometry of DNA sequences:  
 
-![Prediction of geometry descriptors of a DNA duplex by sliding a sequence window, from @Zhou2013](pics/DNApentamers.jpg)
+![Geometry descriptors of a DNA duplex by sliding a sequence window, from @Zhou2013. MGW=Major Groove Width.](pics/DNApentamers.jpg)
 
 ### Protein-DNA interface graphs
 
-Interfaces have been can be explored as generic bipartite graphs:
+Interfaces can be explored as generic bipartite graphs:
 
 ![Generic graph representation of the interface among protein residues (yellow) and DNA bases (blue), from @Sathyapriya2008](pics/bipartite-graph.png)
 
 Or sub-graphs that focus on specific sequence recognition:
 
-![Interface graph of NarL, where solid bases indicate indirect readout and arrows direct readout interactions, from @ContrerasMoreira2010. Adapted from <http://floresta.eead.csic.es/3dfootprint/complexes/1je8_F.html> ](pics/1je8-intf.png)
+![Interface graph of NarL, where solid bases indicate indirect readout and arrows direct readout interactions. Adapted from [3d-footprint](http://floresta.eead.csic.es/3dfootprint/complexes/1je8_F.html) , @ContrerasMoreira2010](pics/1je8-intf.png)
 
 
 
 ### Comparison of DNA-binding proteins
 
-The literature describes a great variety of natural DNA-binding proteins, which can be analyzed and compared in terms of the features introduced above, such as readout, or instead with an evolutionary or topological perspective.  
+A great variety of DNA-binding proteins has been observed in nature, which can be analyzed and compared in terms of the features introduced above, such as readout, or instead with an evolutionary or topological perspective.  
 
 ![Example HTH transcription factors from the work of @Luscombe2000](pics/DNAbinding-classes.jpg)
 
@@ -114,20 +114,97 @@ Lambda-repressor-like (LR) | 21
 
 The available experimental structures of protein-DNA complexes in the PDB support the annotation of interface residues, those involved directly in sequence recognition, within protein families.
 
-![Annotation of interface residues upon dissection of PDB complexes and their distribution, from @Sebastian2014](pics/intf-annot-hist.png)
+![Annotation of interface residues by transference from PDB complexes in the [footprintDB database](http://floresta.eead.csic.es/footprintdb), from @Sebastian2014.](pics/intf-annot-hist.png)
 
-ejemplos 
+Several examples in the literature have demonstrated the correlation between interface patterns and the bound DNA motifs within large transcription factor families, such as the work of @Noyes2008:
 
-![Relation between (annotated) interface residues and cognate DNA motifs or homeobox transcription factors, from @Noyes2008](pics/homeo-intf.png)
+![Relation between (annotated) interface residues and cognate DNA motifs or homeobox transcription factors, from @Noyes2008.](pics/homeo-intf.png)
 
-### Exercise
+Structural data are key for the study of interfaces, as well as the structural superposition of DNA-binding domains:
 
-Ejercicio con TFcompare con TFs del paper
-http://161.111.227.80/compbio/material/regulatory_proteins/node6.html
+![Alignment and superposition of 35 C2H2/C2HC zinc finger domains. (A) Structure-based multiple sequence alignment with summary of interface residues at the bottom. (B) Backbone cartoon of the corresponding structural superposition. (C) Summary of four side chain rotamer clusters found for interface residues aligned in column 20 of the multiple alignment, from @ContrerasMoreira2010b.](pics/ZFintf.png)
 
-Homology prediction of binding interfaces and readout
-BLAST, AI
-Ejercicio con 3d-footprint
+### Exercise 1: analyzing interfaces and inferring DNA motifs using only sequence data
+
+In summary, interfaces seem to be relevant for proteins that bind to DNA in a sequence-specific manner. How can we define the interface of a protein sequence of interest? If the protein structure has been experimentally analyzed docked to a DNA ligand, then this is the best option. Several resources can help us in this task, such as  [NPIDB](http://npidb.belozersky.msu.ru) or [3D-footprint](http://floresta.eead.csic.es/3dfootprint). Others such as [BIPA](http://mordred.bioc.cam.ac.uk/bipa), [PDIdb](http://melolab.org/pdidb) as also very useful, but are less frequently updated.
+
+However, for most protein sequences structural data is simply not available. In these cases interface residues can only be predicted based on the structures of homologous DNA-binding proteins, and that's precisely what [footprintDB](http://floresta.eead.csic.es/footprintdb) does. In addition to interface annotation, footprintDB annotates a wide selection of high quality DNA motifs, extracted from a series of public databases. We will demonstrate its use now with **human hox-b1**: 
+
+```
+>Homeobox protein hox-b1 (part of P40424|PBX1_HUMAN)
+MEPNTPTART FDWMKVKRNP PKTAKVSEPG LGSPSGLRTN FTTRQLTELE 
+KEFHFNKYLS RARRVEIAAT LELNETQVKI WFQNRRMKQK KREREGG
+```
+
+1. If you paste the protein sequence of hox-b1 in the sequence search form of [footprintDB](http://floresta.eead.csic.es/footprintdb) you'll get a list of similar proteins, with annotated interfaces in most cases, together with their experimentally derived DNA motifs. 
+
+2. Can you check the interfaces of the matched transcription factors (TF) and tell whether they are conserved? NOTE: You can check the alignments clicking in the BLAST e-value or interface similarity links.
+
+3. Compare the cognate DNA motifs of TFs with different annotated interface.
+
+4. If you have admin rights on a Linux/OS-X machine please install Perl module SOAP::Lite with an appropriate command such as ``` sudo cpan -i SOAP::Lite ``` and then save the next script and run it on you terminal with ```perl script.pl```:
+
+```
+#!/usr/bin/perl -w  
+use strict;
+use SOAP::Lite;
+
+my $footprintDBusername = ''; # your username if registered
+my ($result,$sequence,$sequence_name) = ('','','');
+
+my $server = SOAP::Lite
+-> uri('footprintdb')
+-> proxy('http://floresta.eead.csic.es/footprintdb/ws.cgi');
+
+$sequence_name = 'hox-b1';
+$sequence = 'MEPNTPTART FDWMKVKRNP PKTAKVSEPG LGSPSGLRTN FTTRQLTELE KEFHFNKYLS RARRVEIAAT LELNETQVKI WFQNRRMKQK KREREGG';
+
+$result = $server->protein_query($sequence_name,$sequence,$footprintDBusername);
+
+unless($result->fault()){ print $result->result(); }
+else{ print 'error: ' . join(', ',$result->faultcode(),$result->faultstring()); }
+```
+
+5. In order to just predict interfaces of your sequences you can use the next script: 
+
+```
+#!/usr/bin/perl -w
+use strict;
+use SOAP::Lite;
+
+my $URI   = 'http://floresta.eead.csic.es/footprint';
+my $WSURL = 'http://floresta.eead.csic.es/3dpwm/scripts/server/ws.cgi';
+
+my $soap = SOAP::Lite
+-> uri($URI)
+-> proxy($WSURL);
+
+my $result = $soap->protein_query('MEPNTPTART FDWMKVKRNP PKTAKVSEPG LGSPSGLRTN FTTRQLTELE KEFHFNKYLS RARRVEIAAT LELNETQVKI WFQNRRMKQK KREREGG');
+
+unless($result->fault){ print $result->result(); }
+else{ print 'error: ' . join(', ',$result->faultcode,$result->faultstring); }
+
+```
+
+
+
+![First rows of footprintDB results for query hox-b1.](pics/hoxb1-footdb.png)
+
+### Exercise 2: comparing binding interfaces using atomic coordinates
+
+Here we will test a structural alignment approach for the comparison of DNA-binding proteins and their interfaces, as discussed in the literature @Siggers2005, @Sebastian2013. In this context superpositions are a tool to guide the correct alignment of cis elements bound by homologous proteins, as illustrated in the figure.
+
+![Sequence and structure alignment of cis-elements bound by two homologous PDB complexes: 3A01_A1 and 1FJL_B1. Note that only the structural alignment matches equivalent interface positions, taken from @Sebastian2013.](pics/TFcompare.png)
+
+This kind of analysis can be done with publicly available software, such as locally installed [Protein-DNA_Interface_Alignment](http://wiki.c2b2.columbia.edu/honiglab_public/index.php/Software:Protein-DNA_Interface_Alignment), or the web server [TFcompare](http://floresta.eead.csic.es/tfcompare/), which we will test in this session:
+
+1. Visit the [Protein Data Bank](http://www.rcsb.org) and check entries 3A01 and 1FJL: what are these proteins?
+
+2. Type both PDB codes in the search form of <http://floresta.eead.csic.es/tfcompare> and wait for your results. 
+
+3. How many domains are annotated in each protein, of which [Pfam](http://pfam.xfam.org) families?
+
+4. Spot the pairs of domains with lowest protein and DNA root-mean square deviations (RMSD) and check their 3D alignments to visually check their fit. Is there an obvious structure-based cis element alignment? _NOTE: you might need to add floresta.eead.cisc.es as an exception in your Java config._
 
 ___
 
