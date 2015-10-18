@@ -24,36 +24,45 @@ output:
 
 ## Teachers
 
-- Bruno Contreras-Moreira, Invited professor
-- Jaime Castro Mondragon
-- Denis Puthier
-- [Jacques van Helden](http://jacques.van-helden.perso.luminy.univ-amu.fr/)
+| Abbrev | Name  |
+|------|------|
+| BCM | Bruno Contreras-Moreira, Invited professor |
+| JCM | Jaime Castro Mondragon |
+| DP |  Denis Puthier |
+| JvH | [Jacques van Helden](http://jacques.van-helden.perso.luminy.univ-amu.fr/) |
+| | |
 
 ## Resources
 
-| Resource | URL |
+| Resource | Link |
 |----------|-----|
 | Glossary | [concept definitions](../html/concepts.html) |
 | Regulatory Sequence Analysis Tools (RSAT) | [http://rsat.eu/](http://rsat.eu/) |
 | RSAT teaching material | [http://rsa-tools.github.io/teaching/](http://rsa-tools.github.io/teaching/) |
 | RSAT course (slides) | [http://rsa-tools.github.io/course/](http://rsa-tools.github.io/course/) |
 | footprintDB | [http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/) |
-| ... | ... |
+| MEME suite| [http://meme-suite.org/](http://meme-suite.org/) |
+| | | 
 
 ## Content summary
 
-| Date | From  | To    | Subject | Teachers | Teaching material  |
+| Date | From  | To    | Subject | Teacher | Links  |
 |------|-------|-------|---------|----------|--------|
-| Mon 19/10 | 09:00 | 11:00 | Characterizing and representing TF-DNA interactions (from sites to motifs) | Jacques + Bruno | [tutorial](../from_sites_to_matrices/from_sites_to_matrices.html) |
-| Mon 19/10 | 11:00 | 13:00 | Scanning sequences to predict binding sites (from motifs to sites) | Jacques  | RSAT *matrix-scan*, *matrix-distrib*, *matrix-quality* |
-| Mon 19/10 | 14:00 | 18:00 | Motif discovery principle | Jacques  | RSAT *oligo-analysis*, *dyad-analysis*, *position-analysis*, MEME |
-| Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships (from structures to motifs) | Bruno | |
-| Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | Denis | |
-| Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | Denis | |
-| Fri 23/10 | 09:00 | 13:00 | Motif comparison and clustering | Jacques + Jaime | RSAT *matrix-clustering* |
+| Mon 19/10 | 09:00 | 11:00 | Characterizing and representing TF-DNA interactions <br>(from sites to motifs) | JvH | [RSAT](http://rsat.eu/)<br>[tutorial](../from_sites_to_matrices/from_sites_to_matrices.html) |
+| Mon 19/10 |  |  | Introduction to the **footprintDB** database | BCM  | [footprintDB](http://floresta.eead.csic.es/footprintdb/) |
+| Mon 19/10 | 11:00 | 13:00 | Scanning sequences to predict binding sites <br>(from motifs to sites) | JvH  | [RSAT](http://rsat.eu/) *matrix-scan*, *matrix-distrib*, *matrix-quality* |
+| Mon 19/10 | 14:00 | 18:00 | Discovering motifs in regulatory sequences <br>(from sequences to motifs) | JvH  | [RSAT](http://rsat.eu/) *oligo-analysis*, *dyad-analysis*, *position-analysis*, <br>[MEME](http://meme-suite.org/) |
+| Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships <br>(from structures to motifs) | BCM | |
+| Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | DP | |
+| Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | DP | |
+| Fri 23/10 | 09:00 | 13:00 | Motif comparison and clustering | JvH + JCM | [RSAT](http://rsat.eu/) *matrix-clustering* |
 | Fri 23/10 | 09:00 | 13:00 | The rest + discussion about personal work |  | |
-| Tur 05/11 | 14:00 | 18:00 | Presentation des travaux personnels | Denis + Jacques | |
+| Tur 05/11 | 14:00 | 18:00 | Presentation des travaux personnels | DP + JvH | |
+| | | | | |
 
+* * * 
+
+<!--
 ## Concepts
 
 Basic concepts for the analysis of cis-regulatory elements.
@@ -93,3 +102,6 @@ Teachers: Bruno Contreras Moreira & Jacques van Helden.
 
 Jaime & Jacques
 2h theory + 2h practicals
+
+-->
+
