@@ -2,7 +2,7 @@
 ## Synchronize web site on the server
 
 include ${RSAT}/makefiles/util.mk
-MAKEFILE=makefiles/synchro.mk
+MAKEFILE=makefile
 
 EXCLUDED=--exclude *~ 	\
 	--exclude .#*	\
@@ -43,3 +43,8 @@ WEB_URL=http://jvanheld.github.io/cisreg_course/
 web:
 	open -a ${BROWSER} ${WEB_URL}
 
+GITHUB_URL=https://github.com/jvanheld/cisreg_course/
+gh:
+	@echo
+	@echo ${GITHUB_URL}
+	open -a ${BROWSER} ${GITHUB_URL}
