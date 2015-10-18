@@ -62,7 +62,7 @@ The process of recognition of DNA sequences by proteins involves readout mechani
 
 ### Indirect/shape readout
 
-Besides atomic interactions between protein and DNA, Sequence-dependent deformability of duplexes, deduced from crystal complexes, implies that sequence recognition also involves DNA shape.
+Besides atomic interactions between protein and DNA, sequence-dependent deformability of duplexes, deduced from crystal complexes, implies that sequence recognition also involves DNA shape.
 
 ![DNA step geometry descriptors, from @Lu2008](pics/bp_step_hel.png)
 
@@ -110,7 +110,7 @@ Lambda-repressor-like (LR) | 21
 
 ![Frequency of distorted DNA steps (indirect readout) of target DNA sites of some SCOP superfamilies of DNA-binding proteins, from @ContrerasMoreira2010b](pics/indirect-stats.png)
 
-### Family wide analysis of protein-DNA interfaces
+### Analysis of protein-DNA interfaces in transcription factors families
 
 The available experimental structures of protein-DNA complexes in the PDB support the annotation of interface residues, those involved directly in sequence recognition, within protein families.
 
@@ -123,6 +123,21 @@ Several examples in the literature have demonstrated the correlation between int
 Structural data are key for the study of interfaces, as well as the structural superposition of DNA-binding domains:
 
 ![Alignment and superposition of 35 C2H2/C2HC zinc finger domains. (A) Structure-based multiple sequence alignment with summary of interface residues at the bottom. (B) Backbone cartoon of the corresponding structural superposition. (C) Summary of four side chain rotamer clusters found for interface residues aligned in column 20 of the multiple alignment, from @ContrerasMoreira2010b.](pics/ZFintf.png)
+
+### A tour of footprintDB
+
+FootprintDB is a meta-database that integrates the most comprehensive freely available libraries of curated cis elements and systematically annotates the binding interfaces of the corresponding TFs.
+
+![Most populated species (A) and SCOP superfamilies of TFs (B) in footprintDB database, from @Sebastian2014](pics/footdb-species.png)
+
+![Largest repositories included in footprintDB (top) and comparison of the contents of footprintDB, JASPAR and commercial database TRANSFAC v2012.1 (bottom), from @Sebastian2014](pics/footdb-stats.png)
+
+FootprintDB takes two types of queries:
+1. Transcription factors which bind a specific DNA site or motif.
+2. DNA motifs likely to be recognized by a specific DNA-binding protein.
+
+![Query types supported by footprintDB](pics/footdb-queries.jpg)
+
 
 ### Exercise 1: analyzing interfaces and inferring DNA motifs using only sequence data
 
@@ -140,7 +155,7 @@ KEFHFNKYLS RARRVEIAAT LELNETQVKI WFQNRRMKQK KREREGG
 
 2. Can you check the interfaces of the matched transcription factors (TF) and tell whether they are conserved? NOTE: You can check the alignments clicking in the BLAST e-value or interface similarity links.
 
-3. Compare the cognate DNA motifs of TFs with different annotated interface.
+3. Compare the cognate DNA motifs of TFs with different annotated interfaces.
 
 4. If you have admin rights on a Linux/OS-X machine please install Perl module SOAP::Lite with an appropriate command such as ``` sudo cpan -i SOAP::Lite ``` and then save the next script and run it on you terminal with ```perl script.pl```:
 
@@ -208,7 +223,7 @@ This kind of analysis can be done with publicly available software, such as loca
 
 ___
 
-## Mining sequence motifs from the structure of protein-DNA complexes
+<!-- ## Mining sequence motifs from the structure of protein-DNA complexes
 
 ### Total contacts model
 Morozov, Lichtarge
@@ -229,6 +244,6 @@ a repository of DNA motifs, including structure-based, which annotates the corre
 
 Ejercicio con footprintDB (capítulo de libro?)
 
-___
+___ -->
 
 ## References
