@@ -8,6 +8,7 @@ date: "October, 2015"
 output:
   html_document:
     fig_caption: yes
+    fig_crop: no
     toc: yes
   pdf_document:
     fig_caption: yes
@@ -27,9 +28,9 @@ DNA-binding proteins contain DNA-binding domains and have a specific or general 
 Transcription factors recognize target DNA sequences through a binding interface, composed of protein residues and DNA stretches in intimate contact.
 The best descriptions of protein-DNA interfaces are provided by structural biology, usually by X-ray or NMR experiments.
 
-![Details of the interface of Lac repressor and its operator site, @Lewis1996](pics/Lac-1.png) 
+![Details of the interface of Lac repressor and its operator site ( @Lewis1996)](pics/Lac-1.png) 
 
-![deatils of the interface of Lac repressor and its operator site, @Lewis1996](pics/Lac-2.png) 
+![deatils of the interface of Lac repressor and its operator site ( @Lewis1996)](pics/Lac-2.png) 
 
 ![Cartoon dissection of the interface of a NarL dimer (PDB entry 1JE8)](pics/interface_movie.gif) 
 
@@ -68,7 +69,7 @@ Besides atomic interactions between protein and DNA, sequence-dependent deformab
 
 DNA deformation is described by the increase in energy brought about by instantaneous fluctuations of the step parameters from their equilibrium values:
 
-$deformation = \displaystyle\sum_{i=0}^6 \displaystyle\sum_{j=0}^6 spring_{ij} \Delta\theta_{i,st} \Delta\theta_{j,st}$ @Olson1998
+$deformation = \displaystyle\sum_{i=0}^6 \displaystyle\sum_{j=0}^6 spring_{ij} \Delta\theta_{i,st} \Delta\theta_{j,st}$ (@Olson1998)
 
 ![Roll and twist of DNA steps are different for purine and pyrimidine steps, from @Olson1998](pics/roll-twist-steps.jpg)
 
@@ -78,13 +79,9 @@ The accumulation of experimental and molecular dynamics data of DNA molecules cu
 
 ### Protein-DNA interface graphs
 
-Interfaces can be explored as generic bipartite graphs:
+Interfaces can be explored as generic bipartite graphs (@Sathyapriya2008) or with sub-graphs that focus only on specific sequence recognition:
 
-![Generic graph representation of the interface among protein residues (yellow) and DNA bases (blue), from @Sathyapriya2008](pics/bipartite-graph.png)
-
-Or sub-graphs that focus on specific sequence recognition:
-
-![Interface graph of NarL, where solid bases indicate indirect readout and arrows direct readout interactions. Adapted from [3d-footprint](http://floresta.eead.csic.es/3dfootprint/complexes/1je8_F.html) , @ContrerasMoreira2010](pics/1je8-intf.png)
+![Interface graph of NarL, where solid bases indicate indirect readout and arrows direct readout interactions. Adapted from [3d-footprint](http://floresta.eead.csic.es/3dfootprint/complexes/1je8_F.html) (@ContrerasMoreira2010)](pics/1je8-intf.png)
 
 
 
@@ -114,7 +111,7 @@ Lambda-repressor-like (LR) | 21
 
 The available experimental structures of protein-DNA complexes in the PDB support the annotation of interface residues, those involved directly in sequence recognition, within protein families.
 
-![Annotation of interface residues by transference from PDB complexes in the [footprintDB database](http://floresta.eead.csic.es/footprintdb), from @Sebastian2014.](pics/intf-annot-hist.png)
+![Annotation of interface residues by transference from PDB complexes in the footprintDB database](pics/intf-annot-hist.png)
 
 Several examples in the literature have demonstrated the correlation between interface patterns and the bound DNA motifs within large transcription factor families, such as the work of @Noyes2008:
 
@@ -126,11 +123,11 @@ Structural data are key for the study of interfaces, as well as the structural s
 
 ### A tour of footprintDB
 
-FootprintDB is a meta-database that integrates the most comprehensive freely available libraries of curated cis elements and systematically annotates the binding interfaces of the corresponding TFs.
+[FootprintDB](http://floresta.eead.csic.es/footprintdb) is a meta-database that integrates the most comprehensive freely available libraries of curated cis elements and systematically annotates the binding interfaces of the corresponding TFs.
 
 ![Most populated species (A) and SCOP superfamilies of TFs (B) in footprintDB database, from @Sebastian2014](pics/footdb-species.png)
 
-![Largest repositories included in footprintDB (top) and comparison of the contents of footprintDB, JASPAR and commercial database TRANSFAC v2012.1 (bottom), from @Sebastian2014](pics/footdb-stats.png)
+![Largest repositories included in footprintDB (top) and comparison of the contents of footprintDB, JASPAR and commercial database TRANSFAC v2012.1 (bottom) (@Sebastian2014)](pics/footdb-stats.png)
 
 FootprintDB takes two types of queries:
 1. Transcription factors which bind a specific DNA site or motif.
@@ -207,9 +204,9 @@ else{ print 'error: ' . join(', ',$result->faultcode,$result->faultstring); }
 
 ### Exercise 2: comparing binding interfaces using atomic coordinates
 
-Here we will test a structural alignment approach for the comparison of DNA-binding proteins and their interfaces, as discussed in the literature @Siggers2005, @Sebastian2013. In this context superpositions are a tool to guide the correct alignment of cis elements bound by homologous proteins, as illustrated in the figure.
+Here we will test a structural alignment approach for the comparison of DNA-binding proteins and their interfaces, as discussed in the literature (@Siggers2005, @Sebastian2013). In this context superpositions are a tool to guide the correct alignment of cis elements bound by homologous proteins, as illustrated in the figure.
 
-![Sequence and structure alignment of cis-elements bound by two homologous PDB complexes: 3A01_A1 and 1FJL_B1. Note that only the structural alignment matches equivalent interface positions, taken from @Sebastian2013.](pics/TFcompare.png)
+![Sequence and structue alignment of cis-elements bound by two homologous PDB complexes: 3A01_A1 and 1FJL_B1. Note that this optimal sequence alignment does not math equivalent interface positions, adapted from @Sebastian2013.](pics/TFcompare.png)
 
 This kind of analysis can be done with publicly available software, such as locally installed [Protein-DNA_Interface_Alignment](http://wiki.c2b2.columbia.edu/honiglab_public/index.php/Software:Protein-DNA_Interface_Alignment), or the web server [TFcompare](http://floresta.eead.csic.es/tfcompare/), which we will test in this session:
 
@@ -219,31 +216,71 @@ This kind of analysis can be done with publicly available software, such as loca
 
 3. How many domains are annotated in each protein, of which [Pfam](http://pfam.xfam.org) families?
 
-4. Spot the pairs of domains with lowest protein and DNA root-mean square deviations (RMSD) and check their 3D alignments to visually check their fit. Is there an obvious structure-based cis element alignment? _NOTE: you might need to add floresta.eead.cisc.es as an exception in your Java config._
+4. Spot the pairs of domains with lowest protein and DNA root-mean square deviations (RMSD) and check their 3D alignments to visually check their fit. Is there an obvious structure-based cis element alignment? 
+_NOTE: you might need to add floresta.eead.cisc.es as an exception in your Java config._
 
-___
 
-<!-- ## Mining sequence motifs from the structure of protein-DNA complexes
+## Mining sequence motifs from the structure of protein-DNA complexes
 
-### Total contacts model
-Morozov, Lichtarge
+Here we will see two complementary ways to infer DNA sequence motifs recognized by transcriptions factors for which a protein-DNA complex structure has been solved.
 
-### Readout model
-DNAPROT, Sarai, Lavery
+### Total contacts model: Morozov algorithm 
+![    ](pics/interface_contacts.png)
+
+
+After counting all heavy-atom contacts per base pair, the algorithm is as follows (@Morozov2007):
+
+1. $C_{n} = contacts(n) / 20$ , ($4.5A$ heavy atoms)
+2. Each value in the resulting frequency DNA motif is: $W_{n,b}(contacts) = \begin{cases}1 (1 + 3C_{n}) & (b = consensus),\\1 (1-C_{n}) & (b \neq consensus)\end{cases}$
+
+### Readout model: DNAPROT algorithm
+
+![DNAPROT explicitely estimates direct + indirect readout.](pics/interface_readout.png)
+
+This algorithm is really an _in silico_ mutagenesis experiment of native DNA with these steps involved:
+
+1. Perform $4N$ mutations in template DNA:
+![](pics/dnaprot.png)
+
+2. Score mutations with statistical potentials and calculate each value in the resulting weight matrix with this expression, where D is the relative weight of indirect readout: 
+$W_{n,b} = e^{(-((1-D)*direct(n,b) + D * indirect(n,b)))}$
+
+Compared to the approach of @Morozov2007, this protocol is computationally more expensive and it is, in our experience, more dependent on the quality of the underlying structural data. 
+
+Further details of this algorithm are available in @Espinosa2008, and binaries (and source code) of DNAPROT, which implements both strategies, is available at <http://eead.csic.es/compbio/soft/dnaprot.php>. 
+The atomic pair potentials of interaction are updated weekly and are available at <http://floresta.eead.csic.es/3dfootprint/download.html>.
 
 ### Specificity-based classification of DNA-binding proteins
-DNAPROT
 
-### Genomic benchmarks 
+DNA motifs resulting from the combination of both previously described strategies are routinely calculated for PDB complexes annotated in [3D-footprint](http://floresta.eead.csic.es/3dfootprint), and ultimately included in footprintDB. 
 
-Ejercicio con 3d-footprint & matrix-quality, con alugnp por ejemplo
-http://161.111.227.80/compbio/material/regulatory_proteins/node7.html
+These structure-based DNA motifs, analyzed in terms of their information content, are also used to feed a plot of the specificity of SCOP superfamilies, updated weekly at <http://floresta.eead.csic.es/3dfootprint/stats/superfam_specificity.png>:
 
-### 3D-footprint and footprintDB
-a repository of DNA motifs, including structure-based, which annotates the corresponding binding protein and its interface
+![Information content of structure-derived DNA motifs of proteins belonging to several SCOP superfamilies, after @ContrerasMoreira2010](pics/superfam_specificity.png)
 
-Ejercicio con footprintDB (capítulo de libro?)
+<!--
+### Exercise
 
-___ -->
+Here we will learn to objectively estimate the quality of structure-based DNA motifs of complexes deposited in the PDB and then annotated in 3D-footprint. Please choose any of these structure-based motifs, chekc their annotations and then analyze their  [RSAT::matrix-quality](http://pedagogix-tagc.univ-mrs.fr/rsat) reports. Can you interpret the results? The original paper is @Medina2011.
+
+protein name | 3D-footprint entry | matrix-quality report
+------------ | ------------------ | ---------------------
+Ada | [1zgw_A](http://floresta.eead.csic.es/3dpwm/complexes/1zgw_A.html) | [Ada_1zgw_A](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/Ada/Ada_1zgw_A.tab/Ada_1zgw_A.tab_quality_index.html)
+-->
+
+<!--<tr><td>CRP</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1cgp_AB.html">1cgp_AB</a></td><td><a href="./bench/matrix_quality/20100311/CRP/CRP_1cgp_AB.tab/CRP_1cgp_AB.tab_quality_index.html">CRP_1cgp_AB</a></td></tr>
+<tr><td>DnaA</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1j1v_A.html">1j1v_A</a></td><td><a href="./bench/matrix_quality/20100311/DnaA/DnaA_1j1v_A.tab/DnaA_1j1v_A.tab_quality_index.html">DnaA_1j1v_A</a></td></tr>
+<tr><td>FadR</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1hw2_AB.html">1hw2_AB</a></td><td><a href="./bench/matrix_quality/20100311/FadR/FadR_1hw2_AB.tab/FadR_1hw2_AB.tab_quality_index.html">FadR_1hw2_AB</a></td></tr>
+<tr><td>LacI</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1efa_AB.html">1efa_AB</a></td><td><a href="./bench/matrix_quality/20100311/LacI/LacI_1efa_AB.tab/LacI_1efa_AB.tab_quality_index.html">LacI_1efa_AB</a></td></tr>
+<tr><td>MarA</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1bl0_A.html">1bl0_A</a></td><td><a href="./bench/matrix_quality/20100311/MarA/MarA_1b10_A.tab/MarA_1b10_A.tab_quality_index.html">MarA_1bl0_A</a></td></tr>
+<tr><td>NarL</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1je8_AB.html">1je8_AB</a></td><td><a href="./bench/matrix_quality/20100311/NarL/NarL_1je8_AB.tab/NarL_1je8_AB.tab_quality_index.html">NarL_1je8_AB</a></td></tr>
+<tr><td>PhoB</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1gxp_AB.html">1gxp_AB</a></td><td><a href="./bench/matrix_quality/20100311/PhoB/PhoB_1gxp_AB.tab/PhoB_1gxp_AB.tab_quality_index.html">PhoB_1gxp_AB</a></td></tr>
+<tr><td>PurR</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/2pua_A.html">2pua_A</a></td><td><a href="./bench/matrix_quality/20100311/PurR/PurR_2pua_A.tab/PurR_2pua_A.tab_quality_index.html">PurR_2pua_A</a></td></tr>
+<tr><td>PutA</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/2rbf_AB.html">2rbf_AB</a></td><td><a href="./bench/matrix_quality/20100311/PutA/PutA_2rbf_AB.tab/PutA_2rbf_AB.tab_quality_index.html">PutA_2rbf_AB</a></td></tr>
+<tr><td>Rob</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1d5y_AB.html">1d5y_AB</a></td><td><a href="./bench/matrix_quality/20100311/Rob/Rob_1d5y_AB.tab/Rob_1d5y_AB.tab_quality_index.html">Rob_1d5y_AB</a></td></tr>
+<tr><td>TrpR</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1rcs_AB.html">1rcs_AB</a></td><td><a href="./bench/matrix_quality/20100311/TrpR/TrpR_1rcs_AB.tab/TrpR_1rcs_AB.tab_quality_index.html">TrpR_1rcs_AB</a>
+-->
+
+
 
 ## References
