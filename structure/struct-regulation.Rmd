@@ -30,7 +30,7 @@ The best descriptions of protein-DNA interfaces are provided by structural biolo
 
 ![Details of the interface of Lac repressor and its operator site ( @Lewis1996)](pics/Lac-1.png) 
 
-![deatils of the interface of Lac repressor and its operator site ( @Lewis1996)](pics/Lac-2.png) 
+![Details of the interface of Lac repressor and its operator site ( @Lewis1996)](pics/Lac-2.png) 
 
 ![Cartoon dissection of the interface of a NarL dimer (PDB entry 1JE8)](pics/interface_movie.gif) 
 
