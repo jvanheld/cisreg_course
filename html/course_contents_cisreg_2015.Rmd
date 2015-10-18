@@ -44,15 +44,16 @@ output:
 | MEME suite| [http://meme-suite.org/](http://meme-suite.org/) |
 | | | 
 
-## Content summary
+## Content table
 
 | Date | From  | To    | Subject | Teacher | Links  |
 |------|-------|-------|---------|----------|--------|
-| Mon 19/10 | 09:00 | 11:00 | Characterizing and representing TF-DNA interactions <br>(from sites to motifs) | JvH | [RSAT](http://rsat.eu/)<br>[tutorial](../from_sites_to_matrices/from_sites_to_matrices.html) |
-| Mon 19/10 |  |  | Introduction to the **footprintDB** database | BCM  | [footprintDB](http://floresta.eead.csic.es/footprintdb/) |
-| Mon 19/10 | 11:00 | 13:00 | Scanning sequences to predict binding sites <br>(from motifs to sites) | JvH  | [RSAT](http://rsat.eu/) *matrix-scan*, *matrix-distrib*, *matrix-quality* |
-| Mon 19/10 | 14:00 | 18:00 | Discovering motifs in regulatory sequences <br>(from sequences to motifs) | JvH  | [RSAT](http://rsat.eu/) *oligo-analysis*, *dyad-analysis*, *position-analysis*, <br>[MEME](http://meme-suite.org/) |
-| Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships <br>(from structures to motifs) | BCM | |
+| Mon 19/10 | 09:00 | 11:00 | Characterizing and representing TF-DNA interactions <br>(from sites to motifs) | JvH | [[RSAT](http://rsat.eu/)]<br>[[tutorial](../from_sites_to_matrices/from_sites_to_matrices.html)] |
+| Mon 19/10 |  |  | Introduction to the **footprintDB** database | BCM  | [[footprintDB](http://floresta.eead.csic.es/footprintdb/)]|
+| Mon 19/10 | 11:00 | 13:00 | Scanning sequences to predict binding sites <br>(from motifs to sites) | JvH  | [[RSAT](http://rsat.eu/)] *dna-pattern*, *matrix-scan*, *permute-matrix*, *random-seq* |
+| Mon 19/10 | 14:00 | 16:00 | Estimating the reliability of binding site predictions<br>(score distributions) | JvH  | [[RSAT](http://rsat.eu/)] *convert-background-model*, *matrix-distrib*, *matrix-quality* |
+| Mon 19/10 | 16:00 | 18:00 | Discovering motifs in regulatory sequences <br>(from sequences to motifs) | JvH  | [[RSAT](http://rsat.eu/)] *oligo-analysis*, *dyad-analysis*, *position-analysis*, *random-genes* <br>[[MEME](http://meme-suite.org/)] |
+| Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships <br>(from structures to motifs) | BCM |[[footprintDB](http://floresta.eead.csic.es/footprintdb/)]<br>[[tutorial](../structure/struct-regulation.html)] |
 | Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | DP | |
 | Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | DP | |
 | Fri 23/10 | 09:00 | 13:00 | Motif comparison and clustering | JvH + JCM | [RSAT](http://rsat.eu/) *matrix-clustering* |
