@@ -8,12 +8,12 @@ output:
     highlight: zenburn
     theme: cerulean
     toc: yes
-    toc_depth: 5
+    toc_depth: 3
   pdf_document:
     fig_caption: yes
     highlight: zenburn
     toc: yes
-    toc_depth: 5
+    toc_depth: 3
   word_document: default
 ---
 
@@ -33,6 +33,7 @@ output:
 
 | Resource | URL |
 |----------|-----|
+| Glossary | [concept definitions](../html/concepts.html) |
 | Regulatory Sequence Analysis Tools (RSAT) | [http://rsat.eu/](http://rsat.eu/) |
 | RSAT teaching material | [http://rsa-tools.github.io/teaching/](http://rsa-tools.github.io/teaching/) |
 | RSAT course (slides) | [http://rsa-tools.github.io/course/](http://rsa-tools.github.io/course/) |
@@ -41,10 +42,11 @@ output:
 
 ## Content summary
 
-| Date | From  | To    | Subject | Teachers | Tools  |
+| Date | From  | To    | Subject | Teachers | Teaching material  |
 |------|-------|-------|---------|----------|--------|
-| Mon 19/10 | 09:00 | 13:00 | Characterizing and representing TF-DNA interactions (from sites to modifs) | Jacques + Bruno | *RSAT convert-matrix* |
-| Mon 19/10 | 14:00 | 18:00 | Scanning sequences to predict binding sites (from motifs to sites) + Motif discovery principle (oligo-analysis, position-analysis) | Jacques  | RSAT *matrix-scan*, *matrix-distrib*, *matrix-quality* |
+| Mon 19/10 | 09:00 | 11:00 | Characterizing and representing TF-DNA interactions (from sites to motifs) | Jacques + Bruno | [tutorial](../from_sites_to_matrices/from_sites_to_matrices.html) |
+| Mon 19/10 | 11:00 | 13:00 | Scanning sequences to predict binding sites (from motifs to sites) | Jacques  | RSAT *matrix-scan*, *matrix-distrib*, *matrix-quality* |
+| Mon 19/10 | 14:00 | 18:00 | Motif discovery principle | Jacques  | RSAT *oligo-analysis*, *dyad-analysis*, *position-analysis*, MEME |
 | Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships (from structures to motifs) | Bruno | |
 | Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | Denis | |
 | Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | Denis | |
