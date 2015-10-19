@@ -1,5 +1,5 @@
 ---
-title: "Cis-regulation 2015 - Course content"
+title: "Scanning sequences to predict transcription factor binding sites"
 author: "Jacques van Helden"
 date: '`r Sys.Date()`'
 output:
@@ -174,21 +174,40 @@ One way to normalize the sequence scanning is to set the thresholds on **p-value
 Before the actual scanning, we recommend to use the tool **matrix-distrib**, which computes a complete distribution of p-values for all the possible weight scores that can be computed with a given matrix. 
 
 
-
-### Estimating the false positive rate (p-value) from the matrix weights
-
 1. Use the RSAT tool ***matrix distribution*** to compute the theoretical distribution of probability for your motif.
 
+2. Given the size if the upstream sequence set, estimate the number of false positives that would be expected with different threshold values on the weight score: 0, 3, 5, 7, 8, 10.
 
 
-## Report
+3. Compute the number of sites and the [sensitivity](../html/concepts.html) (fraction of sites recovered) achieved when scanning the annotated binding sites in different conditions: 
 
-Write a short report summarizing the result for your transcription factor. In particular, 
+    a. With the different consensuses
+    b. With the position-specific scoring matrix from RegulonDB (you can download it from footprintDB), using a p-value threshold of 0.001.
+    c. With the position-specific scoring matrix from RegulonDB (you can download it from footprintDB), using a p-value threshold of 0.0001.
 
-    a. compute the sensitivity (fraction of sites recovered) achieved when scanning all promoters with the consensus.
-    b. Indicate the total number of predicted sites for your consensus. 
+4. Compute the same statistics with a randomized version of your matrix, generated with **permute-matrix**.
 
-* * * 
+5. How many binding sites and target genes do you obtain when you scan the whole set of promoters with p-value thresholds of respectively 0.001 and 0.0001. 
+
+6. How many binding sites and target genes do you obtain when you scan the whole set of promoters in the same conditions, but with a permuted version of the matrix? 
+
+7. Use the tool **random-seq** to generate artificial sequences of the same length of the promoter set, and scan them with the TF binding motif, and the permuted matrix. 
+
+Summarize the number of predicted binding sites in all the conditions above. 
+
+## Evaluating the quality of a position-specific scoring matrix
+
+In the exercise above, you performed different tasks to evaluate the capability of a TF binding motif (consensus, matrix) to predict binding sites. This evaluation included two complementary parameters: the *sensitivity* (i.e. fraction of actual binding sites detected) and *false posiive rate*. 
+
+The program **matrix-quality** automatically runs a series of similar analyses to estimate the tradeoff between sensitivity and false posigive rate, by combining theoretical and empirical distributions of scores computed in various conditions: 
+
+- scanning a positive sequence set (e.g. annotated sites);
+- scanning a negative set (e.g. random sequences, or biological sequences containing no site);
+- scanning the same datasets with permuted matrices.
+
+1. In the left-side menu of [RSAT](http://teaching.rsat.eu/), open the tool **matrix-quality**. 
+2. Conceive a way to test the quality of the TF binding matrix obtained from RegulonDB, based on the previous exercises. 
+
 
 
 * * * * *
