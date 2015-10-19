@@ -4,7 +4,7 @@ author:
 - affiliation: Fundación ARAID & Estación Experimental de Aula Dei-CSIC, Zaragoza,
     España <http://www.eead.csic.es/compbio> | chercheur invité AMU, Marseille, France
   name: Bruno Contreras Moreira
-date: "October, 2015"
+date: "20/10/2015"
 output:
   html_document:
     fig_caption: yes
