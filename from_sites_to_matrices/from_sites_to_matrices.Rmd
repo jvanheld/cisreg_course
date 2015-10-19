@@ -17,6 +17,7 @@ output:
   word_document: default
 ---
 
+* * * 
 
 ## Prerequisites
 
@@ -29,6 +30,7 @@ This tutorial assumes that you already learned the theory in the following chapt
 | Position-specific scoring matrices | [01.4.PSSM_theory.pdf](http://rsa-tools.github.io/course/pdf_files/01.4.PSSM_theory.pdf) |
 |  |  |
 
+* * * 
 
 ## Tools used in this tutorial
 

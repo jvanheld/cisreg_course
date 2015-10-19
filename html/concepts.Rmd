@@ -1,3 +1,4 @@
+
 ---
 title: "Concept definitions"
 author: "Jacques van Helden"
@@ -18,6 +19,17 @@ output:
 ---
 
 
+### Abbreviations
+
+| Abbreviation | Description |
+|----|-----|
+| TF | Transcription factor |
+| TFBS | Transcription factor binding site |
+| TFBM | Transcription factor binding motif |
+| PWM | Position-weight matrix |
+| PSSM | Position-specific scoring matrix |
+| RSAT | Regulatory Sequence Analysis Tools |
+| | |
 
 ### Regulon
 
