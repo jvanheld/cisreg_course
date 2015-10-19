@@ -148,11 +148,8 @@ Using the [IUPAC code for ambiguous nucleotides](../../html/concepts.html#iupac)
 
 3. Use the RSAT tool ***convert matrix*** to generate the logo of your motif, using a Markov model estimated from the non-coding upstream sequences of *Escherichia coli K-12 MG1655* (option upstream-noorf). 
 
-### Estimating the false positive rate (p-value) from the matrix weights
 
-4. Use the RSAT tool ***matrix distribution*** to compute the theoretical distribution of probability for your motif.
-
-### Score distribution of the bona fide binding sites
+### Consensus matches among the annotated binding sites
 
 5. Using the tool ***dna-pattern***, scan the annotated sites (the fasta file you generated above) with the *ad hoc* consensus, and count the number of recovered sites.
 
@@ -166,9 +163,27 @@ Note: The option **match count table** enables to directly obtain the count of o
 of recovered operons.
 
 
-### Report
+## Scanning sequences with a position-specific scoring matrix
 
-8. Write a short report summarizing the result for your transcription factor. In particular, 
+We will now scan the same sequences (annotated binding sites and collection of all promoters) with the position-specific scoring matrix obtained from **RegulonDB**. Do to so, we will need to define a crucial parameter: the threshold to consider or not a given sequence as a binding site. 
+
+The primary score returned by motif search programs is the so-called **weight score**. However, defining a threshold on this scrore is somewhat arbitrary, especially because it is easier to  achieve a high score with a larger matrix than with a narrow one. The weight score shold thus always be relativized to the matrix width, and to other parameters. 
+
+One way to normalize the sequence scanning is to set the thresholds on **p-values** rather than on weight scores. The RSAT tool **matrix-scan** allows to directly specify a threshold on the p-value. 
+
+Before the actual scanning, we recommend to use the tool **matrix-distrib**, which computes a complete distribution of p-values for all the possible weight scores that can be computed with a given matrix. 
+
+
+
+### Estimating the false positive rate (p-value) from the matrix weights
+
+1. Use the RSAT tool ***matrix distribution*** to compute the theoretical distribution of probability for your motif.
+
+
+
+## Report
+
+Write a short report summarizing the result for your transcription factor. In particular, 
 
     a. compute the sensitivity (fraction of sites recovered) achieved when scanning all promoters with the consensus.
     b. Indicate the total number of predicted sites for your consensus. 
