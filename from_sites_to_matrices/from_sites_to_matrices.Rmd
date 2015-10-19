@@ -1,0 +1,155 @@
+---
+title: "From  TF binding sites to consensuses and matrices"
+author: "Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+
+## Prerequisites
+
+This tutorial assumes that you already learned the theory in the following chapters.
+
+
+| Chapter | Slides |
+|---------|--------|
+| Transcriptional regulation - basic concepts | [01.2_regulatory_sequences_intro.pdf](http://rsa-tools.github.io/course/pdf_files/01.2_regulatory_sequences_intro.pdf)  |
+| Position-specific scoring matrices | [01.4.PSSM_theory.pdf](http://rsa-tools.github.io/course/pdf_files/01.4.PSSM_theory.pdf) |
+|  |  |
+
+
+## Tools used in this tutorial
+
+
+| Tool | Usage |
+|------|-------|
+| [RSAT](http://teaching.rsat.eu/) convert-matrix | Convert matrix between different formats<br>+derive various statistics from a count matrix<br>+generate sequence logos|
+| | | 
+
+* * * 
+
+## Exercise - From count matrices to weight matrices
+
+Before using computer tools, we will start with an easy exercise on an artificial dataset, in order to get the principles of the procedure enabling to build position-specific scoring matrices from aligned binding sites. 
+
+
+Let us assume that we dispose of a collection of 4 binding sites for a given transcription factor, collected by individual footprint experiments. 
+
+     AAAAACCG
+     AAAACCGG
+     AATTGGGG
+     ATTGTGGG
+     
+**Note**: the example is intently minimalist for this exercise. In practice, you should not even try to build matrices with such a poor collecting of *bona fide* binding sites.
+
+Open an empty spreadsheet in Excel or LibreOffice.
+
+1. Build a position-specific scoring matrix indicating the residue counts per position (**count matrix**). 
+2. From this count matrix, derive a **frequency matrix**. 
+3. Compute a **pseudo-weight smoothed frequency matrix**, with pseudo-wsights of 1, 10 and 100, respectively.
+4. Compute the weight matrices corresponding to the frequency matrices with no pseudo-weight, assuming equiprobable residues.
+6. Do the same with the pseudo-weight=1.
+5. Compute the weight matrices with a pseudo-weight=1 and the following prior probabilities: A=0.3, T=0.3, C=0.2, G=0.2.
+5. Add a comment on the spreadsheet with your interpretation of the results. 
+
+You can now check the solution [[excel](solutions_exo1_fake_matrix.xlsx)] [[pdf](solutions_exo1_fake_matrix.pdf)].
+
+
+* * * 
+
+## Tutorial - matrix conversion
+
+1. Open a connection to the **Regulatory Sequence Analysis Tools** [teaching server](http://teaching.rsat.eu/) ([http://teaching.rsat.eu/](http://teaching.rsat.eu/)).
+2. In the left-side menu, open the tool set **Matrix tools**, and click on **convert-matrix**.
+3. Paste the count matrix of the previous exercise in the **Matrix** box, and check that the input format is set to **tab**.
+4. Set the **pseudo-weights** to *1*, and check the option **distributed in an equiprobable way**.
+5. Select an organism-specific background model based on *Escherichia coli K 12 substr MG1655_uid57779* upstream non-coding sequences (*upstream-noorf*).
+6. For the **Output format**, select *tab*.
+7. Check the following **Output fields**: counts, frequencies, weights, info, header, margins, consensus, parameters, *logo* with *error bars* and *small sample corrections*.
+8. Set the **decimals** to 2. 
+9. Play around with the pseudo weight, and check the effect on the sequence logo.
+
+
+* * * 
+
+
+<!--
+
+## Playing with PSSM
+
+### Download a matrix from footprintDB
+
+1. Open a connection to [footprintDB](http://floresta.eead.csic.es/footprintdb/) ([http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/))
+2. In the menu on the left site, click **Databases**
+3. Select one transcription factor of your choice (one different per student).
+4. Download the binding sites. 
+5. Download the DNA binding motif.
+6. Note about matrix formats
+
+
+- convert matrix between tab-delimited and stamp-transfac (footprintDB) and transfac
+
+
+### Take-home message
+
+1. Logos
+2. Impact of the number of sites. Error bars on the logos
+3. Interpretation and impact of the pseudo-weight. 
+
+
+# Scanning sequences to predict TF binding sites
+
+- Select a motif from footprintDB / RegulonDB collection
+- get the matrix + consensus 
+- Scan all the promoters from E.coli
+
+    - with a strict consensus
+    - with degenerate consensus
+    - with the PSSM
+
+- check if you recovered the annotated binding sites
+- evaluate the number of predicted sites
+
+
+# Matrix comparison and clustering
+
+- Enter with a motif in footprintDB and compare it with the whole database ("search"" form)
+- The same but restrict to a specific organism
+- matrix-clustering demo + exercises (Jaime)
+
+# To do
+
+## convert-matrix (Jacques)
+
+- check that the matrices downloaded from footprintDB can be converted (including name)
+- test the STAMP format OK
+- aparently the footprintDB format is a hybrid between stamp and transfac -> add it explicitly in the convert-matrix input formats 
+- convert-matrix: fix the problem with frequency matrices which appear as flat logos with huge error bars
+
+- convert-matrix: produce colored consensus in HTML format
+
+## footprintDB (sugerencias, wish list para mas tarde)
+
+- coloracion de los consensus: import colored consensus sfrom convert-matrices
+- include sequence of binding sites in the export format if it exists. Note that this makes HUGE files for matrices derived form ChIP-seq -> to be evaluated
+- links "Binding sites" currently give all the binding sites for all the TF. Could you adda column with the TF name and/or enable to select binding sites per matrix
+
+
+
+-->
+
+
+
+
