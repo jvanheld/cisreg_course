@@ -120,6 +120,22 @@ Structural data are key for the study of interfaces, as well as the structural s
 
 ![Alignment and superposition of 35 C2H2/C2HC zinc finger domains. (A) Structure-based multiple sequence alignment with summary of interface residues at the bottom. (B) Backbone cartoon of the corresponding structural superposition. (C) Summary of four side chain rotamer clusters found for interface residues aligned in column 20 of the multiple alignment, from @ContrerasMoreira2010b.](pics/ZFintf.png)
 
+The study of interfaces must be done in the appropriate biological context, for instance considering the oligomerization state of TFs _in vivo_, as each family of transcription factors has singularities, such as these (compiled by Álvaro Sebastián):
+
+Family | Motifs | Multimeric | Multidomain
+------ | ------ | ---------- | -----------
+Homeodomain	| TAATkr,TGAyA | Sometimes | Unusual
+Basic helix-loop-helix (bHLH)	| CACGTG,CAsshG	| Always (homodimers, heterodimers)	| Never
+Basic leucine zipper (bZIP)	| CACGTG,-ACGT-,TGAGTC | Always (homodimers, heterodimers) | Never
+MYB	| GkTwGkTr | Common (multimers)	| Common
+High mobility group (HMG)	| mTT(T)GwT,TTATC,ATTCA | Sometimes	| Unusual
+GAGA | GAGA	| Never	| Never
+Fork head	| TrTTTr | Unusual | Never
+Fungal Zn(2)-Cys(6) binuclear cluster |	CGG	| Common (homodimers) | Never
+Ets	| GGAw | Common (homodimers, heterodimers, multimers)	| Never
+Rel homology domain (RHD) |	GGnnwTyCC |	Always (homodimers, heterodimers)	| Never
+Interferon regulatory factor | AAnnGAAA	| Always (homodimers, heterodimers, multimers) |	Never
+
 ### A tour of footprintDB
 
 [FootprintDB](http://floresta.eead.csic.es/footprintdb) is a meta-database that integrates the most comprehensive freely available libraries of curated cis elements and systematically annotates the binding interfaces of the corresponding TFs.
@@ -260,7 +276,7 @@ These structure-based DNA motifs, analyzed in terms of their information content
 
 ![Information content of structure-derived DNA motifs of proteins belonging to several SCOP superfamilies as of October, 2015, after @ContrerasMoreira2010](pics/superfam_specificity.png)
 
-### Exercise
+### Exercise 3: obtaning and evaluating structure-based motifs
 
 Here we will learn i) how to produce a structure-based motif out of a protein-DNA complex in 
 [PDB format](http://www.wwpdb.org/documentation/file-format) and ii) how to evaluate its predictive value. With these goals in mind I suggest we can work with any of the following _Escherichia coli_ TFs originally annotated in [RegulonDB](http://regulondb.ccg.unam.mx/):
@@ -279,11 +295,42 @@ PurR | [2pua_A](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footpri
 Rob | [1d5y_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1d5y_AB) | [Rob_1d5y_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/Rob/Rob_1d5y_AB.tab/Rob_1d5y_AB.tab_quality_index.html)
 TrpR | [1rcs_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1rcs_AB) | [TrpR_1rcs_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/TrpR/TrpR_1rcs_AB.tab/TrpR_1rcs_AB.tab_quality_index.html)
 
-1. Inspect the 3D-footprint 
+1. Inspect the footprintDB entry of one or more of these TFs and, 
+  - 1.1 check the primary accession to find the corresponding Protein Data Bank structure.
+  - 1.2 Check the information content of the structure-based DNA motif
 
- Please choose any of these structure-based motifs, chekc their annotations and then analyze their  [RSAT::matrix-quality](http://pedagogix-tagc.univ-mrs.fr/rsat) reports. Can you interpret the results? The original paper is @Medina2011.
+2. In the PDB site,
+  - 2.1 In the "Molecular Description" section, check how many protein and DNA molecules are captured in the structure. 
+  _ 2.2 Download the 'PDB File (Test)' with the coordinates of the complex to a local file in your computer. If there are more than 1 complex edit the file and leave only one of them. Software such as [Rasmol](http://www.openrasmol.org/) or [PyMOL](https://www.pymol.org/) can be useful for this task.
 
+3. Visit the [3D-footprint interactive tool](http://floresta.eead.csic.es/3dfootprint/footprint.html), upload your PDB file and submit the job. You might want to try several parameter combinations. By default readout (DNAPROT) and contact (Morozov) matrices are averaged with equal weights.
+  - 3.1 Revise the "Original Interface contacts" and the interface graph, what kind of interactions where detected? 
+  - 3.2 Compare the "readout" and "contact" sequence logos, are they compatible or perhaps there are some inconsistencies?
+  - 3.3 Save the structure-based DNA motif produced to a local file.
+  
+4. Visit [RSAT::matrix-quality](http://pedagogix-tagc.univ-mrs.fr/rsat) (@Medina2011) and evaluate the predictive value of the obtained matrix (tab format) by comparing it to the corresponding set of experimentally obtained _cis_ regulatory sites (see Table) by scanning all E.coli K12 upstream regions in this file:  [Escherichia_coli_K12_allup-noorf_min30_max500.fasta](data/Escherichia_coli_K12_allup-noorf_min30_max500.fasta).     
+  - 4.1 Upload the FASTA file with experimental sites as sequence "Dataset 1". Tag this set as "DBsites"
+  - 4.2 Upload upstream sequences file as "Dataset 2" and choose "Number of matrix permutations" = 1. Tag this set as "all_upstream"
+  - 4.3 Select a Markov background model of order 1 (precomputed in the server for _E.coli_)
+  - 4.4 Press "Submit", the job will take some minutes.
 
+protein name | RegulonDB curated cis elements
+------------ | ------------------------------
+Ada | [Ada.fna](data/Ada.fna)  
+CRP | [CRP.fna](data/CRP.fna)
+DnaA | [DnaA.fna](data/DnaA.fna)
+FadR | [FadR.fna](data/FadR.fna)
+LacI | [LacI.fna](data/LacI.fna)
+MarA | [MarA.fna](data/MarA.fna)
+NarL | [NarL.fna](data/NarL.fna)
+PhoB | [PhoB.fna](data/PhoB.fna)
+PurR | [PurR.fna](data/PurR.fna)
+Rob | [Rob.fna](data/Rob.fna)
+TrpR | [TrpR.fna](data/TrpR.fna)
+
+![_matrix-quality_ plot of a structure-based matrix of TrpR from PDB entry 1rcs_AB](pics/TrpR_1rcs_AB.png)
+
+![_matrix-quality_ plot of a structure-based matrix of PurR from PDB entry 2pua_A](pics/PurR_2pua_A.png)
 
 
 ## References
