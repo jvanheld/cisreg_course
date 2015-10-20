@@ -54,7 +54,7 @@ output:
 | Mon 19/10 | 14:00 | 16:00 | Estimating the reliability of binding site predictions<br>(score distributions) | JvH  | [[RSAT](http://rsat.eu/)] *convert-background-model*, *matrix-distrib*, *matrix-quality* |
 | Mon 19/10 | 16:00 | 18:00 | Discovering motifs in regulatory sequences <br>(from sequences to motifs) | JvH  | [[RSAT](http://rsat.eu/)] *oligo-analysis*, *dyad-analysis*, *position-analysis*, *random-genes* <br>[[MEME](http://meme-suite.org/)] |
 | Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships <br>(from structures to motifs) | BCM |[[footprintDB](http://floresta.eead.csic.es/footprintdb/)]<br>[[tutorial](../structure/struct-regulation.html)] |
-| Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | DP | [[Tutorial]](chip-seq/practical/chip-seq.html)|
+| Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | DP | [[slides]](http://google.com) [[Tutorial]](../chip-seq/practical/chip-seq.html)|
 | Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | DP | |
 | Fri 23/10 | 09:00 | 13:00 | Motif comparison and clustering | JvH + JCM | [[RSAT](http://rsat.eu/)] *matrix-clustering* |
 | Fri 23/10 | 09:00 | 13:00 | The rest + discussion about personal work |  | |
