@@ -362,14 +362,13 @@ as follow:
 <li>ChIP-seq control file : select the BAM file for the input</li>
 <li>Effective genome size: use chromosome 21 size (48129895).</li>
 <li>Tag size : these are Illumina datasets of read size 36.</li>
-<li>Save shifted raw tag count at every bp into a wiggle file : select save. This will output WIG files for the treatment and the input.</li>
+<li>Diagnosis report: ask for a report.</li>
 <li>All other options should be set to default.</li>
 </ul></li>
 </ul>
 </blockquote>
 </div>
 <p>MACS running using these options should generate 4 result files:</p>
-<div class="protocol">
 <blockquote>
 <ul>
 <li>A html report describing the model built by MACS.</li>
@@ -378,8 +377,18 @@ as follow:
 <li>Use the sort tool in the toolbox to sort MACS peaks according to the score.</li>
 </ul>
 </blockquote>
+<div class="exo">
+<blockquote>
+<ul>
+<li>How many peaks have been called by MACS on chromosome 21 ?</li>
+<li>Order the peaks by intensity. Have a look at the most intense peaks.</li>
+<li>Order the peaks by length. Have a look at the broader peaks.</li>
+<li>What does the summit.bed file contain ?</li>
+<li>What does the peaks.xls and negative_peaks.xls files contains ?</li>
+<li>Using Galaxy tools. Define the TSS regions for each genes. Compute the closest TSS of each peak.</li>
+</ul>
+</blockquote>
 </div>
-<p>How many peaks have been called by MACS on chromosome 21 ?</p>
 </div>
 
 
