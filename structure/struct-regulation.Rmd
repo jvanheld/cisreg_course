@@ -301,7 +301,7 @@ TrpR | [1rcs_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footpr
 
 2. In the PDB site,
   - 2.1 In the "Molecular Description" section, check how many protein and DNA molecules are captured in the structure. 
-  _ 2.2 Download the 'PDB File (Test)' with the coordinates of the complex to a local file in your computer. If there are more than 1 complex edit the file and leave only one of them. Software such as [Rasmol](http://www.openrasmol.org/) or [PyMOL](https://www.pymol.org/) can be useful for this task.
+  - 2.2 Download the 'PDB File (Test)' with the coordinates of the complex to a local file in your computer. If there is more than 1 complex edit the file and leave only one of them. Software such as [Rasmol](http://www.openrasmol.org/) or [PyMOL](https://www.pymol.org/) can be useful for this task.
 
 3. Visit the [3D-footprint interactive tool](http://floresta.eead.csic.es/3dfootprint/footprint.html), upload your PDB file and submit the job. You might want to try several parameter combinations. By default readout (DNAPROT) and contact (Morozov) matrices are averaged with equal weights.
   - 3.1 Revise the "Original Interface contacts" and the interface graph, what kind of interactions where detected? 
