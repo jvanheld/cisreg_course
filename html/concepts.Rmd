@@ -29,6 +29,9 @@ output:
 | PWM | Position-weight matrix |
 | PSSM | Position-specific scoring matrix |
 | RSAT | Regulatory Sequence Analysis Tools |
+| TSS | Transcription start site |
+| TTS | Transcription termination site |
+| UTR | Untranslated region |
 | | |
 
 ### Regulon
