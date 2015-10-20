@@ -361,6 +361,7 @@ MACS running using these options should generate 4 result files:
 > - Order the peaks by length. Have a look at the broader peaks.
 > - What does the summit.bed file contain ?
 > - What does the peaks.xls and negative_peaks.xls files contains ?
+> - Have a look at the set of negative peaks in IGV. What can we say ?
 > - Using Galaxy tools. Define the TSS regions for each genes. Compute the closest TSS of each peak.
 
 </div>
