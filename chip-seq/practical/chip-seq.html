@@ -10,7 +10,7 @@
 
 <meta name="author" content="Denis Puthier" />
 
-<meta name="date" content="2015-10-19" />
+<meta name="date" content="2015-10-20" />
 
 <title>ChIP-Seq – Quality filtering and read mapping –</title>
 
@@ -41,7 +41,7 @@
 <div id="header">
 <h1 class="title">ChIP-Seq – Quality filtering and read mapping –</h1>
 <h4 class="author"><em>Denis Puthier</em></h4>
-<h4 class="date"><em>2015-10-19</em></h4>
+<h4 class="date"><em>2015-10-20</em></h4>
 </div>
 
 <div id="TOC">
@@ -59,6 +59,7 @@
 <li><a href="#mapping-reads-with-bowtie">Mapping reads with bowtie</a></li>
 <li><a href="#removing-duplicates">Removing duplicates</a></li>
 <li><a href="#viewing-the-results-with-integrated-genome-browser-igv.">Viewing the results with Integrated Genome Browser (IGV).</a></li>
+<li><a href="#removing-read-with-poor-mapping-quality">Removing read with poor mapping quality</a></li>
 <li><a href="#mapping-reads-with-bowtie-input">Mapping reads with bowtie (input)</a></li>
 <li><a href="#checking-chip-quality-using-spp">Checking ChIP quality using SPP</a></li>
 <li><a href="#creating-bigwig-tracks">Creating bigwig tracks</a><ul>
@@ -261,6 +262,21 @@ as follow:
 </div>
 <p><strong>NB:</strong>The tdf file is a IGV specific format that is closed to the bigWig format (the compressed version of wig format).</p>
 <hr />
+</div>
+<div id="removing-read-with-poor-mapping-quality" class="section level2">
+<h2>Removing read with poor mapping quality</h2>
+<p><strong>From the bowtie manual:</strong> “Aligners characterize their degree of confidence in the point of origin by reporting a mapping quality: a non-negative integer Q = -10 log10 p, where p is an estimate of the probability that the alignment does not correspond to the read’s true point of origin. Mapping quality is sometimes abbreviated MAPQ, and is recorded in the SAM MAPQ field”. This information is available in the 5th column a a SAM file.</p>
+<div class="protocol">
+<blockquote>
+<ul>
+<li>Select <strong>NGS: SAM Tools &gt; Filter BAM or SAM on flags, fields, and tags using Sambamba</strong> from the toolbox.</li>
+<li>Filter the BAM filtered on duplicates based on mapping quality (30).</li>
+<li>Use flagstats to check the number of read left.</li>
+<li>Check that the overall mean of MAPQ is improved after filtering using <strong>NGS: SAM Tools &gt; sam-stats</strong></li>
+</ul>
+</blockquote>
+</div>
+<p>The resulting BAM file is to be used for peak calling and subsequent steps.</p>
 </div>
 <div id="mapping-reads-with-bowtie-input" class="section level2">
 <h2>Mapping reads with bowtie (input)</h2>

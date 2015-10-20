@@ -240,8 +240,23 @@ The [Integrative Genomics Viewer](http://www.broadinstitute.org/igv/home) (IGV) 
 **NB:**The tdf file is a IGV specific format that is closed to the
 bigWig format (the compressed version of wig format).
 
+
 ------------------------------------------------------------------------
 
+## Removing read with poor mapping quality
+
+**From the bowtie manual:** "Aligners characterize their degree of confidence in the point of origin by reporting a mapping quality: a non-negative integer Q = -10 log10 p, where p is an estimate of the probability that the alignment does not correspond to the read's true point of origin. Mapping quality is sometimes abbreviated MAPQ, and is recorded in the SAM MAPQ field". This information is available in the 5th column a a SAM file.
+
+<div class="protocol">
+
+> - Select **NGS: SAM Tools > Filter BAM or SAM on flags, fields, and tags using Sambamba** from the toolbox.
+> - Filter the BAM filtered on duplicates based on mapping quality (30).
+> - Use flagstats to check the number of read left. 
+> - Check that the overall mean of MAPQ is improved after filtering using **NGS: SAM Tools > sam-stats**
+
+</div>
+
+The resulting BAM file is to be used for peak calling and subsequent steps.
 
 ## Mapping reads with bowtie (input)
 Using the same procedure, to align reads obtained from the input sample. 
