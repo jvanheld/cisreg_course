@@ -4,11 +4,10 @@ author:
 - affiliation: Fundación ARAID & Estación Experimental de Aula Dei-CSIC, Zaragoza,
     España <http://www.eead.csic.es/compbio> | chercheur invité AMU, Marseille, France
   name: Bruno Contreras Moreira
-date: "October, 2015"
+date: "20/10/2015"
 output:
   html_document:
     fig_caption: yes
-    fig_crop: no
     toc: yes
   pdf_document:
     fig_caption: yes
@@ -121,6 +120,22 @@ Structural data are key for the study of interfaces, as well as the structural s
 
 ![Alignment and superposition of 35 C2H2/C2HC zinc finger domains. (A) Structure-based multiple sequence alignment with summary of interface residues at the bottom. (B) Backbone cartoon of the corresponding structural superposition. (C) Summary of four side chain rotamer clusters found for interface residues aligned in column 20 of the multiple alignment, from @ContrerasMoreira2010b.](pics/ZFintf.png)
 
+The study of interfaces must be done in the appropriate biological context, for instance considering the oligomerization state of TFs _in vivo_, as each family of transcription factors has singularities, such as these (compiled by Álvaro Sebastián):
+
+Family | Motifs | Multimeric | Multidomain
+------ | ------ | ---------- | -----------
+Homeodomain	| TAATkr,TGAyA | Sometimes | Unusual
+Basic helix-loop-helix (bHLH)	| CACGTG,CAsshG	| Always (homodimers, heterodimers)	| Never
+Basic leucine zipper (bZIP)	| CACGTG,-ACGT-,TGAGTC | Always (homodimers, heterodimers) | Never
+MYB	| GkTwGkTr | Common (multimers)	| Common
+High mobility group (HMG)	| mTT(T)GwT,TTATC,ATTCA | Sometimes	| Unusual
+GAGA | GAGA	| Never	| Never
+Fork head	| TrTTTr | Unusual | Never
+Fungal Zn(2)-Cys(6) binuclear cluster |	CGG	| Common (homodimers) | Never
+Ets	| GGAw | Common (homodimers, heterodimers, multimers)	| Never
+Rel homology domain (RHD) |	GGnnwTyCC |	Always (homodimers, heterodimers)	| Never
+Interferon regulatory factor | AAnnGAAA	| Always (homodimers, heterodimers, multimers) |	Never
+
 ### A tour of footprintDB
 
 [FootprintDB](http://floresta.eead.csic.es/footprintdb) is a meta-database that integrates the most comprehensive freely available libraries of curated cis elements and systematically annotates the binding interfaces of the corresponding TFs.
@@ -206,7 +221,7 @@ else{ print 'error: ' . join(', ',$result->faultcode,$result->faultstring); }
 
 Here we will test a structural alignment approach for the comparison of DNA-binding proteins and their interfaces, as discussed in the literature (@Siggers2005, @Sebastian2013). In this context superpositions are a tool to guide the correct alignment of cis elements bound by homologous proteins, as illustrated in the figure.
 
-![Sequence and structue alignment of cis-elements bound by two homologous PDB complexes: 3A01_A1 and 1FJL_B1. Note that this optimal sequence alignment does not math equivalent interface positions, adapted from @Sebastian2013.](pics/TFcompare.png)
+![Sequence and structue alignment of cis-elements bound by two homologous PDB complexes: 3A01_A1 and 1FJL_B1. Note that this optimal sequence alignment does not match equivalent interface positions, adapted from @Sebastian2013.](pics/TFcompare.png)
 
 This kind of analysis can be done with publicly available software, such as locally installed [Protein-DNA_Interface_Alignment](http://wiki.c2b2.columbia.edu/honiglab_public/index.php/Software:Protein-DNA_Interface_Alignment), or the web server [TFcompare](http://floresta.eead.csic.es/tfcompare/), which we will test in this session:
 
@@ -217,16 +232,17 @@ This kind of analysis can be done with publicly available software, such as loca
 3. How many domains are annotated in each protein, of which [Pfam](http://pfam.xfam.org) families?
 
 4. Spot the pairs of domains with lowest protein and DNA root-mean square deviations (RMSD) and check their 3D alignments to visually check their fit. Is there an obvious structure-based cis element alignment? 
-_NOTE: you might need to add floresta.eead.cisc.es as an exception in your Java config._
+_NOTE: you might need to add floresta.eead.csic.es as an exception in your Java config to display Jmol._
 
 
 ## Mining sequence motifs from the structure of protein-DNA complexes
 
-Here we will see two complementary ways to infer DNA sequence motifs recognized by transcriptions factors for which a protein-DNA complex structure has been solved.
+Here we will see two complementary ways to infer sequence motifs recognized by transcriptions factors for which a protein-DNA complex structure has been solved.
 
 ### Total contacts model: Morozov algorithm 
 ![    ](pics/interface_contacts.png)
 
+____
 
 After counting all heavy-atom contacts per base pair, the algorithm is as follows (@Morozov2007):
 
@@ -235,9 +251,11 @@ After counting all heavy-atom contacts per base pair, the algorithm is as follow
 
 ### Readout model: DNAPROT algorithm
 
-![DNAPROT explicitely estimates direct + indirect readout.](pics/interface_readout.png)
+![  ](pics/interface_readout.png)
 
-This algorithm is really an _in silico_ mutagenesis experiment of native DNA with these steps involved:
+_____
+
+The DNA algorithm explicitly estimates direct + indirect readout and really is an _in silico_ mutagenesis experiment of native DNA with the following steps involved:
 
 1. Perform $4N$ mutations in template DNA:
 ![](pics/dnaprot.png)
@@ -252,35 +270,67 @@ The atomic pair potentials of interaction are updated weekly and are available a
 
 ### Specificity-based classification of DNA-binding proteins
 
-DNA motifs resulting from the combination of both previously described strategies are routinely calculated for PDB complexes annotated in [3D-footprint](http://floresta.eead.csic.es/3dfootprint), and ultimately included in footprintDB. 
+DNA motifs resulting from combinations of both previously described strategies are routinely calculated for PDB complexes annotated in [3D-footprint](http://floresta.eead.csic.es/3dfootprint), and ultimately included in footprintDB. 
 
 These structure-based DNA motifs, analyzed in terms of their information content, are also used to feed a plot of the specificity of SCOP superfamilies, updated weekly at <http://floresta.eead.csic.es/3dfootprint/stats/superfam_specificity.png>:
 
-![Information content of structure-derived DNA motifs of proteins belonging to several SCOP superfamilies, after @ContrerasMoreira2010](pics/superfam_specificity.png)
+![Information content of structure-derived DNA motifs of proteins belonging to several SCOP superfamilies as of October, 2015, after @ContrerasMoreira2010](pics/superfam_specificity.png)
 
-<!--
-### Exercise
+### Exercise 3: obtaning and evaluating structure-based motifs
 
-Here we will learn to objectively estimate the quality of structure-based DNA motifs of complexes deposited in the PDB and then annotated in 3D-footprint. Please choose any of these structure-based motifs, chekc their annotations and then analyze their  [RSAT::matrix-quality](http://pedagogix-tagc.univ-mrs.fr/rsat) reports. Can you interpret the results? The original paper is @Medina2011.
+Here we will learn i) how to produce a structure-based motif out of a protein-DNA complex in 
+[PDB format](http://www.wwpdb.org/documentation/file-format) and ii) how to evaluate its predictive value. With these goals in mind I suggest we can work with any of the following _Escherichia coli_ TFs originally annotated in [RegulonDB](http://regulondb.ccg.unam.mx/):
 
-protein name | 3D-footprint entry | matrix-quality report
+protein name | footprintDB entry | matrix-quality report
 ------------ | ------------------ | ---------------------
-Ada | [1zgw_A](http://floresta.eead.csic.es/3dpwm/complexes/1zgw_A.html) | [Ada_1zgw_A](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/Ada/Ada_1zgw_A.tab/Ada_1zgw_A.tab_quality_index.html)
--->
+Ada | [1zgw_A](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1zgw_A) | [Ada_1zgw_A](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/Ada/Ada_1zgw_A.tab/Ada_1zgw_A.tab_quality_index.html)
+CRP | [1cgp_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1cgp_AB) | [CRP_1cgp_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/CRP/CRP_1cgp_AB.tab/CRP_1cgp_AB.tab_quality_index.html)
+DnaA | [1j1v_A](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1j1v_A) | [DnaA_1j1v_A](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/DnaA/DnaA_1j1v_A.tab/DnaA_1j1v_A.tab_quality_index.html)
+FadR | [1hw2_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1hw2_AB) | [FadR_1hw2_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/FadR/FadR_1hw2_AB.tab/FadR_1hw2_AB.tab_quality_index.html)
+LacI | [1efa_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1efa_AB) | [LacI_1efa_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/LacI/LacI_1efa_AB.tab/LacI_1efa_AB.tab_quality_index.html)
+MarA | [1bl0_A](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1bl0_A) | [MarA_1bl0_A](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/MarA/MarA_1b10_A.tab/MarA_1b10_A.tab_quality_index.html)
+NarL | [1je8_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1je8_AB) | [NarL_1je8_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/NarL/NarL_1je8_AB.tab/NarL_1je8_AB.tab_quality_index.html)
+PhoB | [1gxp_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1gxp_AB) | [PhoB_1gxp_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/PhoB/PhoB_1gxp_AB.tab/PhoB_1gxp_AB.tab_quality_index.html)
+PurR | [2pua_A](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=2pua_A) | [PurR_2pua_A](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/PurR/PurR_2pua_A.tab/PurR_2pua_A.tab_quality_index.html)
+Rob | [1d5y_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1d5y_AB) | [Rob_1d5y_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/Rob/Rob_1d5y_AB.tab/Rob_1d5y_AB.tab_quality_index.html)
+TrpR | [1rcs_AB](http://floresta.eead.csic.es/footprintdb/index.php?db=3D-footprint:20150526&motif=1rcs_AB) | [TrpR_1rcs_AB](http://floresta.eead.csic.es/3dfootprint/bench/matrix_quality/20100311/TrpR/TrpR_1rcs_AB.tab/TrpR_1rcs_AB.tab_quality_index.html)
 
-<!--<tr><td>CRP</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1cgp_AB.html">1cgp_AB</a></td><td><a href="./bench/matrix_quality/20100311/CRP/CRP_1cgp_AB.tab/CRP_1cgp_AB.tab_quality_index.html">CRP_1cgp_AB</a></td></tr>
-<tr><td>DnaA</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1j1v_A.html">1j1v_A</a></td><td><a href="./bench/matrix_quality/20100311/DnaA/DnaA_1j1v_A.tab/DnaA_1j1v_A.tab_quality_index.html">DnaA_1j1v_A</a></td></tr>
-<tr><td>FadR</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1hw2_AB.html">1hw2_AB</a></td><td><a href="./bench/matrix_quality/20100311/FadR/FadR_1hw2_AB.tab/FadR_1hw2_AB.tab_quality_index.html">FadR_1hw2_AB</a></td></tr>
-<tr><td>LacI</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1efa_AB.html">1efa_AB</a></td><td><a href="./bench/matrix_quality/20100311/LacI/LacI_1efa_AB.tab/LacI_1efa_AB.tab_quality_index.html">LacI_1efa_AB</a></td></tr>
-<tr><td>MarA</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1bl0_A.html">1bl0_A</a></td><td><a href="./bench/matrix_quality/20100311/MarA/MarA_1b10_A.tab/MarA_1b10_A.tab_quality_index.html">MarA_1bl0_A</a></td></tr>
-<tr><td>NarL</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1je8_AB.html">1je8_AB</a></td><td><a href="./bench/matrix_quality/20100311/NarL/NarL_1je8_AB.tab/NarL_1je8_AB.tab_quality_index.html">NarL_1je8_AB</a></td></tr>
-<tr><td>PhoB</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1gxp_AB.html">1gxp_AB</a></td><td><a href="./bench/matrix_quality/20100311/PhoB/PhoB_1gxp_AB.tab/PhoB_1gxp_AB.tab_quality_index.html">PhoB_1gxp_AB</a></td></tr>
-<tr><td>PurR</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/2pua_A.html">2pua_A</a></td><td><a href="./bench/matrix_quality/20100311/PurR/PurR_2pua_A.tab/PurR_2pua_A.tab_quality_index.html">PurR_2pua_A</a></td></tr>
-<tr><td>PutA</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/2rbf_AB.html">2rbf_AB</a></td><td><a href="./bench/matrix_quality/20100311/PutA/PutA_2rbf_AB.tab/PutA_2rbf_AB.tab_quality_index.html">PutA_2rbf_AB</a></td></tr>
-<tr><td>Rob</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1d5y_AB.html">1d5y_AB</a></td><td><a href="./bench/matrix_quality/20100311/Rob/Rob_1d5y_AB.tab/Rob_1d5y_AB.tab_quality_index.html">Rob_1d5y_AB</a></td></tr>
-<tr><td>TrpR</td><td><a href="http://floresta.eead.csic.es/3dpwm/complexes/1rcs_AB.html">1rcs_AB</a></td><td><a href="./bench/matrix_quality/20100311/TrpR/TrpR_1rcs_AB.tab/TrpR_1rcs_AB.tab_quality_index.html">TrpR_1rcs_AB</a>
--->
+1. Inspect the footprintDB entry of one or more of these TFs and, 
+  - 1.1 check the primary accession to find the corresponding Protein Data Bank structure.
+  - 1.2 Check the information content of the structure-based DNA motif
 
+2. In the PDB site,
+  - 2.1 In the "Molecular Description" section, check how many protein and DNA molecules are captured in the structure. 
+  _ 2.2 Download the 'PDB File (Test)' with the coordinates of the complex to a local file in your computer. If there are more than 1 complex edit the file and leave only one of them. Software such as [Rasmol](http://www.openrasmol.org/) or [PyMOL](https://www.pymol.org/) can be useful for this task.
+
+3. Visit the [3D-footprint interactive tool](http://floresta.eead.csic.es/3dfootprint/footprint.html), upload your PDB file and submit the job. You might want to try several parameter combinations. By default readout (DNAPROT) and contact (Morozov) matrices are averaged with equal weights.
+  - 3.1 Revise the "Original Interface contacts" and the interface graph, what kind of interactions where detected? 
+  - 3.2 Compare the "readout" and "contact" sequence logos, are they compatible or perhaps there are some inconsistencies?
+  - 3.3 Save the structure-based DNA motif produced to a local file.
+  
+4. Visit [RSAT::matrix-quality](http://pedagogix-tagc.univ-mrs.fr/rsat) (@Medina2011) and evaluate the predictive value of the obtained matrix (tab format) by comparing it to the corresponding set of experimentally obtained _cis_ regulatory sites (see Table) by scanning all E.coli K12 upstream regions in this file:  [Escherichia_coli_K12_allup-noorf_min30_max500.fasta](data/Escherichia_coli_K12_allup-noorf_min30_max500.fasta).     
+  - 4.1 Upload the FASTA file with experimental sites as sequence "Dataset 1". Tag this set as "DBsites"
+  - 4.2 Upload upstream sequences file as "Dataset 2" and choose "Number of matrix permutations" = 1. Tag this set as "all_upstream"
+  - 4.3 Select a Markov background model of order 1 (precomputed in the server for _E.coli_)
+  - 4.4 Press "Submit", the job will take some minutes.
+
+protein name | RegulonDB curated cis elements
+------------ | ------------------------------
+Ada | [Ada.fna](data/Ada.fna)  
+CRP | [CRP.fna](data/CRP.fna)
+DnaA | [DnaA.fna](data/DnaA.fna)
+FadR | [FadR.fna](data/FadR.fna)
+LacI | [LacI.fna](data/LacI.fna)
+MarA | [MarA.fna](data/MarA.fna)
+NarL | [NarL.fna](data/NarL.fna)
+PhoB | [PhoB.fna](data/PhoB.fna)
+PurR | [PurR.fna](data/PurR.fna)
+Rob | [Rob.fna](data/Rob.fna)
+TrpR | [TrpR.fna](data/TrpR.fna)
+
+![_matrix-quality_ plot of a structure-based matrix of TrpR from PDB entry 1rcs_AB](pics/TrpR_1rcs_AB.png)
+
+![_matrix-quality_ plot of a structure-based matrix of PurR from PDB entry 2pua_A](pics/PurR_2pua_A.png)
 
 
 ## References

@@ -1,0 +1,53 @@
+
+.tips {
+    border-radius: 10px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #EEFFEE;
+}
+
+
+.solution {
+    border-radius: 10px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color:#EEEEFF;
+
+}
+
+.protocol {
+    border-radius: 10px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color:#D8E8FF;
+}
+
+
+.exo {
+    border-radius: 10px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color:#FFEEFF;
+}
+
+
+hr {
+    margin-top: 25px !important;
+    border: 1px;
+    height: 1px;
+    background: #333;
+}
+
+
+p {
+    text-align: justify !important;
+    text-justify: inter-word;
+}
