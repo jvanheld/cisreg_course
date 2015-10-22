@@ -26,8 +26,7 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 | Chapter | Slides |
 |---------|--------|
-| Transcriptional regulation - basic concepts | [01.2_regulatory_sequences_intro.pdf](http://rsa-tools.github.io/course/pdf_files/01.2_regulatory_sequences_intro.pdf)  |
-| Position-specific scoring matrices | [01.4.PSSM_theory.pdf](http://rsa-tools.github.io/course/pdf_files/01.4.PSSM_theory.pdf) |
+| Clustering of Motifs | []()  |
 |  |  |
 
 * * * 
