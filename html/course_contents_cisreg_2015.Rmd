@@ -56,8 +56,10 @@ output:
 | Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships <br>(from structures to motifs) | BCM |[[footprintDB](http://floresta.eead.csic.es/footprintdb/)]<br>[[tutorial](../structure/struct-regulation.html)] |
 | Tue 20/10 | 14:00 | 18:00 | ChIP-seq analysis | DP | [[slides](../chip-seq/slides/chipseq__roscoff2015.pdf)] [[Tutorial mapping](../chip-seq/practical/chip-seq.html)] |
 | Wed 21/10 | 09:00 | 13:00 | ChIP-seq analysis | DP | [[Tutorial annotation](../chip-seq/practical/annotation.html)] [[Tutorial peakMotif](http://dputhier.github.io/EBA_2015_ChIP-Seq/tutorial/04_motif/motif_tutorial.html)]|
-| Fri 23/10 | 09:00 | 13:00 | Motif comparison and clustering | JvH + JCM | [[RSAT](http://rsat.eu/)] *matrix-clustering* |
-| Fri 23/10 | 09:00 | 13:00 | The rest + discussion about personal work |  | |
+| Fri 23/10 | 09:00 | 10:45 | Motif comparison and clustering | Jacques + JCM | [[RSAT](http://rsat.eu/)] *matrix-clustering*<br>[[slides](../cluster_motifs/CisReg_motif_clustering.pdf)]<br>[[tutorial](../cluster_motifs/cluster_ChIP_seq_peaks.html)] |
+| Fri 23/10 | 11:00 | 12:30 | Phylogenetic footprints | Jacques  | [[RSAT](http://rsat.eu/)] *footprint-disco* |
+| Fri 23/10 | 14:00 | 16:00 | Définition des travaux personnels |  JvH + DP | |
+| Fri 23/10 | 14:00 | 16:00 | Réponses aux questions des étudiants, clarifications, recherche de cas d'étude pour le travail personnel  | JvH + DP | |
 | Tur 05/11 | 14:00 | 18:00 | Presentation des travaux personnels | DP + JvH | |
 | | | | | |
 
