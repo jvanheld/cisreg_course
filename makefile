@@ -2,7 +2,7 @@
 ## Synchronize web site on the server
 
 include ${RSAT}/makefiles/util.mk
-MAKEFILE=makefiles/synchro.mk
+MAKEFILE=makefile
 
 EXCLUDED=--exclude *~ 	\
 	--exclude .#*	\
