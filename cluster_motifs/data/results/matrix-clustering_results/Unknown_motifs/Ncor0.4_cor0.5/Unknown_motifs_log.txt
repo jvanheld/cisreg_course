@@ -1,0 +1,876 @@
+
+
+rsync -ruptl /home/jcastro/rsat/perl-scripts/lib/js results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i Unknown_motif_collection.tf -from tf -to transfac -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/Unknown_motifs_input_motifs_processed_1.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/Unknown_motifs_input_motifs_processed_1.tf -from tf -to transfac -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/Unknown_motifs_input_motifs_processed.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/Unknown_motifs_input_motifs_processed.tf  > results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf -split -from tf -to tf -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif
+
+
+ cat /home/jcastro/rsat/R-scripts/matrix-clustering.R | /usr/bin/R --slave --no-save --no-restore --no-environ --args " infile = 'results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/pairwise_compa.tab'; hclust.method = 'average'; description.file = 'results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/pairwise_compa_matrix_descriptions.tab'; distance.table = 'results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/distance_table.tab'; alignment.file = 'results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/alignment_table.tab'; verbosity = 1; metric = 'Ncor'; export.newick = 0; draw.heatmap = 1; draw.consensus = 0; pos.hclust.in.heatmap = 'column'; lthsp = 'cor_0.6_Ncor_0.4_'; out.prefix = 'results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs'; "
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf -from tf -to tf -matrix_id_file results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/cluster_1_motif_IDs.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/cluster_1_transfac_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf -from tf -to tf -matrix_id_file results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/cluster_2_motif_IDs.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/cluster_2_transfac_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf -from tf -to tf -matrix_id_file results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/cluster_3_motif_IDs.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/cluster_3_transfac_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf -from tf -to tf -matrix_id_file results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/cluster_4_motif_IDs.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/cluster_4_transfac_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m5.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m5_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m5_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m5.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m5_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m21.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m21.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m30.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 7 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m30_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m30_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m30.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m30_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m7.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m7.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m9.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m9.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m31.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m31_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m31_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m31.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m31_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m22.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m22_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m22_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m22.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m22_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m12.tf -from tf -to tf -return counts,consensus -insert_col_left 3 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m12.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m19.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m19_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m19_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m19.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m19_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m18.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m29.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m29_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m29_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m29.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m29_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m4.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m4_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m4_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m4.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m4_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m2.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m2.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m14.tf -from tf -to tf -return counts,consensus -insert_col_left 3 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m14.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m33.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m33.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m1.tf -from tf -to tf -return counts,consensus -insert_col_left 3 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m1.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m8.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 3 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m8_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m8_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m8.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m8_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m25.tf -from tf -to tf -return counts,consensus -insert_col_left 3 -insert_col_right 2 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m25.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m6.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m6.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m20.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m20_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m20_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m20.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m20_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m27.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 5 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m27.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m16.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m16_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m16_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m16.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m16_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m17.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 2 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m11.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m11.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m26.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 5 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m26.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m28.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m28.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m23.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 7 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m23_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m23_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m23.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m23_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m32.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf -from tf -to tf -return counts,consensus -insert_col_left 0 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m15.tf -from tf -to tf -return counts,consensus -insert_col_left 3 -insert_col_right 4 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m15.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m10.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/temp.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 0 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m13.tf -from tf -to tf -return counts,consensus -insert_col_left 1 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m13_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m13_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m13.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m13_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m3.tf -from tf -to tf -return counts,consensus -insert_col_left 2 -insert_col_right 1 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m3.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned_rc.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m24.tf -from tf -to tf -return counts,consensus -insert_col_left 3 -insert_col_right 3 -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/motif_Unkown_motifs_m24.tf -from tf -to tf -rc -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned_rc.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_node_1_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_node_1_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_node_1_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_node_1_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_1_2motifs -attr accession cluster1_node_1_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014458_5fRZ6G
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_node_1_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_1/cluster_1_node_1_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_node_2_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_node_2_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_node_2_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_node_2_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_2_2motifs -attr accession cluster1_node_2_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014459_uPPaL1
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_node_2_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_2/cluster_1_node_2_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_node_3_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_node_3_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_node_3_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_node_3_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_3_3motifs -attr accession cluster1_node_3_3motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_nb_motifs_3.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_nb_motifs_3.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014459_apIkwA
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_nb_motifs_3.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_node_3_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_3/cluster_1_node_3_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_node_4_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_node_4_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_node_4_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_node_4_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_4_5motifs -attr accession cluster1_node_4_5motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_nb_motifs_5.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_nb_motifs_5.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014500_NgGJIJ
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_nb_motifs_5.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_node_4_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_4/cluster_1_node_4_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_node_5_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_node_5_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_node_5_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_node_5_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_5_2motifs -attr accession cluster1_node_5_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014500_CHzS8O
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_node_5_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_5/cluster_1_node_5_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_node_6_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_node_6_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_node_6_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_node_6_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_6_7motifs -attr accession cluster1_node_6_7motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_nb_motifs_7.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_nb_motifs_7.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014501_X4pJY1
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_nb_motifs_7.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_node_6_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_6/cluster_1_node_6_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m20_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_node_7_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_node_7_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_node_7_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_node_7_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_7_2motifs -attr accession cluster1_node_7_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014501_O2yzdL
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_node_7_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_7/cluster_1_node_7_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m20_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_node_8_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_node_8_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_node_8_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_node_8_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_8_9motifs -attr accession cluster1_node_8_9motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_nb_motifs_9.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_nb_motifs_9.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014502_uRifgk
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_nb_motifs_9.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_node_8_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_8/cluster_1_node_8_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m8_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m7_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m9_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m18_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m2_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m3_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m10_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m6_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m17_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m20_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_cat.tf -in_format tf -out_format tf -id cluster_1 -name cluster_1 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster1_node_9_10motifs -attr accession cluster1_node_9_10motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_nb_motifs_10.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_nb_motifs_10.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014502_Z8czX0
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_nb_motifs_10.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_node_1_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_node_1_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_node_1_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_node_1_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_1_2motifs -attr accession cluster2_node_1_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014503_ON6bmv
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_node_1_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_1/cluster_2_node_1_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_node_2_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_node_2_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_node_2_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_node_2_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_2_2motifs -attr accession cluster2_node_2_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014504_7lKCzK
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_node_2_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_2/cluster_2_node_2_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m22_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_node_3_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_node_3_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_node_3_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_node_3_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_3_3motifs -attr accession cluster2_node_3_3motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_nb_motifs_3.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_nb_motifs_3.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014504_E4q8TO
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_nb_motifs_3.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_node_3_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_3/cluster_2_node_3_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_node_4_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_node_4_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_node_4_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_node_4_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_4_2motifs -attr accession cluster2_node_4_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014505_4THRIN
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_node_4_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_4/cluster_2_node_4_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_node_5_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_node_5_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_node_5_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_node_5_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_5_3motifs -attr accession cluster2_node_5_3motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_nb_motifs_3.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_nb_motifs_3.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014505_0ySygW
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_nb_motifs_3.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_node_5_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_5/cluster_2_node_5_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_node_6_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_node_6_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_node_6_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_node_6_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_6_4motifs -attr accession cluster2_node_6_4motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_nb_motifs_4.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_nb_motifs_4.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014506_0ZQATx
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_nb_motifs_4.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_node_6_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_6/cluster_2_node_6_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_node_7_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_node_7_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_node_7_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_node_7_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_7_6motifs -attr accession cluster2_node_7_6motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_nb_motifs_6.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_nb_motifs_6.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014506_WHSJPE
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_nb_motifs_6.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_node_7_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_7/cluster_2_node_7_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m22_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_node_8_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_node_8_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_node_8_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_node_8_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_8_9motifs -attr accession cluster2_node_8_9motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_nb_motifs_9.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_nb_motifs_9.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014507_8TstGP
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_nb_motifs_9.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_node_8_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_8/cluster_2_node_8_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m23_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m22_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m21_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m32_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m24_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m25_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m33_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m28_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m26_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m27_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_cat.tf -in_format tf -out_format tf -id cluster_2 -name cluster_2 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster2_node_9_10motifs -attr accession cluster2_node_9_10motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_nb_motifs_10.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_nb_motifs_10.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014507_xME2zv
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_nb_motifs_10.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_node_1_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_node_1_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_node_1_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_node_1_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_1_2motifs -attr accession cluster3_node_1_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014508_2SGdDX
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_node_1_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_1/cluster_3_node_1_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_node_2_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_node_2_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_node_2_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_node_2_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_2_2motifs -attr accession cluster3_node_2_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014508_aHyCkZ
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_node_2_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_2/cluster_3_node_2_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m19_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m5_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_node_3_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_node_3_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_node_3_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_node_3_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_3_2motifs -attr accession cluster3_node_3_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014509_TxdODg
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_node_3_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_3/cluster_3_node_3_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_node_4_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_node_4_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_node_4_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_node_4_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_4_4motifs -attr accession cluster3_node_4_4motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_nb_motifs_4.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_nb_motifs_4.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014509_RC6n5K
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_nb_motifs_4.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_node_4_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_4/cluster_3_node_4_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_node_5_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_node_5_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_node_5_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_node_5_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_5_5motifs -attr accession cluster3_node_5_5motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_nb_motifs_5.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_nb_motifs_5.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014510_dBvam7
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_nb_motifs_5.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_node_5_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_5/cluster_3_node_5_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m16_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_node_6_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_node_6_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_node_6_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_node_6_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_6_6motifs -attr accession cluster3_node_6_6motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_nb_motifs_6.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_nb_motifs_6.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014511_xholyb
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_nb_motifs_6.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_node_6_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_6/cluster_3_node_6_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m13_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m4_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_node_7_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_node_7_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_node_7_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_node_7_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_7_2motifs -attr accession cluster3_node_7_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014511_zG2Aos
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_node_7_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_7/cluster_3_node_7_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m19_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m5_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m16_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_node_8_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_node_8_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_node_8_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_node_8_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_8_8motifs -attr accession cluster3_node_8_8motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_nb_motifs_8.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_nb_motifs_8.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014512_sxsS8y
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_nb_motifs_8.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_node_8_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_8/cluster_3_node_8_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m13_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m4_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m19_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m5_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m16_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m11_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m1_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m14_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m12_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m15_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_cat.tf -in_format tf -out_format tf -id cluster_3 -name cluster_3 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster3_node_9_10motifs -attr accession cluster3_node_9_10motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_nb_motifs_10.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_nb_motifs_10.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014512_5z0bSC
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_nb_motifs_10.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m29_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m31_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_node_1_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_node_1_cat.tf -in_format tf -out_format tf -id cluster_4 -name cluster_4 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_node_1_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_node_1_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster4_node_1_2motifs -attr accession cluster4_node_1_2motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_nb_motifs_2.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_nb_motifs_2.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014513_69nepf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_nb_motifs_2.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_node_1_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_1/cluster_4_node_1_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m30_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m29_aligned.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/Unkown_motifs_m31_aligned.tf >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_cat.tf; /home/jcastro/rsat/perl-scripts/merge-matrices -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_cat.tf -in_format tf -out_format tf -id cluster_4 -name cluster_4 -calc mean -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_matrices.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_matrices.tf -from tf -to tf -return counts,consensus -attr name cluster4_node_2_3motifs -attr accession cluster4_node_2_3motifs -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_nb_motifs_3.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_nb_motifs_3.tf -from tf -return info,header,margins -o /home/jcastro/.rsat_tmp_dir/2015/10/23/IC_test_2015-10-23.014513_Y1Zcy6
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_nb_motifs_3.tf -from tf -to tf -trim_col_left 0 -trim_col_right 0 -return counts,consensus -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_trimmed_matrices.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_trimmed_matrices.tf >> results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+
+
+cat results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_1/merged_consensuses/node_9/cluster_1_node_9_matrices.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_2/merged_consensuses/node_9/cluster_2_node_9_matrices.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_3/merged_consensuses/node_9/cluster_3_node_9_matrices.tf results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/merged_consensuses/node_2/cluster_4_node_2_matrices.tf  >results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_cluster_root_motifs.tf
+
+
+/home/jcastro/rsat/perl-scripts/convert-matrix -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf -from tf -to tf -return logo  -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/test
+
+
+rm -r results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_pairwise_compa_logos
+
+
+cp /home/jcastro/rsat/public_html/templates_html/display_d3_tree.html results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_logo_tree.html
+
+
+mv results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_temporary.html results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_logo_tree.html
+
+
+/home/jcastro/rsat/perl-scripts/text-to-html  -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/pairwise_compa_matrix_descriptions.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_html/pairwise_compa_matrix_descriptions.html
+
+
+/home/jcastro/rsat/perl-scripts/text-to-html  -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/distance_table.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/distance_table.html
+
+
+/home/jcastro/rsat/perl-scripts/text-to-html  -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/alignment_table.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/alignment_table.html
+
+
+/home/jcastro/rsat/perl-scripts/text-to-html  -i results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters.tab -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters.html
+
+
+mv -f results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_temporary.html results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_logo_tree.html
+; matrix-clustering  -v 2 -i Unknown_motif_collection.tf -matrix_format tf -motif_collection_name 'Unknown motifs' -title 'Unknown motifs' -lth Ncor 0.4 -lth cor 0.6 -lth w 5 -hclust_method average -label_in_tree name -quick -o results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs -metric_build_tree Ncor -return heatmap
+; Program version       	1.05
+; Input files
+;	matrices                    	Unknown_motif_collection.tf
+; Number of matrices          	33
+; Output files
+;	alignment_table_html        	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/alignment_table.html
+;	distance_table              	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/distance_table.tab
+;	html_index                  	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_html/index.html
+;	hexa_colors                 	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_hexa_colors.txt
+;	heatmap_jpg                 	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_figures/heatmap.jpg
+;	heatmap_coverage_d3         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/convergency_heatmap_tab.tsv
+;	distance_table_html         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/distance_table.html
+;	log                         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_log.txt
+;	clusters_table_html         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters.html
+;	all_concatenated_motifs     	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_aligned_logos/All_concatenated_motifs.tf
+;	Rlog                        	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_Rlog.txt
+;	logo_cladogram_html         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_logo_tree.html
+;	heatmap_collections_d3      	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/collection_heatmap_tab.tsv
+;	archive                     	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_archive.zip
+;	consensus_cladogram_json    	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_trees/tree.json
+;	matrix_descriptions         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/pairwise_compa_matrix_descriptions.tab
+;	pairwise_compa              	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/pairwise_compa.tab
+;	clusters_transfac           	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/cluster_4_transfac_motifs.tf
+;	clusters_id_temp            	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/cluster_4_motif_IDs.tab
+;	summary                     	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_SUMMARY.html
+;	percent_table               	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters_summary_percent_table.tab
+;	pairwise_compa_html         	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_html/pairwise_compa.html
+;	clusters_table              	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters.tab
+;	matrix_descriptions_html    	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_html/pairwise_compa_matrix_descriptions.html
+;	heatmap_pdf                 	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_figures/heatmap.pdf
+;	dynamic_heatmap_html        	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_dynamic_heatmap.html
+;	int_align                   	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/intermediate_alignments.tab
+;	root_motifs                 	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_cluster_root_motifs.tf
+;	motif_file                  	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf
+;	temp_html                   	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_temporary.html
+;	cluster_summary_table       	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters_summary_table.tab
+;	alignment_table             	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/alignment_table.tab
+;	err_log                     	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_errors.txt
+;	dynamic_coverage_heatmap_html	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_dynamic_coverage_heatmap.html
+;	heatmap_collections_attributes	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/collection_heatmap_order.tab
+;	summary_temp                	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_SUMMARY_TEMP.html
+;	internal_nodes_attributes_table	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/internal_nodes_attributes.tab
+;	heatmap_coverage_attributes 	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/convergency_heatmap_attributes.tab
+;	nb_clusters_table           	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/number_of_clusters.tab
+;	int_align_offset            	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_clusters_information/cluster_4/levels_JSON_cluster_4_node_2_dataframe.tab
+;	input_matrices              	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data/input_motifs_processed.tf
+;	coverage_table              	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_tables/clusters_summary_coverage_contingency_table.tab
+;	prefix                      	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs
+; Directories
+;	output                      	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5
+;	data                        	results/matrix-clustering_results/Unknown_motifs/Ncor0.4_cor0.5/Unknown_motifs_data
+; Host name	jcastro-Inspiron-5447
+; Job started	2015-10-23.014445
+; Job done	2015-10-23.014550
+; Seconds	0.4
+;	user	0.4
+;	system	0.63
+;	cuser	57.43
+;	csystem	6.41

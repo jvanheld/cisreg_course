@@ -1,0 +1,222 @@
+{
+"name": "",
+"children":[
+ {
+ "consensus" : "rrcTAATTasc",
+ "branch" : 9,
+ "id" : "cluster_1_node_9",
+ "size" : 11,
+ "name" : "cluster1_node_9_10motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_9_10motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_9_10motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "rrmTAATTasc",
+ "branch" : 8,
+ "id" : "cluster_1_node_8",
+ "size" : 11,
+ "name" : "cluster1_node_8_9motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_8_9motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_8_9motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "gcTAATTasw",
+ "branch" : 6,
+ "id" : "cluster_1_node_6",
+ "size" : 11,
+ "name" : "cluster1_node_6_7motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_6_7motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_6_7motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "gmTAATTAsw",
+ "branch" : 5,
+ "id" : "cluster_1_node_5",
+ "size" : 11,
+ "name" : "cluster1_node_5_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_5_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_5_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m6", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m6_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m6_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m6_logo.png",
+ "name" : "Unkown_motifs_m6",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "RSTAATTAMC"
+},
+{
+ "label": "Unkown_motifs_m10", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m10_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m10_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m10_logo.png",
+ "name" : "Unkown_motifs_m10",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "GMTAATTRSW"
+} 
+] 
+},
+{
+ "consensus" : "cTAATTrg",
+ "branch" : 4,
+ "id" : "cluster_1_node_4",
+ "size" : 11,
+ "name" : "cluster1_node_4_5motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_4_5motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_4_5motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "ctAATTAr",
+ "branch" : 3,
+ "id" : "cluster_1_node_3",
+ "size" : 11,
+ "name" : "cluster1_node_3_3motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_3_3motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_3_3motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "ctAATTAr",
+ "branch" : 2,
+ "id" : "cluster_1_node_2",
+ "size" : 11,
+ "name" : "cluster1_node_2_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_2_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_2_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m2", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m2_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m2_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m2_logo.png",
+ "name" : "Unkown_motifs_m2",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YTAATTAG"
+},
+{
+ "label": "Unkown_motifs_m3", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m3_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m3_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m3_logo.png",
+ "name" : "Unkown_motifs_m3",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "CTAATTAG"
+} 
+] 
+},
+{
+ "label": "Unkown_motifs_m18", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m18_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m18_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m18_logo.png",
+ "name" : "Unkown_motifs_m18",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "VTAATTAR"
+} 
+] 
+},
+{
+ "consensus" : "kTAATTrs",
+ "branch" : 1,
+ "id" : "cluster_1_node_1",
+ "size" : 11,
+ "name" : "cluster1_node_1_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_1_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_1_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m9", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m9_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m9_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m9_logo.png",
+ "name" : "Unkown_motifs_m9",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "SYAATTAM"
+},
+{
+ "label": "Unkown_motifs_m7", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m7_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m7_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m7_logo.png",
+ "name" : "Unkown_motifs_m7",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "SYAATTAM"
+} 
+] 
+} 
+] 
+} 
+] 
+},
+{
+ "consensus" : "ramwaATTavs",
+ "branch" : 7,
+ "id" : "cluster_1_node_7",
+ "size" : 11,
+ "name" : "cluster1_node_7_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster1_node_7_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster1_node_7_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m20", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m20_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m20_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m20_logo.png",
+ "name" : "Unkown_motifs_m20",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "SBTAATTWKTY"
+},
+{
+ "label": "Unkown_motifs_m17", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m17_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m17_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m17_logo.png",
+ "name" : "Unkown_motifs_m17",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "WWYYAATTA"
+} 
+] 
+} 
+] 
+},
+{
+ "label": "Unkown_motifs_m8", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m8_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m8_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m8_logo.png",
+ "name" : "Unkown_motifs_m8",
+ "size" : 11,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YATTARS"
+} 
+] 
+} 
+]}
