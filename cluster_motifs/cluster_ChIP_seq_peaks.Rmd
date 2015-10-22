@@ -38,13 +38,14 @@ This tutorial assumes that you already learned the theory in the following chapt
 | Tool | Usage |
 |------|-------|
 | [RSAT](http://teaching.rsat.eu/) matrix-clustering | Separate a collection of input PSSMs in separated clusters and display these clusters in different representations (Tree + Heatmap). |
+| [RSAT](http://teaching.rsat.eu/) compare-matrices | Compare a query collection of motifs versus a target collection of motifs, using several dis(similarity) metrics. |
 | | | 
 
 * * *
 
 ## Tutorial - Reduce motif redundancy after motif discovery in ChIP-seq peaks
 
-1. [Download]() a set of matrices that were found with *peak-motifs* in a set of ChIP-seq peaks for the TF **Oct4**.  
+1. [Download](https://github.com/jvanheld/cisreg_course/tree/gh-pages/cluster_motifs/data) a set of matrices that were found with *peak-motifs* in a set of ChIP-seq peaks for the TF **Oct4**.  
 
 1. Open a connection to the **Regulatory Sequence Analysis Tools** [teaching server](http://teaching.rsat.eu/) ([http://teaching.rsat.eu/](http://teaching.rsat.eu/)).
 
@@ -52,7 +53,7 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 3. **Analysis Title**: Write the name of the analysis in the **Title** box. E.g. 'Oct4 motifs from ChIP-seq peaks'.
 
-4. **Matrices**: Paste the count matrix of in the **Matrix** box, and check that the input format is set to **transfac**.
+4. **Matrices**: Paste the matrices in the **Matrix** box, and check that the input format is set to **transfac**.
 
 5. **Collection Name**: (Optional) Give a collection name to all the motifs of this collection. E.g. 'Oct4 ChIPseq'.
 
@@ -66,9 +67,37 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 10. **Labels displayed in logo tree**: Select -->  **Names**. Let empty the other boxes.
 
-10. Click on **GO**.
+11. Click on **GO** (This analysis takes around 1 minute).
 
 * * * 
+
+## *matrix-clustering* report
+
+1. The *matrix-clustering* report is divided in several section that you can hide/show.
+
+2. **Results Summary**: a small table showing the input parameters and the number of input motifs and clusters found.
+
+3. **Clusters Summary**: a table showing the Familal Binding Profiles **FBP** of each cluster and the name and the number of the motifs grouped for each cluster.
+
+4. **Logo Forest**: all the cluster are represented as a forest (set of trees). Each tree is dynamic (Click on the nodes to collapse/expand them).
+
+5. **Individual Motif View**: a table showing the description of each input motif.
+
+6. **Individual Cluster View**: analyze each cluster individually. Click on the number at each tree branch to select it and display a table with its corresponding **FBP**.
+
+7. **Heatmap View**: A heatmap showing the (dis)similarities among all the motifs. Each cluster is indicates with a color bar (which is the same color used for the trees in the *Logo Forest*).
+
+8. **Additional Files**: A list of complementary files.
+
+* * * 
+
+* * * 
+
+## Analysis
+
+1. The selection of non-redundant motifs will be done during the session.
+
+* * *
 
 
 <!--

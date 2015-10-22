@@ -57,6 +57,8 @@ img {
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#tools-used-in-this-tutorial">Tools used in this tutorial</a></li>
 <li><a href="#tutorial---reduce-motif-redundancy-after-motif-discovery-in-chip-seq-peaks">Tutorial - Reduce motif redundancy after motif discovery in ChIP-seq peaks</a></li>
+<li><a href="#matrix-clustering-report"><em>matrix-clustering</em> report</a></li>
+<li><a href="#analysis">Analysis</a></li>
 </ul>
 </div>
 
@@ -103,6 +105,10 @@ img {
 <td align="left">Separate a collection of input PSSMs in separated clusters and display these clusters in different representations (Tree + Heatmap).</td>
 </tr>
 <tr class="even">
+<td align="left"><a href="http://teaching.rsat.eu/">RSAT</a> compare-matrices</td>
+<td align="left">Compare a query collection of motifs versus a target collection of motifs, using several dis(similarity) metrics.</td>
+</tr>
+<tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -113,18 +119,40 @@ img {
 <div id="tutorial---reduce-motif-redundancy-after-motif-discovery-in-chip-seq-peaks" class="section level2">
 <h2>Tutorial - Reduce motif redundancy after motif discovery in ChIP-seq peaks</h2>
 <ol style="list-style-type: decimal">
-<li><p>Download a set of matrices that were found with <em>peak-motifs</em> in a set of ChIP-seq peaks for the TF <strong>Oct4</strong>.</p></li>
+<li><p><a href="https://github.com/jvanheld/cisreg_course/tree/gh-pages/cluster_motifs/data">Download</a> a set of matrices that were found with <em>peak-motifs</em> in a set of ChIP-seq peaks for the TF <strong>Oct4</strong>.</p></li>
 <li><p>Open a connection to the <strong>Regulatory Sequence Analysis Tools</strong> <a href="http://teaching.rsat.eu/">teaching server</a> (<a href="http://teaching.rsat.eu/"><a href="http://teaching.rsat.eu/" class="uri">http://teaching.rsat.eu/</a></a>).</p></li>
 <li><p>In the left-side menu, open the tool set <strong>Matrix tools</strong>, and click on <strong>matrix-clustering</strong>.</p></li>
 <li><p><strong>Analysis Title</strong>: Write the name of the analysis in the <strong>Title</strong> box. E.g. ‘Oct4 motifs from ChIP-seq peaks’.</p></li>
-<li><p><strong>Matrices</strong>: Paste the count matrix of in the <strong>Matrix</strong> box, and check that the input format is set to <strong>transfac</strong>.</p></li>
+<li><p><strong>Matrices</strong>: Paste the matrices in the <strong>Matrix</strong> box, and check that the input format is set to <strong>transfac</strong>.</p></li>
 <li><p><strong>Collection Name</strong>: (Optional) Give a collection name to all the motifs of this collection. E.g. ‘Oct4 ChIPseq’.</p></li>
 <li><p><strong>Threshold</strong>: Click on the section <strong>Thresholds to define the cluster</strong> and set the next values in the <strong>lower threshold</strong> column. <strong>Ncor</strong> : 0.6 ; <strong>cor</strong> : 0.4 ; <strong>w</strong> : 5.</p></li>
 <li><p><strong>Metric to build the tree</strong>: Select one metric that will be used to build the hierarchical tree. Select –&gt; <strong>Ncor</strong>.</p></li>
 <li><p><strong>Linkage method</strong>: Select one linkage method to group the motifs. Select –&gt; <strong>Average</strong>.</p></li>
 <li><p><strong>Output file options</strong>: Select –&gt; <strong>Heatmap</strong>. Let empty the other boxes.</p></li>
 <li><p><strong>Labels displayed in logo tree</strong>: Select –&gt; <strong>Names</strong>. Let empty the other boxes.</p></li>
-<li><p>Click on <strong>GO</strong>.</p></li>
+<li><p>Click on <strong>GO</strong> (This analysis takes around 1 minute).</p></li>
+</ol>
+<hr />
+</div>
+<div id="matrix-clustering-report" class="section level2">
+<h2><em>matrix-clustering</em> report</h2>
+<ol style="list-style-type: decimal">
+<li><p>The <em>matrix-clustering</em> report is divided in several section that you can hide/show.</p></li>
+<li><p><strong>Results Summary</strong>: a small table showing the input parameters and the number of input motifs and clusters found.</p></li>
+<li><p><strong>Clusters Summary</strong>: a table showing the Familal Binding Profiles <strong>FBP</strong> of each cluster and the name and the number of the motifs grouped for each cluster.</p></li>
+<li><p><strong>Logo Forest</strong>: all the cluster are represented as a forest (set of trees). Each tree is dynamic (Click on the nodes to collapse/expand them).</p></li>
+<li><p><strong>Individual Motif View</strong>: a table showing the description of each input motif.</p></li>
+<li><p><strong>Individual Cluster View</strong>: analyze each cluster individually. Click on the number at each tree branch to select it and display a table with its corresponding <strong>FBP</strong>.</p></li>
+<li><p><strong>Heatmap View</strong>: A heatmap showing the (dis)similarities among all the motifs. Each cluster is indicates with a color bar (which is the same color used for the trees in the <em>Logo Forest</em>).</p></li>
+<li><p><strong>Additional Files</strong>: A list of complementary files.</p></li>
+</ol>
+<hr />
+<hr />
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<ol style="list-style-type: decimal">
+<li>The selection of non-redundant motifs will be done during the session.</li>
 </ol>
 <hr />
 <!--
