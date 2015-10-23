@@ -1,0 +1,57 @@
+---
+title: "Cisreg course 2015 - Personal work"
+author: "Denis Puthier and Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+Le travail personnel peut être réalisé soit en binôme soit en solo. 
+
+Chaque binôme (ou solo) choisira l'un des deux sujets proposés, soit analyse de pics de ChIP-seq humains, soit analyse phylogénique des motifs bactériens.
+
+
+## Structure attendue pour le rapport
+
+Le rapport inclura
+1. Une introduction sommaire résumant les caractéristiques du facteur transcriptionnel choisi (domaine de liaison à l'ADN, fonction régulatrice, ...).
+2. Une section "Buts du travail" indiquant le but général de l'analyse, et les objectifs particuliers (correspondant par exemple aux différentes tâches décrites ci-dessous).
+3. Une section résultats et discussion.
+4. Une brève section "Conclusion et perspectives".
+5. Une section Matériel et méthodes fournissant une description synthétique et lisible des choix méthodologiques (outils et paramètres).
+6. Une annexe fournissant la liste complète des paramètres utilisés pour chaque outil. Cette annexe devrait permettre à un lecteur de reproduire vos analyses. Si un outil comporte un grand nombre d'options, n'indiquez que celles que vous avez modifiées par rapport aux valeurs par défaut. 
+
+Le rapport ne doit pas excéder 5 pages, sans compter les annexes. 
+
+
+## Sujet 1: Analyse de pics de ChIP-seq
+
+Chaque binôme identifiera, sur le site du projet Encode [https://www.encodeproject.org/](https://www.encodeproject.org/), un facteur transcriptionnel d'intérêt. Le but du projet sera de mobiliser les différents outils abordés durant les cours, afin d'extraire le plus d'information possible à partir des pics de liaison de ce facteur transcriptionnel dans un ou plusieurs types cellulaires. 
+
+
+
+Nous vous suggérons une série de questions pour lesquelles vous devrez identifier les approches appropriées. 
+
+### 1. Analyse de motifs
+
+a. Faites tourner une ou plusieurs approches de découverte de motifs (par exemple RSAT peak-motifs, MEME-chip) sur les pics. 
+d. Récupérez l'ensemble des motifs découverts par les différentes approches, et faites tourner *matrix-clustering* pour les comparer. 
+c. Identifiez les facteurs putatifs associés à ces motifs et évaluez leur pertinence biologique en tenant compte de la fonction connnue de votre facteur d'intérêt.
+
+### 2. 
+
+4. comparaison entre votre facteur d'intérêt et les marques épigénétiques
+
+
+## Sujet 2: Analyse phylogénique des motifs bactériens
