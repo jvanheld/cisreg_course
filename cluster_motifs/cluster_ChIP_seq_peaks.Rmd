@@ -77,7 +77,7 @@ Increasing the threshold value should separate the motifs into different cluster
 
 #### Aligning all the unknown motifs
 
-1. Downlwad the [Unknown motifs]().  
+1. Downlwad the [Unknown motifs](data/Unknown_motif_collection.tf).  
 
 1. Open a connection to the **Regulatory Sequence Analysis Tools** [teaching server](http://teaching.rsat.eu/) ([http://teaching.rsat.eu/](http://teaching.rsat.eu/)).
 
