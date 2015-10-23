@@ -21,6 +21,7 @@ Le travail personnel peut être réalisé soit en binôme soit en solo.
 
 Chaque binôme (ou solo) choisira l'un des deux sujets proposés, soit analyse de pics de ChIP-seq humains, soit analyse phylogénique des motifs bactériens.
 
+* * * 
 
 ## Structure attendue pour le rapport
 
@@ -34,24 +35,49 @@ Le rapport inclura
 
 Le rapport ne doit pas excéder 5 pages, sans compter les annexes. 
 
+* * * 
+
 ## Sujet 1: Analyse de pics de ChIP-seq
 
 Chaque binôme identifiera, sur le site du projet ENCODE [https://www.encodeproject.org/](https://www.encodeproject.org/), un facteur transcriptionnel d'intérêt analysé dans la lignée [K562](https://www.encodeproject.org/search/?searchTerm=K562&type=experiment&assay_term_name=ChIP-seq&files.file_type=bed%20narrowPeak). Le but du projet sera de mobiliser les différents outils abordés durant les cours, afin d'extraire le plus d'information possible à partir des pics de liaison de ce facteur transcriptionnel. 
 
 Nous vous suggérons une série de questions pour lesquelles vous devrez identifier les approches appropriées. 
 
-### 1. Analyse de motifs
+### Analyse des motifs sous les pics
 
 a. Faites tourner une ou plusieurs approches de découverte de motifs (par exemple RSAT peak-motifs, MEME-chip) sur les pics (format BED). 
 d. Récupérez l'ensemble des motifs découverts par les différentes approches, et faites tourner *matrix-clustering* pour les comparer. 
 c. Identifiez les facteurs putatifs associés à ces motifs et évaluez leur pertinence biologique en tenant compte de la fonction connnue de votre facteur d'intérêt.
+
+### Annotation des pics
+
 d. Analysez la répartition génomique de ce facteur avec [CEAS](http://pedagogix-tagc.univ-mrs.fr/galaxy/).
 e. Analysez la pertinence biologique à l'aide du logiciel [GREAT](http://bejerano.stanford.edu/great/public/html/).
 f. Comparez les pics obtenus pour le facteur transcriptionnel d'intérêt avec ceux d'une marque épigénétique comme H3K4me3 ou H3K27ac.
 
-### 2. 
-
-4. comparaison entre votre facteur d'intérêt et les marques épigénétiques
-
+* * * 
 
 ## Sujet 2: Analyse phylogénique des motifs bactériens
+
+
+Chaque binôme choisira un facteur transcriptionnel dans la base de données RegulonDB, et combinera des approches génomiques (scanning des promoteurs chez *Escherichia coli*) et de génomique comparative (détection d'empreintes phylogénétiques) pour analyser les cibles de ce facteur transcriptionnel. 
+
+### Détection de sites et gènes-cibles dans le génome de référence
+
+a. Connectez-vous à RegulonDB, sélectionez un facteur transcriptionnel d'intérêt qui comporte un nombre raisonnable de gènes-cibles (entre 5 et 20) et récupérez les informations utiles pour ce facteur: description de la fonction, gènes-cibles, sites de liaison, matrice, consensus, ... 
+b. Avec l'outil *retrieve-seq*, récupérez l'ensemble des promoteurs du génome de référence (*Escherichia coli souche K12 MG1655*). 
+c. Scannez l'ensemble de ces promoteurs pour prédire les sites de liaison du facteur, en utilisant le consensus dégénéré du motif annoté dans RegulonDB. 
+d. Scannez l'ensemble de ces promoteurs pour prédire les sites de liaison du facteur, en utilisant la matrice position-poids annotée dans RegulonDB. 
+e. Utilisez l'outil *infer-operons* pour prédire les opérons pour tous les gènes de l'organisme de référence. 
+f. Comparez les gènes-cibles prédits par ces deux approches avec la liste des gènes-cibles annotés. 
+### Détection d'empreintes phylogénétiques
+
+La deuxième partie consistera à découvrir des empreintes phylogénétiques pour chacun des gènes-cibles annotés dans RegulonDB, en évaluant les résultats sur base des questions suivantes. 
+
+g. L'approche *footprint-discovery* retourne-t-elle des motifs significatifs pour ce gène-cible ? 
+h. Si oui, ces motifs sont-ils similaires au motif annoté dans RegulonDB ?
+i. Découvre-t-on un ou des motifs additionnels, et, dans l'affirmative, quels seraient les facteurs associés ?
+
+* * * 
+
+
