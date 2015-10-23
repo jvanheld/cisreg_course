@@ -53,4 +53,41 @@ In a first time, we will identify the genomes in which your transcription factor
 
 4. Open a connexion to the [RSAT teaching server](http://teaching.rsat.eu/). 
 5. In the **Comparative genomics** tools, open the **get-orthologs** form.
-6. Type the name of your transcription factor in the **Query** box, and select a **taxon**. In a first time we recommend to select the class (*Enterobacteriales*), but this can then be modified to compare the results obtained at different taxonomic levels. 
+6. Type the name of your transcription factor in the **Query genes** box, and select a **Taxon**. In a first time we recommend to select the class (*Enterobacteriales*), but this can then be modified to compare the results obtained at different taxonomic levels. 
+
+
+#### Questions
+
+a. How many genomes does the server support for the selected taxon?
+b. I how many of these genomes did you find a BBH for your taxon of interest?
+
+### Discovering conserved elements in the promoters of orthologs
+
+
+7. Open a connexion to the [RSAT teaching server](http://teaching.rsat.eu/). 
+8. Under the menu **Comparative genomics**, open the **footprint-discovery** form.
+9. Type the target genes of your factor of interest in the **Query genes** box.
+10. Select the option **Unique organism per species**.
+12. Leave all other parameters unchangedn enter your email address and click *GO**.
+13. After a few seconds, a message appears with the URL of the result page. Click on it to open the result page in a separate window. 
+
+Note that the result page is currently resricted to a header, and the result table is empty.  The process may take some time (3-4 minutes per gene), but you will already be able to consult the results after a few minutes, and then periodically refresh the result page to check the progress of your query.
+
+While the first analysis is running, we can start the same analysis with one modified parameter:
+
+13. Come back to the previous form (or enter the same parameters in a separate window), but check the option **predict operon leader genes**. 
+14. Open the link to the result page in a separate window. 
+
+The analysis with operon inference is somewhat slower, but the results are generally more relevant. You can now let run the analyses on the server, and periodically check the results of the two processes. 
+
+
+### Interpreting the results
+
+
+The interpretation of the results will be discussed during the course
+
+
+## Further reading
+
+TO BE DONE
+

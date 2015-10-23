@@ -59,7 +59,10 @@ img {
 <li><a href="#tutorial">Tutorial</a><ul>
 <li><a href="#getting-the-list-of-target-genes-for-your-transcription-factor-of-interest">Getting the list of target genes for your transcription factor of interest</a></li>
 <li><a href="#getting-putative-orthologs-bbh-for-your-transcription-factor-of-interest">Getting putative orthologs (BBH) for your transcription factor of interest</a></li>
+<li><a href="#discovering-conserved-elements-in-the-promoters-of-orthologs">Discovering conserved elements in the promoters of orthologs</a></li>
+<li><a href="#interpreting-the-results">Interpreting the results</a></li>
 </ul></li>
+<li><a href="#further-reading">Further reading</a></li>
 </ul>
 </div>
 
@@ -110,9 +113,42 @@ img {
 <ol start="4" style="list-style-type: decimal">
 <li>Open a connexion to the <a href="http://teaching.rsat.eu/">RSAT teaching server</a>.</li>
 <li>In the <strong>Comparative genomics</strong> tools, open the <strong>get-orthologs</strong> form.</li>
-<li>Type the name of your transcription factor in the <strong>Query</strong> box, and select a <strong>taxon</strong>. In a first time we recommend to select the class (<em>Enterobacteriales</em>), but this can then be modified to compare the results obtained at different taxonomic levels.</li>
+<li>Type the name of your transcription factor in the <strong>Query genes</strong> box, and select a <strong>Taxon</strong>. In a first time we recommend to select the class (<em>Enterobacteriales</em>), but this can then be modified to compare the results obtained at different taxonomic levels.</li>
+</ol>
+<div id="questions" class="section level4">
+<h4>Questions</h4>
+<ol style="list-style-type: lower-alpha">
+<li>How many genomes does the server support for the selected taxon?</li>
+<li>I how many of these genomes did you find a BBH for your taxon of interest?</li>
 </ol>
 </div>
+</div>
+<div id="discovering-conserved-elements-in-the-promoters-of-orthologs" class="section level3">
+<h3>Discovering conserved elements in the promoters of orthologs</h3>
+<ol start="7" style="list-style-type: decimal">
+<li>Open a connexion to the <a href="http://teaching.rsat.eu/">RSAT teaching server</a>.</li>
+<li>Under the menu <strong>Comparative genomics</strong>, open the <strong>footprint-discovery</strong> form.</li>
+<li>Type the target genes of your factor of interest in the <strong>Query genes</strong> box.</li>
+<li>Select the option <strong>Unique organism per species</strong>.</li>
+<li>Leave all other parameters unchangedn enter your email address and click *GO**.</li>
+<li>After a few seconds, a message appears with the URL of the result page. Click on it to open the result page in a separate window.</li>
+</ol>
+<p>Note that the result page is currently resricted to a header, and the result table is empty. The process may take some time (3-4 minutes per gene), but you will already be able to consult the results after a few minutes, and then periodically refresh the result page to check the progress of your query.</p>
+<p>While the first analysis is running, we can start the same analysis with one modified parameter:</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Come back to the previous form (or enter the same parameters in a separate window), but check the option <strong>predict operon leader genes</strong>.</li>
+<li>Open the link to the result page in a separate window.</li>
+</ol>
+<p>The analysis with operon inference is somewhat slower, but the results are generally more relevant. You can now let run the analyses on the server, and periodically check the results of the two processes.</p>
+</div>
+<div id="interpreting-the-results" class="section level3">
+<h3>Interpreting the results</h3>
+<p>The interpretation of the results will be discussed during the course</p>
+</div>
+</div>
+<div id="further-reading" class="section level2">
+<h2>Further reading</h2>
+<p>TO BE DONE</p>
 </div>
 
 
