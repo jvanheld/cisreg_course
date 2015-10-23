@@ -1,0 +1,222 @@
+{
+"name": "",
+"children":[
+ {
+ "consensus" : "tTCAGCACCayGGACAGCgcC",
+ "branch" : 9,
+ "id" : "cluster_2_node_9",
+ "size" : 21,
+ "name" : "cluster2_node_9_10motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_9_10motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_9_10motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m23", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m23_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m23_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m23_logo.png",
+ "name" : "Unkown_motifs_m23",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "TCCRTGGTGCTGAA"
+},
+{
+ "consensus" : "tTCAGCACCayGGACAGCgcC",
+ "branch" : 8,
+ "id" : "cluster_2_node_8",
+ "size" : 21,
+ "name" : "cluster2_node_8_9motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_8_9motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_8_9motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "tTCAGCACCayGGACAGcgcC",
+ "branch" : 3,
+ "id" : "cluster_2_node_3",
+ "size" : 21,
+ "name" : "cluster2_node_3_3motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_3_3motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_3_3motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m22", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m22_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m22_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m22_logo.png",
+ "name" : "Unkown_motifs_m22",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "GSCKCTGTCCGTGGTGCTGAA"
+},
+{
+ "consensus" : "tTCAGCACCayGGACAGckcC",
+ "branch" : 2,
+ "id" : "cluster_2_node_2",
+ "size" : 21,
+ "name" : "cluster2_node_2_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_2_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_2_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m21", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m21_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m21_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m21_logo.png",
+ "name" : "Unkown_motifs_m21",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "GGMGCTGTCCATGGTGCTGAA"
+},
+{
+ "label": "Unkown_motifs_m32", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m32_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m32_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m32_logo.png",
+ "name" : "Unkown_motifs_m32",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "KTCAGCACCAYGGACAGCKCC"
+} 
+] 
+} 
+] 
+},
+{
+ "consensus" : "TCAGCACCayGGACAGCk",
+ "branch" : 7,
+ "id" : "cluster_2_node_7",
+ "size" : 21,
+ "name" : "cluster2_node_7_6motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_7_6motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_7_6motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "AGCACCayGGACAGCk",
+ "branch" : 4,
+ "id" : "cluster_2_node_4",
+ "size" : 21,
+ "name" : "cluster2_node_4_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_4_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_4_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m25", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m25_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m25_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m25_logo.png",
+ "name" : "Unkown_motifs_m25",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "MGCTGTCCRTGGTGCT"
+},
+{
+ "label": "Unkown_motifs_m24", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m24_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m24_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m24_logo.png",
+ "name" : "Unkown_motifs_m24",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "GCTGTCCRTGGTGCT"
+} 
+] 
+},
+{
+ "consensus" : "TCAGCACCayGGACAG",
+ "branch" : 6,
+ "id" : "cluster_2_node_6",
+ "size" : 21,
+ "name" : "cluster2_node_6_4motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_6_4motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_6_4motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "TCAGCACCayGGACAG",
+ "branch" : 5,
+ "id" : "cluster_2_node_5",
+ "size" : 21,
+ "name" : "cluster2_node_5_3motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_5_3motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_5_3motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "TCAGCACCayGGACA",
+ "branch" : 1,
+ "id" : "cluster_2_node_1",
+ "size" : 21,
+ "name" : "cluster2_node_1_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster2_node_1_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster2_node_1_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m26", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m26_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m26_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m26_logo.png",
+ "name" : "Unkown_motifs_m26",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "TGTCCRTGGTGCTGA"
+},
+{
+ "label": "Unkown_motifs_m27", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m27_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m27_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m27_logo.png",
+ "name" : "Unkown_motifs_m27",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "TGTCCRTGGTGCTGA"
+} 
+] 
+},
+{
+ "label": "Unkown_motifs_m28", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m28_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m28_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m28_logo.png",
+ "name" : "Unkown_motifs_m28",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "CTGTCCRTGGTGCTGA"
+} 
+] 
+},
+{
+ "label": "Unkown_motifs_m33", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m33_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m33_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m33_logo.png",
+ "name" : "Unkown_motifs_m33",
+ "size" : 21,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "CTGTCCRTGGTGCTG"
+} 
+] 
+} 
+] 
+} 
+] 
+} 
+] 
+} 
+]}
