@@ -1,0 +1,56 @@
+---
+title: "Discovering conserved elements in Bacterial promoters"
+author: "Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+
+## Introduction
+
+In this tutorial, we will attempt to predict cis-regulatory motifs for a set of genes of interest, based on the discovery of conserved motifs in the promoters of their orthologs (***phylogenetic footprints***). This aproach was proposed in the end of the 1990's, when a few genomes only were available. With the ever-increasing speed and ever-decreasing costs of sequencing projects, the number of completely sequenced genomes follows an exponential growth, and the power of comparative genomics methods increases accordingly. 
+
+The anlaysis of phylogenetic footprints is particularly fruitful in small genomes (Bacteria, Fungi), where cis-regulatory elements are located in delimited regions circumscribed to a few hundred base pairs upstream of the transcription start site. 
+
+
+
+## Prerequisites
+
+This tutorial assumes that you already learned the theory in the following chapters.
+
+
+| Chapter | Slides |
+|---------|--------|
+| Phylogenetic footprints - introduction | [03.4.2.comparative_genomics.pdf](http://rsa-tools.github.io/course/pdf_files/03.4.2.comparative_genomics.pdf)  |
+| Discovering phylogenetic footprints in bacterial genomes | [03.4.3.footprint_discovery.pdf](http://rsa-tools.github.io/course/pdf_files/03.4.3.footprint_discovery.pdf) |
+|  |  |
+
+
+## Tutorial
+
+
+### Getting the list of target genes for your transcription factor of interest
+
+1. Open a connection to the [RegulonDB](http://regulondb.ccg.unam.mx/)
+2. Enter the name of your transcription factor of interest in the **Search** box. Below the *Regulon* title, click on the link **Transcription factor id**.
+3. Copy the list of regulated genes, and paste them in a text file. Replace the commas by newline character, in order to obtain a file with one row per target gene for your transcription factor. 
+
+### Getting putative orthologs (BBH) for your transcription factor of interest
+
+In a first time, we will identify the genomes in which your transcription factor of interest has a putative ortholog. We use a somewhat rudimentary (but pragmatic) approach to identify putative ortholog, by selecting the bidirectional best hits (BBH). 
+
+4. Open a connexion to the [RSAT teaching server](http://teaching.rsat.eu/). 
+5. In the **Comparative genomics** tools, open the **get-orthologs** form.
+6. Type the name of your transcription factor in the **Query** box, and select a **taxon**. In a first time we recommend to select the class (*Enterobacteriales*), but this can then be modified to compare the results obtained at different taxonomic levels. 
