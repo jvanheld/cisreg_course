@@ -34,20 +34,20 @@ Le rapport inclura
 
 Le rapport ne doit pas excéder 5 pages, sans compter les annexes. 
 
-
 ## Sujet 1: Analyse de pics de ChIP-seq
 
-Chaque binôme identifiera, sur le site du projet Encode [https://www.encodeproject.org/](https://www.encodeproject.org/), un facteur transcriptionnel d'intérêt. Le but du projet sera de mobiliser les différents outils abordés durant les cours, afin d'extraire le plus d'information possible à partir des pics de liaison de ce facteur transcriptionnel dans un ou plusieurs types cellulaires. 
-
-
+Chaque binôme identifiera, sur le site du projet ENCODE [https://www.encodeproject.org/](https://www.encodeproject.org/), un facteur transcriptionnel d'intérêt analysé dans la lignée [K562](https://www.encodeproject.org/search/?searchTerm=K562&type=experiment&assay_term_name=ChIP-seq&files.file_type=bed%20narrowPeak). Le but du projet sera de mobiliser les différents outils abordés durant les cours, afin d'extraire le plus d'information possible à partir des pics de liaison de ce facteur transcriptionnel. 
 
 Nous vous suggérons une série de questions pour lesquelles vous devrez identifier les approches appropriées. 
 
 ### 1. Analyse de motifs
 
-a. Faites tourner une ou plusieurs approches de découverte de motifs (par exemple RSAT peak-motifs, MEME-chip) sur les pics. 
+a. Faites tourner une ou plusieurs approches de découverte de motifs (par exemple RSAT peak-motifs, MEME-chip) sur les pics (format BED). 
 d. Récupérez l'ensemble des motifs découverts par les différentes approches, et faites tourner *matrix-clustering* pour les comparer. 
 c. Identifiez les facteurs putatifs associés à ces motifs et évaluez leur pertinence biologique en tenant compte de la fonction connnue de votre facteur d'intérêt.
+d. Analysez la répartition génomique de ce facteur avec [CEAS](http://pedagogix-tagc.univ-mrs.fr/galaxy/).
+e. Analysez la pertinence biologique à l'aide du logiciel [GREAT](http://bejerano.stanford.edu/great/public/html/).
+f. Comparez les pics obtenus pour le facteur transcriptionnel d'intérêt avec ceux d'une marque épigénétique comme H3K4me3 ou H3K27ac.
 
 ### 2. 
 
