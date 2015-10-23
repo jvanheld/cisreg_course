@@ -26,8 +26,7 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 | Chapter | Slides |
 |---------|--------|
-| Transcriptional regulation - basic concepts | [01.2_regulatory_sequences_intro.pdf](http://rsa-tools.github.io/course/pdf_files/01.2_regulatory_sequences_intro.pdf)  |
-| Position-specific scoring matrices | [01.4.PSSM_theory.pdf](http://rsa-tools.github.io/course/pdf_files/01.4.PSSM_theory.pdf) |
+| Clustering of Motifs | [CisReg_motif_clustering.pdf](http://jvanheld.github.io/cisreg_course/cluster_motifs/CisReg_motif_clustering.pdf)  |
 |  |  |
 
 * * * 
@@ -43,7 +42,125 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 * * *
 
-## Tutorial - Reduce motif redundancy after motif discovery in ChIP-seq peaks
+## Introduction
+
+To study the TF biology, we can use experimental or computational methods. Usually the *in silico* motif analysis goes from motif discovery --> motif comparison (identification) --> motif scanning. One common issue in this procedure is the common redundancy of motifs after using several motif discovery algorithms (overrepresented words or positional bias) or different tools (RSAT, MEME). 
+
+We developped a tool that cluster similar PSSMs and allow to create a non-redundant collection of motifs, simplifying in this ways the motif analysis procedure.
+
+In this tutorial we show how to deal with two cases where the cluster of motifs can be used.
+
+1.- Reducing motif redundancy from a collection of motifs.
+
+2.- Grouping motifs in order to identify motifs sharing similar DBD (DNA-binding Domain).
+
+
+* * *
+
+### Exercise 1 - Using *matrix-clustering* to group motifs sharing a common DBD domain.
+
+We have one collection of unkown motifs. We want to kwnow to which TFs correspond these motifs and if they share a DBD. We will cluster these motifs, reduce the redundancy and compare the non-redundant set in order to discover the DBD domains of the motifs.
+
+Initially we will use the most permisive threshold in order to group all the motifs in a single cluster, which can be visualized as a hierarchical tree. 
+
+Increasing the threshold value should separate the motifs into different clusters.
+
+* * *
+
+#### Objectives
+
+- Set different threshold values in order to split one collection of motifs in separated clusters.
+
+- Identify the DBD of the identified clusters.
+
+* * * 
+
+#### Aligning all the unknown motifs
+
+1. Downlwad the [Unknown motifs]().  
+
+1. Open a connection to the **Regulatory Sequence Analysis Tools** [teaching server](http://teaching.rsat.eu/) ([http://teaching.rsat.eu/](http://teaching.rsat.eu/)).
+
+2. In the left-side menu, open the tool set **Matrix tools**, and click on **matrix-clustering**.
+
+3. **Analysis Title**: Write the name of the analysis in the **Title** box. E.g. 'Unknown motif analysis'.
+
+4. **Matrices**: Paste the matrices in the **Matrix** box, and check that the input format is set to **transfac**.
+
+5. **Collection Name**: (Optional) Give a collection name to all the motifs of this collection. E.g. 'Unknown motifs'.
+
+6. **Threshold (low threshold)**: Click on the section **Thresholds to define the cluster** and set the next values in the **lower threshold** column. **Ncor** : -1; **cor** : -1 ; **w** : 0.
+
+7. **Metric to build the tree**: Select one metric that will be used to build the hierarchical tree. Select --> **Ncor**.
+
+8. **Linkage method**: Select one linkage method to group the motifs. Select -->  **Average**.
+
+9. **Output file options**: Select -->  **Heatmap**. Let empty the other boxes.
+
+10. **Labels displayed in logo tree**: Select -->  **Names**. Let empty the other boxes.
+
+11. Click on **GO** (This analysis takes around 1 minute).
+
+12. Repeat the previous steps but with different **Threshold (high threshold)**: **Ncor** : 0.4; **cor** : 0.6 ; **w** : 5.
+
+
+* * *
+
+#### *matrix-clustering* report
+
+Before start the analysis take a look to the *matrix-clustering* report which is separated in several sections.
+
+1. The *matrix-clustering* report is divided in several section that you can hide/show.
+
+2. **Results Summary**: a small table showing the input parameters and the number of input motifs and clusters found.
+
+3. **Clusters Summary**: a table showing the Familal Binding Profiles **FBP** of each cluster and the name and the number of the motifs grouped for each cluster.
+
+4. **Logo Forest**: all the cluster are represented as a forest (set of trees). Each tree is dynamic (Click on the nodes to collapse/expand them).
+
+5. **Individual Motif View**: a table showing the description of each input motif.
+
+6. **Individual Cluster View**: analyze each cluster individually. Click on the number at each tree branch to select it and display a table with its corresponding **FBP**.
+
+7. **Heatmap View**: A heatmap showing the (dis)similarities among all the motifs. Each cluster is indicates with a color bar (which is the same color used for the trees in the *Logo Forest*).
+
+8. **Additional Files**: A list of complementary files.
+
+* * *
+
+#### Analysis
+
+1. For both analysis compare in how many clusters the motifs were separated, (see **Clusters summary** section). The logo in this section represent the root motif (also called Familal Binding Profile **FBP**) which is the most external node in the hierarchical tree and summarize all the motifs in the cluster.
+
+2. Open the **Logo forest** section. You can collapse/expand dynamically the trees. Find the groups of motifs collapsing the tree.
+
+3. Another way to visualize all the motifs is using the heatmap view. You can see clearly that there are four clusters of motifs in our collection of unknown motifs.
+
+4. For the both analysis (using low/high thresholds) you can go to the *Additional Files* menu and download the **Root motifs** file. (One motif for each cluster)
+
+5. Open a conexion to [*footprintDB*](http://floresta.eead.csic.es/footprintdb/index.php) website, go the *search* section and click on *sequences*. 
+
+6. Click on the *DNA sites or motifs* circle, paste the motifs in the *query data* box and click on *search* button. (Do this step for both analysis).
+
+7 . Identify the DBD of you clusters in both analysis.
+
+* * *
+
+### Excercise 2 - Reduce motif redundancy after motif discovery in ChIP-seq peaks
+
+* * *
+
+One collection of motifs discovered in one set of ChIP-seq peaks is grouped and the clusters reveals different binding conformations of the immunoprecipitated TF.
+
+#### Objectives
+
+- Identify different binding conformations of Oct4 in a set ChIP-seq peaks. 
+
+- This highly redundant set of motifs can be reduced to a handle of non-redundant motifs.
+
+* * *
+
+#### matrix-clustering
 
 1. [Download](https://github.com/jvanheld/cisreg_course/tree/gh-pages/cluster_motifs/data) a set of matrices that were found with *peak-motifs* in a set of ChIP-seq peaks for the TF **Oct4**.  
 
@@ -69,36 +186,13 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 11. Click on **GO** (This analysis takes around 1 minute).
 
-* * * 
+* * *
 
-## *matrix-clustering* report
-
-1. The *matrix-clustering* report is divided in several section that you can hide/show.
-
-2. **Results Summary**: a small table showing the input parameters and the number of input motifs and clusters found.
-
-3. **Clusters Summary**: a table showing the Familal Binding Profiles **FBP** of each cluster and the name and the number of the motifs grouped for each cluster.
-
-4. **Logo Forest**: all the cluster are represented as a forest (set of trees). Each tree is dynamic (Click on the nodes to collapse/expand them).
-
-5. **Individual Motif View**: a table showing the description of each input motif.
-
-6. **Individual Cluster View**: analyze each cluster individually. Click on the number at each tree branch to select it and display a table with its corresponding **FBP**.
-
-7. **Heatmap View**: A heatmap showing the (dis)similarities among all the motifs. Each cluster is indicates with a color bar (which is the same color used for the trees in the *Logo Forest*).
-
-8. **Additional Files**: A list of complementary files.
-
-* * * 
-
-* * * 
-
-## Analysis
+#### Analysis
 
 1. The selection of non-redundant motifs will be done during the session.
 
 * * *
-
 
 <!--
 

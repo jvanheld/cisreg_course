@@ -10,7 +10,7 @@
 
 <meta name="author" content="Jaime Castro" />
 
-<meta name="date" content="2015-10-22" />
+<meta name="date" content="2015-10-23" />
 
 <title>Clustering motifs with RSAT</title>
 
@@ -49,16 +49,17 @@ img {
 <div id="header">
 <h1 class="title">Clustering motifs with RSAT</h1>
 <h4 class="author"><em>Jaime Castro</em></h4>
-<h4 class="date"><em>2015-10-22</em></h4>
+<h4 class="date"><em>2015-10-23</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#tools-used-in-this-tutorial">Tools used in this tutorial</a></li>
-<li><a href="#tutorial---reduce-motif-redundancy-after-motif-discovery-in-chip-seq-peaks">Tutorial - Reduce motif redundancy after motif discovery in ChIP-seq peaks</a></li>
-<li><a href="#matrix-clustering-report"><em>matrix-clustering</em> report</a></li>
-<li><a href="#analysis">Analysis</a></li>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#exercise-1---using-matrix-clustering-to-group-motifs-sharing-a-common-dbd-domain.">Exercise 1 - Using <em>matrix-clustering</em> to group motifs sharing a common DBD domain.</a></li>
+<li><a href="#excercise-2---reduce-motif-redundancy-after-motif-discovery-in-chip-seq-peaks">Excercise 2 - Reduce motif redundancy after motif discovery in ChIP-seq peaks</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -75,14 +76,10 @@ img {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Transcriptional regulation - basic concepts</td>
-<td align="left"><a href="http://rsa-tools.github.io/course/pdf_files/01.2_regulatory_sequences_intro.pdf">01.2_regulatory_sequences_intro.pdf</a></td>
+<td align="left">Clustering of Motifs</td>
+<td align="left"><a href="http://jvanheld.github.io/cisreg_course/cluster_motifs/CisReg_motif_clustering.pdf">CisReg_motif_clustering.pdf</a></td>
 </tr>
 <tr class="even">
-<td align="left">Position-specific scoring matrices</td>
-<td align="left"><a href="http://rsa-tools.github.io/course/pdf_files/01.4.PSSM_theory.pdf">01.4.PSSM_theory.pdf</a></td>
-</tr>
-<tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -116,8 +113,90 @@ img {
 </table>
 <hr />
 </div>
-<div id="tutorial---reduce-motif-redundancy-after-motif-discovery-in-chip-seq-peaks" class="section level2">
-<h2>Tutorial - Reduce motif redundancy after motif discovery in ChIP-seq peaks</h2>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>To study the TF biology, we can use experimental or computational methods. Usually the <em>in silico</em> motif analysis goes from motif discovery –&gt; motif comparison (identification) –&gt; motif scanning. One common issue in this procedure is the common redundancy of motifs after using several motif discovery algorithms (overrepresented words or positional bias) or different tools (RSAT, MEME).</p>
+<p>We developped a tool that cluster similar PSSMs and allow to create a non-redundant collection of motifs, simplifying in this ways the motif analysis procedure.</p>
+<p>In this tutorial we show how to deal with two cases where the cluster of motifs can be used.</p>
+<p>1.- Reducing motif redundancy from a collection of motifs.</p>
+<p>2.- Grouping motifs in order to identify motifs sharing similar DBD (DNA-binding Domain).</p>
+<hr />
+<div id="exercise-1---using-matrix-clustering-to-group-motifs-sharing-a-common-dbd-domain." class="section level3">
+<h3>Exercise 1 - Using <em>matrix-clustering</em> to group motifs sharing a common DBD domain.</h3>
+<p>We have one collection of unkown motifs. We want to kwnow to which TFs correspond these motifs and if they share a DBD. We will cluster these motifs, reduce the redundancy and compare the non-redundant set in order to discover the DBD domains of the motifs.</p>
+<p>Initially we will use the most permisive threshold in order to group all the motifs in a single cluster, which can be visualized as a hierarchical tree.</p>
+<p>Increasing the threshold value should separate the motifs into different clusters.</p>
+<hr />
+<div id="objectives" class="section level4">
+<h4>Objectives</h4>
+<ul>
+<li><p>Set different threshold values in order to split one collection of motifs in separated clusters.</p></li>
+<li><p>Identify the DBD of the identified clusters.</p></li>
+</ul>
+<hr />
+</div>
+<div id="aligning-all-the-unknown-motifs" class="section level4">
+<h4>Aligning all the unknown motifs</h4>
+<ol style="list-style-type: decimal">
+<li><p>Downlwad the <a href>Unknown motifs</a>.</p></li>
+<li><p>Open a connection to the <strong>Regulatory Sequence Analysis Tools</strong> <a href="http://teaching.rsat.eu/">teaching server</a> (<a href="http://teaching.rsat.eu/"><a href="http://teaching.rsat.eu/" class="uri">http://teaching.rsat.eu/</a></a>).</p></li>
+<li><p>In the left-side menu, open the tool set <strong>Matrix tools</strong>, and click on <strong>matrix-clustering</strong>.</p></li>
+<li><p><strong>Analysis Title</strong>: Write the name of the analysis in the <strong>Title</strong> box. E.g. ‘Unknown motif analysis’.</p></li>
+<li><p><strong>Matrices</strong>: Paste the matrices in the <strong>Matrix</strong> box, and check that the input format is set to <strong>transfac</strong>.</p></li>
+<li><p><strong>Collection Name</strong>: (Optional) Give a collection name to all the motifs of this collection. E.g. ‘Unknown motifs’.</p></li>
+<li><p><strong>Threshold (low threshold)</strong>: Click on the section <strong>Thresholds to define the cluster</strong> and set the next values in the <strong>lower threshold</strong> column. <strong>Ncor</strong> : -1; <strong>cor</strong> : -1 ; <strong>w</strong> : 0.</p></li>
+<li><p><strong>Metric to build the tree</strong>: Select one metric that will be used to build the hierarchical tree. Select –&gt; <strong>Ncor</strong>.</p></li>
+<li><p><strong>Linkage method</strong>: Select one linkage method to group the motifs. Select –&gt; <strong>Average</strong>.</p></li>
+<li><p><strong>Output file options</strong>: Select –&gt; <strong>Heatmap</strong>. Let empty the other boxes.</p></li>
+<li><p><strong>Labels displayed in logo tree</strong>: Select –&gt; <strong>Names</strong>. Let empty the other boxes.</p></li>
+<li><p>Click on <strong>GO</strong> (This analysis takes around 1 minute).</p></li>
+<li><p>Repeat the previous steps but with different <strong>Threshold (high threshold)</strong>: <strong>Ncor</strong> : 0.4; <strong>cor</strong> : 0.6 ; <strong>w</strong> : 5.</p></li>
+</ol>
+<hr />
+</div>
+<div id="matrix-clustering-report" class="section level4">
+<h4><em>matrix-clustering</em> report</h4>
+<p>Before start the analysis take a look to the <em>matrix-clustering</em> report which is separated in several sections.</p>
+<ol style="list-style-type: decimal">
+<li><p>The <em>matrix-clustering</em> report is divided in several section that you can hide/show.</p></li>
+<li><p><strong>Results Summary</strong>: a small table showing the input parameters and the number of input motifs and clusters found.</p></li>
+<li><p><strong>Clusters Summary</strong>: a table showing the Familal Binding Profiles <strong>FBP</strong> of each cluster and the name and the number of the motifs grouped for each cluster.</p></li>
+<li><p><strong>Logo Forest</strong>: all the cluster are represented as a forest (set of trees). Each tree is dynamic (Click on the nodes to collapse/expand them).</p></li>
+<li><p><strong>Individual Motif View</strong>: a table showing the description of each input motif.</p></li>
+<li><p><strong>Individual Cluster View</strong>: analyze each cluster individually. Click on the number at each tree branch to select it and display a table with its corresponding <strong>FBP</strong>.</p></li>
+<li><p><strong>Heatmap View</strong>: A heatmap showing the (dis)similarities among all the motifs. Each cluster is indicates with a color bar (which is the same color used for the trees in the <em>Logo Forest</em>).</p></li>
+<li><p><strong>Additional Files</strong>: A list of complementary files.</p></li>
+</ol>
+<hr />
+</div>
+<div id="analysis" class="section level4">
+<h4>Analysis</h4>
+<ol style="list-style-type: decimal">
+<li><p>For both analysis compare in how many clusters the motifs were separated, (see <strong>Clusters summary</strong> section). The logo in this section represent the root motif (also called Familal Binding Profile <strong>FBP</strong>) which is the most external node in the hierarchical tree and summarize all the motifs in the cluster.</p></li>
+<li><p>Open the <strong>Logo forest</strong> section. You can collapse/expand dynamically the trees. Find the groups of motifs collapsing the tree.</p></li>
+<li><p>Another way to visualize all the motifs is using the heatmap view. You can see clearly that there are four clusters of motifs in our collection of unknown motifs.</p></li>
+<li><p>For the both analysis (using low/high thresholds) you can go to the <em>Additional Files</em> menu and download the <strong>Root motifs</strong> file. (One motif for each cluster)</p></li>
+<li><p>Open a conexion to <a href="http://floresta.eead.csic.es/footprintdb/index.php"><em>footprintDB</em></a> website, go the <em>search</em> section and click on <em>sequences</em>.</p></li>
+<li><p>Click on the <em>DNA sites or motifs</em> circle, paste the motifs in the <em>query data</em> box and click on <em>search</em> button. (Do this step for both analysis).</p></li>
+</ol>
+<p>7 . Identify the DBD of you clusters in both analysis.</p>
+<hr />
+</div>
+</div>
+<div id="excercise-2---reduce-motif-redundancy-after-motif-discovery-in-chip-seq-peaks" class="section level3">
+<h3>Excercise 2 - Reduce motif redundancy after motif discovery in ChIP-seq peaks</h3>
+<hr />
+<p>One collection of motifs discovered in one set of ChIP-seq peaks is grouped and the clusters reveals different binding conformations of the immunoprecipitated TF.</p>
+<div id="objectives-1" class="section level4">
+<h4>Objectives</h4>
+<ul>
+<li><p>Identify different binding conformations of Oct4 in a set ChIP-seq peaks.</p></li>
+<li><p>This highly redundant set of motifs can be reduced to a handle of non-redundant motifs.</p></li>
+</ul>
+<hr />
+</div>
+<div id="matrix-clustering" class="section level4">
+<h4>matrix-clustering</h4>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://github.com/jvanheld/cisreg_course/tree/gh-pages/cluster_motifs/data">Download</a> a set of matrices that were found with <em>peak-motifs</em> in a set of ChIP-seq peaks for the TF <strong>Oct4</strong>.</p></li>
 <li><p>Open a connection to the <strong>Regulatory Sequence Analysis Tools</strong> <a href="http://teaching.rsat.eu/">teaching server</a> (<a href="http://teaching.rsat.eu/"><a href="http://teaching.rsat.eu/" class="uri">http://teaching.rsat.eu/</a></a>).</p></li>
@@ -134,23 +213,8 @@ img {
 </ol>
 <hr />
 </div>
-<div id="matrix-clustering-report" class="section level2">
-<h2><em>matrix-clustering</em> report</h2>
-<ol style="list-style-type: decimal">
-<li><p>The <em>matrix-clustering</em> report is divided in several section that you can hide/show.</p></li>
-<li><p><strong>Results Summary</strong>: a small table showing the input parameters and the number of input motifs and clusters found.</p></li>
-<li><p><strong>Clusters Summary</strong>: a table showing the Familal Binding Profiles <strong>FBP</strong> of each cluster and the name and the number of the motifs grouped for each cluster.</p></li>
-<li><p><strong>Logo Forest</strong>: all the cluster are represented as a forest (set of trees). Each tree is dynamic (Click on the nodes to collapse/expand them).</p></li>
-<li><p><strong>Individual Motif View</strong>: a table showing the description of each input motif.</p></li>
-<li><p><strong>Individual Cluster View</strong>: analyze each cluster individually. Click on the number at each tree branch to select it and display a table with its corresponding <strong>FBP</strong>.</p></li>
-<li><p><strong>Heatmap View</strong>: A heatmap showing the (dis)similarities among all the motifs. Each cluster is indicates with a color bar (which is the same color used for the trees in the <em>Logo Forest</em>).</p></li>
-<li><p><strong>Additional Files</strong>: A list of complementary files.</p></li>
-</ol>
-<hr />
-<hr />
-</div>
-<div id="analysis" class="section level2">
-<h2>Analysis</h2>
+<div id="analysis-1" class="section level4">
+<h4>Analysis</h4>
 <ol style="list-style-type: decimal">
 <li>The selection of non-redundant motifs will be done during the session.</li>
 </ol>
@@ -219,6 +283,8 @@ img {
 
 
 -->
+</div>
+</div>
 </div>
 
 

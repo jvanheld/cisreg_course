@@ -1,0 +1,4 @@
+cluster_1 #FF0000FF
+cluster_2 #80FF00FF
+cluster_3 #00FFFFFF
+cluster_4 #8000FFFF

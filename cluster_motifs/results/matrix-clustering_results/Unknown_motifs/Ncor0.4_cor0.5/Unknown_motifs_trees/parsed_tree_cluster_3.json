@@ -1,0 +1,222 @@
+{
+"name": "",
+"children":[
+ {
+ "consensus" : "khamCCGGAAGTrrcky",
+ "branch" : 9,
+ "id" : "cluster_3_node_9",
+ "size" : 17,
+ "name" : "cluster3_node_9_10motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_9_10motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_9_10motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "aAmCCGGAAGTr",
+ "branch" : 8,
+ "id" : "cluster_3_node_8",
+ "size" : 17,
+ "name" : "cluster3_node_8_8motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_8_8motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_8_8motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "aACCGGAWrTr",
+ "branch" : 6,
+ "id" : "cluster_3_node_6",
+ "size" : 17,
+ "name" : "cluster3_node_6_6motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_6_6motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_6_6motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m16", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m16_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m16_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m16_logo.png",
+ "name" : "Unkown_motifs_m16",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YACATCCGGKT"
+},
+{
+ "consensus" : "aACCGGAArTr",
+ "branch" : 5,
+ "id" : "cluster_3_node_5",
+ "size" : 17,
+ "name" : "cluster3_node_5_5motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_5_5motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_5_5motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "ACCGGAAGTr",
+ "branch" : 4,
+ "id" : "cluster_3_node_4",
+ "size" : 17,
+ "name" : "cluster3_node_4_4motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_4_4motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_4_4motifs_logo_rc.png",
+
+ "children": [
+ {
+ "consensus" : "ACCGGAAGTr",
+ "branch" : 2,
+ "id" : "cluster_3_node_2",
+ "size" : 17,
+ "name" : "cluster3_node_2_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_2_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_2_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m15", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m15_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m15_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m15_logo.png",
+ "name" : "Unkown_motifs_m15",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "CACTTCCGGT"
+},
+{
+ "label": "Unkown_motifs_m12", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m12_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m12_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m12_logo.png",
+ "name" : "Unkown_motifs_m12",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YAYTTCCGGT"
+} 
+] 
+},
+{
+ "consensus" : "aCCGGAAGtr",
+ "branch" : 1,
+ "id" : "cluster_3_node_1",
+ "size" : 17,
+ "name" : "cluster3_node_1_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_1_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_1_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m1", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m1_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m1_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m1_logo.png",
+ "name" : "Unkown_motifs_m1",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YAYWTCCGGT"
+},
+{
+ "label": "Unkown_motifs_m14", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m14_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m14_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m14_logo.png",
+ "name" : "Unkown_motifs_m14",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YACTTCCGGT"
+} 
+] 
+} 
+] 
+},
+{
+ "label": "Unkown_motifs_m11", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m11_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m11_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m11_logo.png",
+ "name" : "Unkown_motifs_m11",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YRYTTCCGGTT"
+} 
+] 
+} 
+] 
+},
+{
+ "consensus" : "aACCCGGAAGTr",
+ "branch" : 3,
+ "id" : "cluster_3_node_3",
+ "size" : 17,
+ "name" : "cluster3_node_3_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_3_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_3_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m19", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m19_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m19_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m19_logo.png",
+ "name" : "Unkown_motifs_m19",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "TACTTCCGGGTW"
+},
+{
+ "label": "Unkown_motifs_m5", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m5_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m5_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m5_logo.png",
+ "name" : "Unkown_motifs_m5",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "YACTTCCGGGTT"
+} 
+] 
+} 
+] 
+},
+{
+ "consensus" : "kyawCAGGAAGTrrcky",
+ "branch" : 7,
+ "id" : "cluster_3_node_7",
+ "size" : 17,
+ "name" : "cluster3_node_7_2motifs",
+ "image" : "Unknown_motifs_aligned_logos/cluster3_node_7_2motifs_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/cluster3_node_7_2motifs_logo_rc.png",
+
+ "children": [
+ {
+ "label": "Unkown_motifs_m4", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m4_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m4_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m4_logo.png",
+ "name" : "Unkown_motifs_m4",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "RHGTYACTTCCTGWKSM"
+},
+{
+ "label": "Unkown_motifs_m13", 
+
+ "image" : "Unknown_motifs_aligned_logos/Unkown_motifs_m13_logo.png",
+ "image_rc" : "Unknown_motifs_aligned_logos/Unkown_motifs_m13_logo_rc.png",
+ "url" : "Unknown_motifs_aligned_logos/Unkown_motifs_m13_logo.png",
+ "name" : "Unkown_motifs_m13",
+ "size" : 17,
+ "title" : "Unknown_motifs",
+ "consensus_rc" : "ASYYACTTCCTGCYR"
+} 
+] 
+} 
+] 
+} 
+]}
