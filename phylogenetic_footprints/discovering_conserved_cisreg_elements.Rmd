@@ -51,7 +51,7 @@ This tutorial assumes that you already learned the theory in the following chapt
 
 In a first time, we will identify the genomes in which your transcription factor of interest has a putative ortholog. We use a somewhat rudimentary (but pragmatic) approach to identify putative ortholog, by selecting the bidirectional best hits (BBH). 
 
-4. Open a connexion to the [RSAT teaching server](http://teaching.rsat.eu/). 
+4. Open a connexion to the [RSAT prokaryote server](http://prokaryote.rsat.eu/). 
 5. In the **Comparative genomics** tools, open the **get-orthologs** form.
 6. Type the name of your transcription factor in the **Query genes** box, and select a **Taxon**. In a first time we recommend to select the class (*Enterobacteriales*), but this can then be modified to compare the results obtained at different taxonomic levels. 
 
@@ -64,7 +64,7 @@ b. I how many of these genomes did you find a BBH for your taxon of interest?
 ### Discovering conserved elements in the promoters of orthologs
 
 
-7. Open a connexion to the [RSAT teaching server](http://teaching.rsat.eu/). 
+7. Open a connexion to the [RSAT prokaryote server](http://prokaryote.rsat.eu/) (alternatively, you can choose the teaching server [http://teaching.rsat.eu/](http://teaching.rsat.eu/) or the Fungi server [http://fungi.rsat.eu](http://fungi.rsat.eu/)). 
 8. Under the menu **Comparative genomics**, open the **footprint-discovery** form.
 9. Type the target genes of your factor of interest in the **Query genes** box.
 10. Select the option **Unique organism per species**.
