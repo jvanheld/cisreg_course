@@ -41,9 +41,7 @@ factor (e.g. the LexA regulon).
 
 ### Operon
 
-An operon is a set of genes transcribed in a single transcription unit.
-A transcription unit comprizing several coding sequences is qualified of
-polycistronic.
+An operon is a transcriptional unit encompassing several genes. The operon was initially defined by the so-caleed **cis-trans test**, and is therefore also called **polycistronic** transcription unit.
 
 Operons are very frequent in Bacteria, where they usually regroup sets
 of genes involved in a same biological process (e.g. the his operon
@@ -56,7 +54,9 @@ found in Trypanosoma, where large polycistronic units are transcribed,
 which regroup functionally unrelated genes, and regulation occurs
 essentially at the post-transcriptional level.
 
-### IUPAC code for ambiguous nucleotides
+### IUPAC code for ambiguous nucleotides and degenerate consensus
+
+The IUPAC code associates one letter to each possible combination of nucleotides. 
 
 | Symbol | Nucleotide(s) | Description |
 |--------|------------|-------------|
@@ -76,6 +76,9 @@ essentially at the post-transcriptional level.
 | D |   = G, A or T | not C |
 | N |   = G, A, C or T |  aNy |
 | | | | 
+
+The IUPAC code can be used to specify the **degenerate consensus** of a transcription factor, i.e. a consensus summarizing the common residues found in a collection of aligned binding sites. For example, the consensus CACGTK means "CACTG" followed by either T or G.
+
 
 ### Evaluation statistics
 
