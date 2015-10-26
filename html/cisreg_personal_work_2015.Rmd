@@ -70,6 +70,8 @@ c. Scannez l'ensemble de ces promoteurs pour prédire les sites de liaison du fa
 d. Scannez l'ensemble de ces promoteurs pour prédire les sites de liaison du facteur, en utilisant la matrice position-poids annotée dans RegulonDB. 
 e. Utilisez l'outil *infer-operons* pour prédire les opérons pour tous les gènes de l'organisme de référence. 
 f. Comparez les gènes-cibles prédits par ces deux approches avec la liste des gènes-cibles annotés. 
+
+
 ### Détection d'empreintes phylogénétiques
 
 La deuxième partie consistera à découvrir des empreintes phylogénétiques pour chacun des gènes-cibles annotés dans RegulonDB, en évaluant les résultats sur base des questions suivantes. 
