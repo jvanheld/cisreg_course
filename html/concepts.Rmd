@@ -54,7 +54,7 @@ found in Trypanosoma, where large polycistronic units are transcribed,
 which regroup functionally unrelated genes, and regulation occurs
 essentially at the post-transcriptional level.
 
-### IUPAC code for ambiguous nucleotides and degenerate consensus
+### IUPAC code for ambiguous nucleotides
 
 The IUPAC code associates one letter to each possible combination of nucleotides. 
 
@@ -77,7 +77,11 @@ The IUPAC code associates one letter to each possible combination of nucleotides
 | N |   = G, A, C or T |  aNy |
 | | | | 
 
-The IUPAC code can be used to specify the **degenerate consensus** of a transcription factor, i.e. a consensus summarizing the common residues found in a collection of aligned binding sites. For example, the consensus CACGTK means "CACTG" followed by either T or G.
+### Consensus (strict or degenerate)
+
+The consensus is a string-based representation of a motif, indicating the conserved residues in each column of a multiple alignment.  The consensus is obtained by retaining, at each position of the alignment, a single residue (**strict consensus**) or a combination of representative residues (**degenerate consensus**). 
+
+In the context of regulatory sequences, a consensus is typically used to synthesize the common residues found in a collection of aligned binding sites for a transcription factor. The degenerate consensus is based on the IUPAC code for ambiguous nucleotides. For example, the consensus CACGTK means "CACTG" followed by either T or G.
 
 
 ### Evaluation statistics
@@ -91,7 +95,7 @@ The statistics defined below are of very wide use in bioinformatics and biomedic
 | **Negative**<br>(predicted as non-feature) | False negative ($FN$) | True negative ($TN$) | 
 | | | | |
 
-These four categories of predictions can in turn serve to define a set of derived statistics, providing complementary insight into the reliability of the predictions. 
+These four categories of predictions ($TP$, $FP$, $TN$, $FN$) can in turn serve to define a set of derived statistics, providing complementary indications about the reliability of the predictions. 
 
 | Symbol | Definition | Description | 
 |--------|------------|-------------|

@@ -10,7 +10,7 @@
 
 <meta name="author" content="Jacques van Helden" />
 
-<meta name="date" content="2015-10-25" />
+<meta name="date" content="2015-10-26" />
 
 <title>Cis-regulation - Concept definitions</title>
 
@@ -49,7 +49,7 @@ img {
 <div id="header">
 <h1 class="title">Cis-regulation - Concept definitions</h1>
 <h4 class="author"><em>Jacques van Helden</em></h4>
-<h4 class="date"><em>2015-10-25</em></h4>
+<h4 class="date"><em>2015-10-26</em></h4>
 </div>
 
 <div id="TOC">
@@ -57,7 +57,8 @@ img {
 <li><a href="#abbreviations">Abbreviations</a></li>
 <li><a href="#regulon">Regulon</a></li>
 <li><a href="#operon">Operon</a></li>
-<li><a href="#iupac-code-for-ambiguous-nucleotides-and-degenerate-consensus">IUPAC code for ambiguous nucleotides and degenerate consensus</a></li>
+<li><a href="#iupac-code-for-ambiguous-nucleotides">IUPAC code for ambiguous nucleotides</a></li>
+<li><a href="#consensus-strict-or-degenerate">Consensus (strict or degenerate)</a></li>
 <li><a href="#evaluation-statistics">Evaluation statistics</a></li>
 <li><a href="#to-be-added">To be added</a><ul>
 <li><a href="#tf-binding-site">TF binding site</a></li>
@@ -129,8 +130,8 @@ img {
 <p>Operons are very frequent in Bacteria, where they usually regroup sets of genes involved in a same biological process (e.g. the his operon contains the genes required to code for all the enzymes of histidine biosynthesis).</p>
 <p>In eukaryotes, genes ere generally transcribed as mono-cistronic units (an mRNA only codes for a single polypeptide). A notable exception if found in Trypanosoma, where large polycistronic units are transcribed, which regroup functionally unrelated genes, and regulation occurs essentially at the post-transcriptional level.</p>
 </div>
-<div id="iupac-code-for-ambiguous-nucleotides-and-degenerate-consensus" class="section level3">
-<h3>IUPAC code for ambiguous nucleotides and degenerate consensus</h3>
+<div id="iupac-code-for-ambiguous-nucleotides" class="section level3">
+<h3>IUPAC code for ambiguous nucleotides</h3>
 <p>The IUPAC code associates one letter to each possible combination of nucleotides.</p>
 <table>
 <thead>
@@ -223,7 +224,11 @@ img {
 </tr>
 </tbody>
 </table>
-<p>The IUPAC code can be used to specify the <strong>degenerate consensus</strong> of a transcription factor, i.e. a consensus summarizing the common residues found in a collection of aligned binding sites. For example, the consensus CACGTK means “CACTG” followed by either T or G.</p>
+</div>
+<div id="consensus-strict-or-degenerate" class="section level3">
+<h3>Consensus (strict or degenerate)</h3>
+<p>The consensus is a string-based representation of a motif, indicating the conserved residues in each column of a multiple alignment. The consensus is obtained by retaining, at each position of the alignment, a single residue (<strong>strict consensus</strong>) or a combination of representative residues (<strong>degenerate consensus</strong>).</p>
+<p>In the context of regulatory sequences, a consensus is typically used to synthesize the common residues found in a collection of aligned binding sites for a transcription factor. The degenerate consensus is based on the IUPAC code for ambiguous nucleotides. For example, the consensus CACGTK means “CACTG” followed by either T or G.</p>
 </div>
 <div id="evaluation-statistics" class="section level3">
 <h3>Evaluation statistics</h3>
@@ -254,7 +259,7 @@ img {
 </tr>
 </tbody>
 </table>
-<p>These four categories of predictions can in turn serve to define a set of derived statistics, providing complementary insight into the reliability of the predictions.</p>
+<p>These four categories of predictions (<span class="math">\(TP\)</span>, <span class="math">\(FP\)</span>, <span class="math">\(TN\)</span>, <span class="math">\(FN\)</span>) can in turn serve to define a set of derived statistics, providing complementary indications about the reliability of the predictions.</p>
 <table>
 <thead>
 <tr class="header">
