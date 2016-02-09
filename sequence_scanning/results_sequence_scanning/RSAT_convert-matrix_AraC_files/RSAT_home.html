@@ -1,0 +1,646 @@
+
+<!-- saved from url=(0057)http://pedagogix-tagc.univ-mrs.fr/rsat/convert-matrix.cgi -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<script type="text/javascript">
+ <!-- 
+var stIsIE = /*@cc_on!@*/false;
+
+sorttable = {
+  init: function() {
+    // quit if this function has already been called
+    if (arguments.callee.done) return;
+    // flag this function so we don't do the same thing twice
+    arguments.callee.done = true;
+    // kill the timer
+    if (_timer) clearInterval(_timer);
+    
+    if (!document.createElement || !document.getElementsByTagName) return;
+    
+    sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
+    
+    forEach(document.getElementsByTagName('table'), function(table) {
+      if (table.className.search(/\bsortable\b/) != -1) {
+        sorttable.makeSortable(table);
+      }
+    });
+    
+  },
+  
+  makeSortable: function(table) {
+    if (table.getElementsByTagName('thead').length == 0) {
+      // table doesn't have a tHead. Since it should have, create one and
+      // put the first table row in it.
+      the = document.createElement('thead');
+      the.appendChild(table.rows[0]);
+      table.insertBefore(the,table.firstChild);
+    }
+    // Safari doesn't support table.tHead, sigh
+    if (table.tHead == null) table.tHead = table.getElementsByTagName('thead')[0];
+    
+    if (table.tHead.rows.length != 1) return; // can't cope with two header rows
+    
+    // Sorttable v1 put rows with a class of "sortbottom" at the bottom (as
+    // "total" rows, for example). This is B&R, since what you're supposed
+    // to do is put them in a tfoot. So, if there are sortbottom rows,
+    // for backwards compatibility, move them to tfoot (creating it if needed).
+    sortbottomrows = [];
+    for (var i=0; i<table.rows.length; i++) {
+      if (table.rows[i].className.search(/\bsortbottom\b/) != -1) {
+        sortbottomrows[sortbottomrows.length] = table.rows[i];
+      }
+    }
+    if (sortbottomrows) {
+      if (table.tFoot == null) {
+        // table doesn't have a tfoot. Create one.
+        tfo = document.createElement('tfoot');
+        table.appendChild(tfo);
+      }
+      for (var i=0; i<sortbottomrows.length; i++) {
+        tfo.appendChild(sortbottomrows[i]);
+      }
+      delete sortbottomrows;
+    }
+    
+    // work through each column and calculate its type
+    headrow = table.tHead.rows[0].cells;
+    for (var i=0; i<headrow.length; i++) {
+      // manually override the type with a sorttable_type attribute
+      if (!headrow[i].className.match(/\bsorttable_nosort\b/)) { // skip this col
+        mtch = headrow[i].className.match(/\bsorttable_([a-z0-9]+)\b/);
+        if (mtch) { override = mtch[1]; }
+	      if (mtch && typeof sorttable["sort_"+override] == 'function') {
+	        headrow[i].sorttable_sortfunction = sorttable["sort_"+override];
+	      } else {
+	        headrow[i].sorttable_sortfunction = sorttable.guessType(table,i);
+	      }
+	      // make it clickable to sort
+	      headrow[i].sorttable_columnindex = i;
+	      headrow[i].sorttable_tbody = table.tBodies[0];
+	      dean_addEvent(headrow[i],"click", function(e) {
+
+          if (this.className.search(/\bsorttable_sorted\b/) != -1) {
+            // if we're already sorted by this column, just 
+            // reverse the table, which is quicker
+            sorttable.reverse(this.sorttable_tbody);
+            this.className = this.className.replace('sorttable_sorted',
+                                                    'sorttable_sorted_reverse');
+            this.removeChild(document.getElementById('sorttable_sortfwdind'));
+            sortrevind = document.createElement('span');
+            sortrevind.id = "sorttable_sortrevind";
+            sortrevind.innerHTML = stIsIE ? '&nbsp<font face="webdings">5</font>' : '&nbsp;&#x25B4;';
+            this.appendChild(sortrevind);
+            return;
+          }
+          if (this.className.search(/\bsorttable_sorted_reverse\b/) != -1) {
+            // if we're already sorted by this column in reverse, just 
+            // re-reverse the table, which is quicker
+            sorttable.reverse(this.sorttable_tbody);
+            this.className = this.className.replace('sorttable_sorted_reverse',
+                                                    'sorttable_sorted');
+            this.removeChild(document.getElementById('sorttable_sortrevind'));
+            sortfwdind = document.createElement('span');
+            sortfwdind.id = "sorttable_sortfwdind";
+            sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+            this.appendChild(sortfwdind);
+            return;
+          }
+          
+          // remove sorttable_sorted classes
+          theadrow = this.parentNode;
+          forEach(theadrow.childNodes, function(cell) {
+            if (cell.nodeType == 1) { // an element
+              cell.className = cell.className.replace('sorttable_sorted_reverse','');
+              cell.className = cell.className.replace('sorttable_sorted','');
+            }
+          });
+          sortfwdind = document.getElementById('sorttable_sortfwdind');
+          if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
+          sortrevind = document.getElementById('sorttable_sortrevind');
+          if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
+          
+          this.className += ' sorttable_sorted';
+          sortfwdind = document.createElement('span');
+          sortfwdind.id = "sorttable_sortfwdind";
+          sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+          this.appendChild(sortfwdind);
+
+	        // build an array to sort. This is a Schwartzian transform thing,
+	        // i.e., we "decorate" each row with the actual sort key,
+	        // sort based on the sort keys, and then put the rows back in order
+	        // which is a lot faster because you only do getInnerText once per row
+	        row_array = [];
+	        col = this.sorttable_columnindex;
+	        rows = this.sorttable_tbody.rows;
+	        for (var j=0; j<rows.length; j++) {
+	          row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
+	        }
+	        /* If you want a stable sort, uncomment the following line */
+	        //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
+	        /* and comment out this one */
+	        row_array.sort(this.sorttable_sortfunction);
+	        
+	        tb = this.sorttable_tbody;
+	        for (var j=0; j<row_array.length; j++) {
+	          tb.appendChild(row_array[j][1]);
+	        }
+	        
+	        delete row_array;
+	      });
+	    }
+    }
+  },
+  
+  guessType: function(table, column) {
+    // guess the type of a column based on its first non-blank row
+    sortfn = sorttable.sort_alpha;
+    for (var i=0; i<table.tBodies[0].rows.length; i++) {
+      text = sorttable.getInnerText(table.tBodies[0].rows[i].cells[column]);
+      if (text != '') {
+        if (text.match(/^-?[£$¤]?[\d,.]+%?$/)||text.match(/^\d+((\.|,)\d+)?(E|e)(\+|\-)\d+/)) {
+          return sorttable.sort_numeric;
+        }
+        // check for a date: dd/mm/yyyy or dd/mm/yy 
+        // can have / or . or - as separator
+        // can be mm/dd as well
+        possdate = text.match(sorttable.DATE_RE)
+        if (possdate) {
+          // looks like a date
+          first = parseInt(possdate[1]);
+          second = parseInt(possdate[2]);
+          if (first > 12) {
+            // definitely dd/mm
+            return sorttable.sort_ddmm;
+          } else if (second > 12) {
+            return sorttable.sort_mmdd;
+          } else {
+            // looks like a date, but we can't tell which, so assume
+            // that it's dd/mm (English imperialism!) and keep looking
+            sortfn = sorttable.sort_ddmm;
+          }
+        }
+      }
+    }
+    return sortfn;
+  },
+  
+  getInnerText: function(node) {
+    // gets the text we want to use for sorting for a cell.
+    // strips leading and trailing whitespace.
+    // this is *not* a generic getInnerText function; it's special to sorttable.
+    // for example, you can override the cell text with a customkey attribute.
+    // it also gets .value for <input> fields.
+    
+    hasInputs = (typeof node.getElementsByTagName == 'function') &&
+                 node.getElementsByTagName('input').length;
+    
+    if (node.getAttribute("sorttable_customkey") != null) {
+      return node.getAttribute("sorttable_customkey");
+    }
+    else if (typeof node.textContent != 'undefined' && !hasInputs) {
+      return node.textContent.replace(/^\s+|\s+$/g, '');
+    }
+    else if (typeof node.innerText != 'undefined' && !hasInputs) {
+      return node.innerText.replace(/^\s+|\s+$/g, '');
+    }
+    else if (typeof node.text != 'undefined' && !hasInputs) {
+      return node.text.replace(/^\s+|\s+$/g, '');
+    }
+    else {
+      switch (node.nodeType) {
+        case 3:
+          if (node.nodeName.toLowerCase() == 'input') {
+            return node.value.replace(/^\s+|\s+$/g, '');
+          }
+        case 4:
+          return node.nodeValue.replace(/^\s+|\s+$/g, '');
+          break;
+        case 1:
+        case 11:
+          var innerText = '';
+          for (var i = 0; i < node.childNodes.length; i++) {
+            innerText += sorttable.getInnerText(node.childNodes[i]);
+          }
+          return innerText.replace(/^\s+|\s+$/g, '');
+          break;
+        default:
+          return '';
+      }
+    }
+  },
+  
+  reverse: function(tbody) {
+    // reverse the rows in a tbody
+    newrows = [];
+    for (var i=0; i<tbody.rows.length; i++) {
+      newrows[newrows.length] = tbody.rows[i];
+    }
+    for (var i=newrows.length-1; i>=0; i--) {
+       tbody.appendChild(newrows[i]);
+    }
+    delete newrows;
+  },
+  
+  /* sort functions
+     each sort function takes two parameters, a and b
+     you are comparing a[0] and b[0] */
+  /* Numeric order */
+  sort_numeric: function(a,b) {
+	aa = parseFloat(a[0].replace(/[^0-9.\-eE]/g,''));
+	if (isNaN(aa)) aa = 0;
+	bb = parseFloat(b[0].replace(/[^0-9.\-eE]/g,''));
+	if (isNaN(bb)) bb = 0;
+	return aa-bb;
+    },
+//   sort_numeric: function(a,b) {
+//     aa = parseFloat(a[0].replace(/[^0-9.-eE]/g,''));
+//     if (isNaN(aa)) aa = 0;
+//     bb = parseFloat(b[0].replace(/[^0-9.-eE]/g,'')); 
+//     if (isNaN(bb)) bb = 0;    
+//     return aa-bb;
+//   },
+
+  /* alphabetical order */
+  sort_alpha: function(a,b) {
+    if (a[0]==b[0]) return 0;
+    if (a[0]<b[0]) return -1;
+    return 1;
+  },
+
+  /* sort dates formatted as ddmm (day first, month after) */
+  sort_ddmm: function(a,b) {
+    mtch = a[0].match(sorttable.DATE_RE);
+    y = mtch[3]; m = mtch[2]; d = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt1 = y+m+d;
+    mtch = b[0].match(sorttable.DATE_RE);
+    y = mtch[3]; m = mtch[2]; d = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt2 = y+m+d;
+    if (dt1==dt2) return 0;
+    if (dt1<dt2) return -1;
+    return 1;
+  },
+
+  /* sort dates formatted as mmdd (month first, day after) */
+  sort_mmdd: function(a,b) {
+    mtch = a[0].match(sorttable.DATE_RE);
+    y = mtch[3]; d = mtch[2]; m = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt1 = y+m+d;
+    mtch = b[0].match(sorttable.DATE_RE);
+    y = mtch[3]; d = mtch[2]; m = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt2 = y+m+d;
+    if (dt1==dt2) return 0;
+    if (dt1<dt2) return -1;
+    return 1;
+  },
+  
+  shaker_sort: function(list, comp_func) {
+    // A stable sort function to allow multi-level sorting of data
+    // see: http://en.wikipedia.org/wiki/Cocktail_sort
+    // thanks to Joseph Nahmias
+    var b = 0;
+    var t = list.length - 1;
+    var swap = true;
+
+    while(swap) {
+        swap = false;
+        for(var i = b; i < t; ++i) {
+            if ( comp_func(list[i], list[i+1]) > 0 ) {
+                var q = list[i]; list[i] = list[i+1]; list[i+1] = q;
+                swap = true;
+            }
+        } // for
+        t--;
+
+        if (!swap) break;
+
+        for(var i = t; i > b; --i) {
+            if ( comp_func(list[i], list[i-1]) < 0 ) {
+                var q = list[i]; list[i] = list[i-1]; list[i-1] = q;
+                swap = true;
+            }
+        } // for
+        b++;
+
+    } // while(swap)
+  }  
+}
+
+/* ******************************************************************
+   Supporting functions: bundled here to avoid depending on a library
+   ****************************************************************** */
+
+// Dean Edwards/Matthias Miller/John Resig
+
+/* for Mozilla/Opera9 */
+if (document.addEventListener) {
+    document.addEventListener("DOMContentLoaded", sorttable.init, false);
+}
+
+/* for Internet Explorer */
+/*@cc_on @*/
+/*@if (@_win32)
+    document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+    var script = document.getElementById("__ie_onload");
+    script.onreadystatechange = function() {
+        if (this.readyState == "complete") {
+            sorttable.init(); // call the onload handler
+        }
+    };
+/*@end @*/
+
+/* for Safari */
+if (/WebKit/i.test(navigator.userAgent)) { // sniff
+    var _timer = setInterval(function() {
+        if (/loaded|complete/.test(document.readyState)) {
+            sorttable.init(); // call the onload handler
+        }
+    }, 10);
+}
+
+/* for other browsers */
+window.onload = sorttable.init;
+
+// written by Dean Edwards, 2005
+// with input from Tino Zijdel, Matthias Miller, Diego Perini
+
+// http://dean.edwards.name/weblog/2005/10/add-event/
+
+function dean_addEvent(element, type, handler) {
+	if (element.addEventListener) {
+		element.addEventListener(type, handler, false);
+	} else {
+		// assign each event handler a unique ID
+		if (!handler.$$guid) handler.$$guid = dean_addEvent.guid++;
+		// create a hash table of event types for the element
+		if (!element.events) element.events = {};
+		// create a hash table of event handlers for each element/event pair
+		var handlers = element.events[type];
+		if (!handlers) {
+			handlers = element.events[type] = {};
+			// store the existing event handler (if there is one)
+			if (element["on" + type]) {
+				handlers[0] = element["on" + type];
+			}
+		}
+		// store the event handler in the hash table
+		handlers[handler.$$guid] = handler;
+		// assign a global event handler to do all the work
+		element["on" + type] = handleEvent;
+	}
+};
+// a counter used to create unique IDs
+dean_addEvent.guid = 1;
+
+function removeEvent(element, type, handler) {
+	if (element.removeEventListener) {
+		element.removeEventListener(type, handler, false);
+	} else {
+		// delete the event handler from the hash table
+		if (element.events && element.events[type]) {
+			delete element.events[type][handler.$$guid];
+		}
+	}
+};
+
+function handleEvent(event) {
+	var returnValue = true;
+	// grab the event object (IE uses a global event object)
+	event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
+	// get a reference to the hash table of event handlers
+	var handlers = this.events[event.type];
+	// execute each event handler
+	for (var i in handlers) {
+		this.$$handleEvent = handlers[i];
+		if (this.$$handleEvent(event) === false) {
+			returnValue = false;
+		}
+	}
+	return returnValue;
+};
+
+function fixEvent(event) {
+	// add W3C standard event methods
+	event.preventDefault = fixEvent.preventDefault;
+	event.stopPropagation = fixEvent.stopPropagation;
+	return event;
+};
+fixEvent.preventDefault = function() {
+	this.returnValue = false;
+};
+fixEvent.stopPropagation = function() {
+  this.cancelBubble = true;
+}
+
+// Dean's forEach: http://dean.edwards.name/base/forEach.js
+/*
+	forEach, version 1.0
+	Copyright 2006, Dean Edwards
+	License: http://www.opensource.org/licenses/mit-license.php
+*/
+
+// array-like enumeration
+if (!Array.forEach) { // mozilla already supports this
+	Array.forEach = function(array, block, context) {
+		for (var i = 0; i < array.length; i++) {
+			block.call(context, array[i], i, array);
+		}
+	};
+}
+
+// generic enumeration
+Function.prototype.forEach = function(object, block, context) {
+	for (var key in object) {
+		if (typeof this.prototype[key] == "undefined") {
+			block.call(context, object[key], key, object);
+		}
+	}
+};
+
+// character enumeration
+String.forEach = function(string, block, context) {
+	Array.forEach(string.split(""), function(chr, index) {
+		block.call(context, chr, index, string);
+	});
+};
+
+// globally resolve forEach enumeration
+var forEach = function(object, block, context) {
+	if (object) {
+		var resolve = Object; // default
+		if (object instanceof Function) {
+			// functions have a "length" property
+			resolve = Function;
+		} else if (object.forEach instanceof Function) {
+			// the object implements a custom forEach method so use that
+			object.forEach(block, context);
+			return;
+		} else if (typeof object == "string") {
+			// the object is a string
+			resolve = String;
+		} else if (typeof object.length == "number") {
+			// the object is array-like
+			resolve = Array;
+		}
+		resolve.forEach(object, block, context);
+	}
+}
+
+// --> 
+</script>
+
+
+
+<title>RSAT : convert-matrix result</title>
+<link rev="made" href="mailto:Jacques.van-Helden%5C%40univ-amu.fr">
+<link rel="stylesheet" type="text/css" href="main.css" media="screen,projection,print">
+<link rel="stylesheet" type="text/css" href="tabs.css" media="screen,projection,print">
+<link rel="stylesheet" type="text/css" href="chosen.css" media="screen,projection,print">
+<script src="RSAT_menu.js" type="text/javascript"></script>
+<script src="RSAT_tabs.js" type="text/javascript"></script>
+
+</head>
+<body class="results">
+<h3 align="center"><a href="http://pedagogix-tagc.univ-mrs.fr/rsat/RSAT_home.cgi">RSAT</a> - convert-matrix result</h3><b>Server command</b><pre>$RSAT/perl-scripts/convert-matrix  -from tab -to tab -i $RSAT/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_input.tab -pseudo 1 -multiply 1 -decimals 2 -perm 0 -bgfile $RSAT/public_html/data/genomes/Escherichia_coli_K_12_substr__MG1655_uid57779/oligo-frequencies/1nt_upstream-noorf_Escherichia_coli_K_12_substr__MG1655_uid57779-ovlp-1str.freq -bg_format oligos -bg_pseudo 0.01 -logo_format png  -logo_file $RSAT/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab_logo -return counts,counts,frequencies,consensus,parameters,header,margins,logo -v 1 -to tab -o $RSAT/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab
+</pre>
+<h4>Result</h4><pre>; convert-matrix  -from tab -to tab -i $RSAT/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_input.tab -pseudo 1 -multiply 1 -decimals 2 -perm 0 -bgfile $RSAT/public_html/data/genomes/Escherichia_coli_K_12_substr__MG1655_uid57779/oligo-frequencies/1nt_upstream-noorf_Escherichia_coli_K_12_substr__MG1655_uid57779-ovlp-1str.freq -bg_format oligos -bg_pseudo 0.01 -logo_format png -logo_file $RSAT/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab_logo -return counts,counts,frequencies,consensus,parameters,header,margins,logo -v 1 -to tab -o $RSAT/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab
+; Input files
+;	input	/data/rsat/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_input.tab
+;	prior	/data/rsat/public_html/data/genomes/Escherichia_coli_K_12_substr__MG1655_uid57779/oligo-frequencies/1nt_upstream-noorf_Escherichia_coli_K_12_substr__MG1655_uid57779-ovlp-1str.freq
+; Input format        	tab
+; Output files
+;	output	/data/rsat/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab
+; Output format       	tab
+; pseudo-weight       	1
+; Background model
+;	Bernoulli model (order=0)
+;	Strand        	sensitive
+;	Background pseudo-frequency	0.01
+;	Residue probabilities
+;		a	0.29104
+;		c	0.20741
+;		g	0.20446
+;		t	0.29709
+;
+; MATRIX 1/1 : convert-matrix_2016-02-09.141440_DFV89T_input.tab_1
+;
+;
+; Matrix type: counts
+; Pos	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17
+; -----	|--------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+a	1	12	3	1	2	10	4	3	6	5	3	3	0	3	0	0	5
+c	2	2	0	0	3	1	4	0	1	1	6	6	5	0	13	4	3
+g	0	1	0	13	8	1	1	3	2	1	0	2	3	11	0	0	6
+t	12	0	12	1	2	3	6	9	6	8	6	4	7	1	2	11	1
+; -----	|--------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+; c.sum	15	15	15	15	15	15	15	15	15	15	15	15	15	15	15	15	15	255
+; c.max	12	12	12	13	8	10	6	9	6	8	6	6	7	11	13	11	6	13
+; c.min	0	0	0	0	2	1	1	0	1	1	0	2	0	0	0	0	1	0
+; c.rng	12	12	12	13	6	9	5	9	5	7	6	4	7	11	13	11	5	13
+//
+;
+; Matrix type: frequencies
+; Pos     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17
+; -----	|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+a  0.08  0.77  0.21  0.08  0.14  0.64  0.27  0.21  0.39  0.33  0.21  0.21  0.02  0.21  0.02  0.02  0.33
+c  0.14  0.14  0.01  0.01  0.20  0.08  0.26  0.01  0.08  0.08  0.39  0.39  0.33  0.01  0.83  0.26  0.20
+g  0.01  0.08  0.01  0.83  0.51  0.08  0.08  0.20  0.14  0.08  0.01  0.14  0.20  0.70  0.01  0.01  0.39
+t  0.77  0.02  0.77  0.08  0.14  0.21  0.39  0.58  0.39  0.52  0.39  0.27  0.46  0.08  0.14  0.71  0.08
+; -----	|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+; f.sum  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 17.00
+; f.max  0.77  0.77  0.77  0.83  0.51  0.64  0.39  0.58  0.39  0.52  0.39  0.39  0.46  0.70  0.83  0.71  0.39  0.83
+; f.min  0.01  0.02  0.01  0.01  0.14  0.08  0.08  0.01  0.08  0.08  0.01  0.14  0.02  0.01  0.01  0.01  0.08  0.01
+; f.rng  0.76  0.75  0.76  0.81  0.37  0.57  0.32  0.57  0.32  0.44  0.38  0.25  0.44  0.69  0.81  0.69  0.31  0.81
+//
+; consensus	tatGgaytwwycyGCyr
+; consensus.rc	YRGCRGRWWARTCCATA
+;
+; Matrix parameters
+;	Columns                      	17
+;	Rows                         	4
+;	Alphabet                     	a|c|g|t
+;	Prior                        	a:0.29103950717647|c:0.207409552773937|g:0.204462511450909|t:0.297088428598684
+;	program                      	tab
+;	matrix.nb                    	1
+;	min.prior                    	0.204463
+;	alphabet.size                	4
+;	max.bits                     	2
+;	total.information            	6.75638
+;	information.per.column       	0.397434
+;	max.possible.info.per.col    	1.58737
+;	consensus.strict             	tatGgattatcccGCtg
+;	consensus.strict.rc          	CAGCGGGATAATCCATA
+;	consensus.IUPAC              	tatGgaytwwycyGCyr
+;	consensus.IUPAC.rc           	YRGCRGRWWARTCCATA
+;	consensus.regexp             	tatGga[ct]t[at][at][ct]c[ct]GC[ct][ag]
+;	consensus.regexp.rc          	[CT][AG]GC[AG]G[AG][AT][AT]A[AG]TCCATA
+;	residues.content.crude.freq  	a:0.2392|c:0.2000|g:0.2039|t:0.3569
+;	G+C.content.crude.freq       	0.403922
+;	residues.content.corrected.freq	a:0.2425|c:0.2005|g:0.2040|t:0.3531
+;	G+C.content.corrected.freq   	0.404418
+;	min(P(S|M))                  	1.2909e-26
+;	max(P(S|M))                  	6.35353e-05
+;	proba_range                  	6.35353e-05
+;	Wmin                         	-34.18
+;	Wmax                         	13.62
+;	Wrange                       	47.8
+<a href="convert-matrix_2016-02-09.141440_DFV89T_output.tab_logo_m1.png"><img src="convert-matrix_2016-02-09.141440_DFV89T_output.tab_logo_m1.png" height="120"></a> <a href="convert-matrix_2016-02-09.141440_DFV89T_output.tab_logo_m1_rc.png"><img src="convert-matrix_2016-02-09.141440_DFV89T_output.tab_logo_m1_rc.png" height="120"></a> ; Host name	pedagogix
+; Job started	2016-02-09.141440
+; Job done	2016-02-09.141441
+; Seconds	0.28
+;	user	0.28
+;	system	0.04
+;	cuser	0.53
+;	csystem	0.06
+</pre><pre><b>Tab conversion:</b> /data/rsat/perl-scripts/convert-matrix -v 0 -i  /data/rsat/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_input.tab -from tab -to tab  -return counts -o /data/rsat/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_simple.tab</pre><h2>Result file(s)</h2><table class="resultlink">
+<tbody><tr><th>Content</th><th>URL</th></tr><tr><td>Input file</td><td><a href="http://pedagogix-tagc.univ-mrs.fr/rsat//tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_input.tab">http://pedagogix-tagc.univ-mrs.fr/rsat//tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_input.tab</a></td></tr><tr><td>Result file</td><td><a href="http://pedagogix-tagc.univ-mrs.fr/rsat//tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab">http://pedagogix-tagc.univ-mrs.fr/rsat//tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_output.tab</a></td></tr><tr><td>Tab matrices</td><td><a href="http://pedagogix-tagc.univ-mrs.fr/rsat//tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_simple.tab">http://pedagogix-tagc.univ-mrs.fr/rsat//tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_simple.tab</a></td></tr></tbody></table><hr size="3">
+<table class="Nextstep">
+<tbody><tr>
+<td colspan="3">
+<h3>Next step</h3>
+</td>
+</tr>
+
+<tr>
+<!--
+<td valign="bottom" align="center">
+<form method="post" action="patser_form.cgi">
+<input type="hidden" name="title" value="">
+<input type="hidden" name="matrix_file" value="">
+<input type="hidden" name="matrix_format" value="tab">
+<input type="submit" value="pattern matching (patser)">
+</form>
+</td>
+-->
+
+<td valign="bottom" align="center">
+<form method="POST" action="http://pedagogix-tagc.univ-mrs.fr/rsat/matrix-scan_form.cgi">
+<input type="hidden" name="title" value="">
+<input type="hidden" name="matrix_file" value="/data/rsat/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_simple.tab">
+<input type="hidden" name="matrix_format" value="tab">
+<input type="submit" value="pattern matching (matrix-scan)">
+</form>
+</td>
+
+<td valign="bottom" align="center">
+<form method="post" action="http://pedagogix-tagc.univ-mrs.fr/rsat/convert-matrix_form.cgi">
+<input type="hidden" name="title" value="">
+<input type="hidden" name="matrix_file" value="/data/rsat/public_html/tmp/www-data/2016/02/09/convert-matrix_2016-02-09.141440_DFV89T_simple.tab">
+<input type="hidden" name="matrix_format" value="tab">
+<input type="hidden" name="logo" value="on" checked="checked">
+<input type="submit" value="convert-matrix">
+</form>
+</td>
+
+
+</tr></tbody></table>
+<hr size="3">
+
+</body></html>

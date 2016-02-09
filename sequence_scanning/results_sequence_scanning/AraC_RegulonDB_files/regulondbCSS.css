@@ -1,0 +1,270 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body { 
+	background-color:#FFFFFF;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px; 
+	
+	  
+}
+
+p {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #003366;
+	font-weight: normal;
+}
+
+a {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #003366;
+	font-weight: normal;
+	cursor: hand;
+}
+
+a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #003366;
+	font-weight: normal;
+	cursor: hand;
+}
+
+a:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #003366;
+	font-weight: normal;
+	cursor: hand;
+}
+
+h1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 18px;
+	font-style: normal; 
+	line-height: normal; 
+	color: #003366; 
+	font-weight: bold;
+}
+
+h2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 16px;
+	font-style: normal; 
+	line-height: normal; 
+	color: #003366; 
+	font-weight: bold;
+}
+
+h3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 14px;
+	font-style: normal; 
+	line-height: normal; 
+	color: #003366; 
+	font-weight: bold;
+}
+
+
+/* 
+	thisPos1Letter and Pos3510Letter for using in promoter prediction for marking pos1 and pos -10 and -35, you should use class where you neeed use it 
+
+*/
+
+.Pos1Letter {
+	font-family: 'Courier New',Courier,monospace; 
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #FF0000;
+	font-weight: bold
+}
+
+.Pos3510Letter {
+	font-family: 'Courier New',Courier,monospace; 
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #000000;
+	font-weight: bold
+}
+
+
+/* 
+	this box for using inpromoter prediction box, you should use class where you neeed use it 
+
+*/
+
+.box {
+	border-left: 1px solid #000000; 
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000; 
+	border-top: 1px solid #000000; 
+    border-style: solid;
+} 
+
+
+
+/* 
+	this tableData for using in table, you should use class where you neeed use it 
+
+*/
+
+.tableData {
+    border-spacing: 0px;
+    border-collapse: collapse;
+	text-align: center;
+    padding: 0.1em 0.5em;
+    border: 1px solid #000000;
+}
+.tableData th {
+    background: #4d7996;
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-style: normal; 
+	line-height: normal; 
+	color: #FFFFFF; 
+	font-weight: bolder;
+	
+	border-spacing: 0px;
+    border-collapse: collapse;
+	text-align: center;
+    padding: 0.1em 0.5em;
+    border: 1px solid #000000;
+	
+}
+.tableData tr {
+	background: #FFFFFF;
+	border-spacing: 0px;
+    border-collapse: collapse;
+	text-align: center;
+    padding: 0.1em 0.5em;
+    border: 1px solid #000000;
+}
+.tableData tr:hover {
+	background: #f4f4f4;
+	border-spacing: 0px;
+    border-collapse: collapse;
+	text-align: center;
+    padding: 0.1em 0.5em;
+    border: 1px solid #000000;
+}
+.tableData td {
+	background: #FFFFFF;
+	border-spacing: 0px;
+    border-collapse: collapse;
+	text-align: center;
+    padding: 0.1em 0.5em;
+    border: 1px solid #000000;
+}
+
+/*
+	this rights is using for mark reulondb rights
+*/
+.rights  {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 9px;
+	font-style: normal;
+	line-height: normal;
+	color: #4B4B4B;
+	font-weight: normal;
+}
+
+/*
+	this small is using to return data from ajax in regulon overviews
+*/
+.small  {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 9px;
+	font-style: normal;
+	line-height: normal;
+	color: #000000;
+	font-weight: normal;
+}
+
+/*
+	this sequenceFont is using to displays data sequences in promoter prediction sequence
+*/
+.sequenceFont {
+	font-family:  'Courier New',Courier,monospace; 
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #003366;
+	font-weight: normal
+}
+
+/*
+	this MainMenuOption2 is using in options there are in index.jsp over right side.
+*/
+.MainMenuOption2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 11px;
+	font-style: normal;
+	line-height: normal;
+	color: #666666;
+	font-weight: normal;
+	text-decoration: none;
+	
+}
+ 
+.MainMenuOption2:link {
+	color: #666666 ;
+}
+
+.MainMenuOption2:visited {
+	color: #666666;
+}
+
+.MainMenuOption2:hover {
+	color: #333333; 
+	font-weight: bold;
+}
+
+/*
+this textWhite is using in index.jsp
+*/
+.textWhite {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal; 
+	color: #FFFFFF;
+	font-weight: normal;
+}
+
+.NormalText1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 14px; font-style: normal;
+	line-height: normal; 
+	color: #003366;
+	font-weight: bold;
+}
+
+/*
+	this is using in FInders
+*/
+
+.LabelBlue {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 12px;
+	font-style: normal; 
+	line-height: normal;
+	color: #003366; 
+	font-weight: bolder;
+}
+
+
+    

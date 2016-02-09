@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+#content_distr { 
+	float:left;
+	width: 100%;
+	padding: 0px;
+} 
+#left_panel_c { 	
+	float:left;
+	margin:32px 0 50px 0px;
+	padding: 0 0 0px 0px;
+}
+#distr_description{
+	
+	padding: 20px 20px 20px 20px;
+	background-color:#72A7C7;
+	width:650px;
+	font-size: 14px;
+	font-family:"Arial";
+	color:#FFFFFF;
+
+}
+#second_level_list{
+	
+	padding: 20px 0px 0px 0px;
+}
+
+#second_level_list p.titulo_second_level{
+
+	font-size: 22px;
+	font-family:"Verdana";
+	color: #666666;
+	padding-bottom:10px;
+	border-bottom-style:solid;
+	border-bottom-width:medium;
+	border-bottom-color:#DFDFE1;
+	width:690px;
+        /*background: #F2F2F2;*/
+}
+#second_level_element{
+	margin-top:5px;
+	border-bottom-style:solid;
+	border-bottom-width:thin;
+	border-bottom-color:#DFDFE1;
+	width:650px;
+
+}
+/*
+#second_level_element a{
+	text-decoration: none;
+}
+*/
+#second_level_element a {
+		display: block;
+                text-decoration: none;
+		background: #FFFFFF;
+	}
+
+#second_level_element a:hover {
+
+        background: #F2F2F2/*#EEEEEE;*/
+}
+/**/
+
+#second_level_element p.element_title{
+	
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom:11px;
+	margin-right: 18px;
+	font-size: 16px;
+	font-family:"Arial";
+	color: #305F7B;
+	font-weight:bold;
+        background:url(/img/redArrow.png) no-repeat right center;
+	/*background:url(../img/arrow.gif) no-repeat right center;*/	
+	
+}
+#second_level_element p.element_description{
+	padding-left:0px;
+	margin-top:-25px;
+	width:500px;
+	font-size: 14px;
+	font-family:"Arial";
+	/*color: #AAAAAA;
+        color: #999999*/
+        color: #929292;
+}
+
+#right_panel_c {
+	margin:32px 0px 0 0;
+	float:right; 
+	padding: 0;
+} 
+#contact{
+	float:right;
+	padding: 0 0px 25px 0px;
+	background:url(/img/contact_bkg.png) no-repeat left top;	
+	width:285px;
+	}
+#contact p.conact_1{
+	margin:18px 0px 0 28px;
+	padding-right:50px;
+	font-size: 17px;
+	font-family:"Verdana";
+	color: #999999;
+	line-height:90%
+}	
+#contact p.conact_2{
+	margin:10px 0 0 28px;
+	padding-right:60px;
+	font-size: 12px;
+	font-family:"Arial";
+	color: #999999;
+}	
+#contact p a{
+	font-size: 12px;
+	font-family:"Arial";
+	font-weight:bold;
+	color: #305F7B;
+	text-decoration:none;
+}	
+
+
+/* MAIN 
+----------------------------------------------------
+#main {
+
+	min-width:1024px;
+	max-width:1024px;
+	margin:0 auto 0 auto;
+}
+
+
+
+*/
