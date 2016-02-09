@@ -66,8 +66,14 @@ Open an empty spreadsheet in Excel or LibreOffice.
 5. Compute the weight matrices with a pseudo-weight=1 and the following prior probabilities: A=0.3, T=0.3, C=0.2, G=0.2.
 5. Add a comment on the spreadsheet with your interpretation of the results. 
 
-You can now check the solution [[excel](solutions_exo1_fake_matrix.xlsx)] [[pdf](solutions_exo1_fake_matrix.pdf)].
+### Solutions for the exercise
 
+You can now check the solution in various formats: 
+
+- Excel sheed with the formulae: [[solutions_exo1_fake_matrix.xlsx](solutions_exo1_fake_matrix.xlsx)] 
+- Printable document from the Excel sheet: [[solutions_exo1_fake_matrix.pdf](solutions_exo1_fake_matrix.pdf)].
+- Solution in R (R code + results): [[from_TFBS_to_PSSM_solutions.html](from_TFBS_to_PSSM_solutions.html)]
+- R markdown document to generate the solution in R: [[from_TFBS_to_PSSM_solutions.Rmd](from_TFBS_to_PSSM_solutions.Rmd)]
 
 * * * 
 
@@ -75,17 +81,24 @@ You can now check the solution [[excel](solutions_exo1_fake_matrix.xlsx)] [[pdf]
 
 1. Open a connection to the **Regulatory Sequence Analysis Tools** [teaching server](http://teaching.rsat.eu/) ([http://teaching.rsat.eu/](http://teaching.rsat.eu/)).
 2. In the left-side menu, open the tool set **Matrix tools**, and click on **convert-matrix**.
-3. Paste the count matrix of the previous exercise in the **Matrix** box, and check that the input format is set to **tab**.
+3. Paste the count matrix from previous exercise^[The count matrix can also be found here: [fake_matrix.tab](fake_matrix.tab)] in the **Matrix** box, and check that the input format is set to **tab**.
 4. Set the **pseudo-weights** to *1*, and check the option **distributed in an equiprobable way**.
-5. Select an organism-specific background model based on *Escherichia coli K 12 substr MG1655_uid57779* upstream non-coding sequences (*upstream-noorf*).
-6. For the **Output format**, select *tab*.
-7. Check the following **Output fields**: counts, frequencies, weights, info, header, margins, consensus, parameters, *logo* with *error bars* and *small sample corrections*.
-8. Set the **decimals** to 2. 
-9. Play around with the pseudo weight, and check the effect on the sequence logo.
+5. Download on your computer the background frequency file with equal prior probabilities: [prior_equal.tab](prior_equal.tab).
+6. Under **Background model estimation**, check the option *Upload your own background file*, select *format oligo-analysis*, click on the "Choose file" button, and locate your local copy of the file *prior_equal.tab*. 
+7. For the **Output format**, select *tab*.
+8. Check the following **Output fields**: counts, frequencies, weights, info, header, margins, consensus, parameters, *logo* with *error bars* and *small sample corrections*.
+9. Set the **decimals** to 2. 
+10. CLick **GO**.
+11. Com back to the form, modify the pseudo weight, and check the effect on the sequence logo.
+11. Repeat steps 5 to 10 with unequal priors from the file [prior_unequal.tab](prior_unequal.tab).
+12. Check that you obtain the same results as with your manual computations in the previous exercises. 
 
+### Exercise: impact of the pseudo-weight
 
-* * * 
+Play around with the matrix conversion tool by progressively increasing the pseudo-weight (this exercise should be done with the unequal prior file as background). 
 
+a. What is the effect of this parameter on the frequency matrix and the weight matrix, respectively? 
+b. What happens when the pseudo-weights tends towards infinity (try with a sufficiently large value, e.g. 10000)?
 
 <!--
 

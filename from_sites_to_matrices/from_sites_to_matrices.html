@@ -10,7 +10,7 @@
 
 <meta name="author" content="Jacques van Helden" />
 
-<meta name="date" content="2016-02-08" />
+<meta name="date" content="2016-02-09" />
 
 <title>From TF binding sites to consensuses and matrices</title>
 
@@ -49,15 +49,19 @@ img {
 <div id="header">
 <h1 class="title">From TF binding sites to consensuses and matrices</h1>
 <h4 class="author"><em>Jacques van Helden</em></h4>
-<h4 class="date"><em>2016-02-08</em></h4>
+<h4 class="date"><em>2016-02-09</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#tools-used-in-this-tutorial">Tools used in this tutorial</a></li>
-<li><a href="#exercise---from-count-matrices-to-weight-matrices">Exercise - From count matrices to weight matrices</a></li>
-<li><a href="#tutorial---matrix-conversion">Tutorial - matrix conversion</a></li>
+<li><a href="#exercise---from-count-matrices-to-weight-matrices">Exercise - From count matrices to weight matrices</a><ul>
+<li><a href="#solutions-for-the-exercise">Solutions for the exercise</a></li>
+</ul></li>
+<li><a href="#tutorial---matrix-conversion">Tutorial - matrix conversion</a><ul>
+<li><a href="#exercise-impact-of-the-pseudo-weight">Exercise: impact of the pseudo-weight</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -131,23 +135,42 @@ img {
 <li>Compute the weight matrices with a pseudo-weight=1 and the following prior probabilities: A=0.3, T=0.3, C=0.2, G=0.2.</li>
 <li>Add a comment on the spreadsheet with your interpretation of the results.</li>
 </ol>
-<p>You can now check the solution [<a href="solutions_exo1_fake_matrix.xlsx">excel</a>] [<a href="solutions_exo1_fake_matrix.pdf">pdf</a>].</p>
+<div id="solutions-for-the-exercise" class="section level3">
+<h3>Solutions for the exercise</h3>
+<p>You can now check the solution in various formats:</p>
+<ul>
+<li>Excel sheed with the formulae: [<a href="solutions_exo1_fake_matrix.xlsx" class="uri">solutions_exo1_fake_matrix.xlsx</a>]</li>
+<li>Printable document from the Excel sheet: [<a href="solutions_exo1_fake_matrix.pdf" class="uri">solutions_exo1_fake_matrix.pdf</a>].</li>
+<li>Solution in R (R code + results): [<a href="from_TFBS_to_PSSM_solutions.html" class="uri">from_TFBS_to_PSSM_solutions.html</a>]</li>
+<li>R markdown document to generate the solution in R: [<a href="from_TFBS_to_PSSM_solutions.Rmd" class="uri">from_TFBS_to_PSSM_solutions.Rmd</a>]</li>
+</ul>
 <hr />
+</div>
 </div>
 <div id="tutorial---matrix-conversion" class="section level2">
 <h2>Tutorial - matrix conversion</h2>
 <ol style="list-style-type: decimal">
 <li>Open a connection to the <strong>Regulatory Sequence Analysis Tools</strong> <a href="http://teaching.rsat.eu/">teaching server</a> (<a href="http://teaching.rsat.eu/"><a href="http://teaching.rsat.eu/" class="uri">http://teaching.rsat.eu/</a></a>).</li>
 <li>In the left-side menu, open the tool set <strong>Matrix tools</strong>, and click on <strong>convert-matrix</strong>.</li>
-<li>Paste the count matrix of the previous exercise in the <strong>Matrix</strong> box, and check that the input format is set to <strong>tab</strong>.</li>
+<li>Paste the count matrix from previous exercise<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> in the <strong>Matrix</strong> box, and check that the input format is set to <strong>tab</strong>.</li>
 <li>Set the <strong>pseudo-weights</strong> to <em>1</em>, and check the option <strong>distributed in an equiprobable way</strong>.</li>
-<li>Select an organism-specific background model based on <em>Escherichia coli K 12 substr MG1655_uid57779</em> upstream non-coding sequences (<em>upstream-noorf</em>).</li>
+<li>Download on your computer the background frequency file with equal prior probabilities: <a href="prior_equal.tab" class="uri">prior_equal.tab</a>.</li>
+<li>Under <strong>Background model estimation</strong>, check the option <em>Upload your own background file</em>, select <em>format oligo-analysis</em>, click on the “Choose file” button, and locate your local copy of the file <em>prior_equal.tab</em>.</li>
 <li>For the <strong>Output format</strong>, select <em>tab</em>.</li>
 <li>Check the following <strong>Output fields</strong>: counts, frequencies, weights, info, header, margins, consensus, parameters, <em>logo</em> with <em>error bars</em> and <em>small sample corrections</em>.</li>
 <li>Set the <strong>decimals</strong> to 2.</li>
-<li>Play around with the pseudo weight, and check the effect on the sequence logo.</li>
+<li>CLick <strong>GO</strong>.</li>
+<li>Com back to the form, modify the pseudo weight, and check the effect on the sequence logo.</li>
+<li>Repeat steps 5 to 10 with unequal priors from the file <a href="prior_unequal.tab" class="uri">prior_unequal.tab</a>.</li>
+<li>Check that you obtain the same results as with your manual computations in the previous exercises.</li>
 </ol>
-<hr />
+<div id="exercise-impact-of-the-pseudo-weight" class="section level3">
+<h3>Exercise: impact of the pseudo-weight</h3>
+<p>Play around with the matrix conversion tool by progressively increasing the pseudo-weight (this exercise should be done with the unequal prior file as background).</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is the effect of this parameter on the frequency matrix and the weight matrix, respectively?</li>
+<li>What happens when the pseudo-weights tends towards infinity (try with a sufficiently large value, e.g. 10000)?</li>
+</ol>
 <!--
 
 ## Playing with PSSM
@@ -212,6 +235,13 @@ img {
 
 
 -->
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The count matrix can also be found here: <a href="fake_matrix.tab" class="uri">fake_matrix.tab</a><a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
 
