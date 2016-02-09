@@ -34,12 +34,11 @@ publish: clean
 
 ################################################################
 ## Browse the Web site
-BROWSER=firefox
 local:
-	open -a ${BROWSER} http://localhost/cisreg/
+	open  http://localhost/cisreg/
 
 #WEB_URL=http://pedagogix-tagc.univ-mrs.fr/courses/SBBCU16L_cisreg
 WEB_URL=http://jvanheld.github.io/cisreg_course/
 web:
-	open -a ${BROWSER} ${WEB_URL}
+	open  ${WEB_URL}
 
