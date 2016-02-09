@@ -172,8 +172,7 @@ Note: The option **match count table** enables to directly obtain the count of o
 
 ### Scanning all the promoters with a consensus
 
-7. Use the tool **retrieve-seq** followed by the tool **dna-pattern** to scan all E.coli promoters (same strain as above) with the two consensus defined above (*ad hoc* and produced by convert-matrix), and estimate the number
-of recovered operons.
+7. Use the tool **retrieve-seq** followed by the tool **dna-pattern** to scan all E.coli promoters (same strain as above) with the two consensus defined above (*ad hoc* and produced by convert-matrix), and estimate the number of recovered operons.
 
 
 ## Scanning sequences with a position-specific scoring matrix
