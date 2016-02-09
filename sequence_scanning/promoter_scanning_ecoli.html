@@ -10,7 +10,7 @@
 
 <meta name="author" content="Jacques van Helden" />
 
-<meta name="date" content="2015-10-19" />
+<meta name="date" content="2016-02-09" />
 
 <title>Scanning sequences to predict transcription factor binding sites</title>
 
@@ -49,7 +49,7 @@ img {
 <div id="header">
 <h1 class="title">Scanning sequences to predict transcription factor binding sites</h1>
 <h4 class="author"><em>Jacques van Helden</em></h4>
-<h4 class="date"><em>2015-10-19</em></h4>
+<h4 class="date"><em>2016-02-09</em></h4>
 </div>
 
 <div id="TOC">
@@ -162,16 +162,17 @@ img {
 <h3>Protocol : collecting motifs from footprintDB</h3>
 <p>FootprintDB provides a convenient unified interface to consult a wide variety of transcription factor databases. We will use this interface to choose a test case for the subsequent exercises.</p>
 <ol style="list-style-type: decimal">
-<li>Open a connection to <strong>footprintDB</strong> (<a href="http://floresta.eead.csic.es/footprintdb/"><a href="http://floresta.eead.csic.es/footprintdb/" class="uri">http://floresta.eead.csic.es/footprintdb/</a></a>).</li>
-<li>In the menu on the left side, click <strong>Databases</strong>.</li>
-<li>Inspect the table of databases in order to get an idea of the diversity of data sources, organisms, and evaluate the number of transcription factors, motifs and binding sites for the different source databases.</li>
-<li>In the row corresponding to <strong>RegulonDB</strong>, click on the link <em>Transcription factors</em>. At this stage, <strong>each student should select a transcription factor of interest</strong>, and write its name on the white board (to avoid duplicates). Note that the factor <em>AraC</em> will be used as study case by the teacher, please thus avoid to select the same factor.</li>
-<li>Read the description of your TF of interest. Evaluate the number of annotated binding sites for this factor.</li>
+<li><p>Open a connection to <strong>footprintDB</strong> (<a href="http://floresta.eead.csic.es/footprintdb/"><a href="http://floresta.eead.csic.es/footprintdb/" class="uri">http://floresta.eead.csic.es/footprintdb/</a></a>).</p></li>
+<li><p>In the menu on the left side, click <strong>Databases</strong>.</p></li>
+<li><p>Inspect the table of databases in order to get an idea of the diversity of data sources, organisms, and evaluate the number of transcription factors, motifs and binding sites for the different source databases.</p></li>
+<li><p>In the row corresponding to <strong>RegulonDB</strong>, click on the link <em>Transcription factors</em>. At this stage, <strong>each student should select a transcription factor of interest</strong>, and write its name on the white board (to avoid duplicates). Note that the factor <em>AraC</em> will be used as study case by the teacher, please thus avoid to select the same factor.</p></li>
+<li><p>Read the description of your TF of interest. Evaluate the number of annotated binding sites for this factor.</p></li>
 </ol>
 <p><em><strong>Note</strong>: for the next exercises we recommend to select a factor with a reasonable number of annotated sites (5 to 20). Factor with less than 5 binding sites are not suitable to build a reliable weight matrix. Factors with numerous binding sites are fine, but since there is a part of manual work in the subsequent steps, you might spend a lot of time on it.</em></p>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Download the matrix of the transcription factor you chose, and store it in a text file.</p></li>
-<li><p>In the <strong>matrix tools</strong> section of <a href="http://teaching.rsat.eu/">RSAT</a>, open the <strong>convert-matrix</strong> form. Paste the matrix downloaded from footprintDB, and select the appropriate input format (note that the <em>footprintDB</em> format is a slight variation on the <em>transfac</em> format).</p></li>
+<li><p>Come back to the footprintDB <a href="http://floresta.eead.csic.es/footprintdb/index.php?databases">Databases</a> page. In the row corresponding to <strong>RegulonDB</strong>, right-click on the link <em><a href="http://floresta.eead.csic.es/footprintdb/index.php?database=3&amp;type=motif&amp;page=1">DNA Binding Motifs</a></em>.</p></li>
+<li><p>Open the page of your transcription factor by clicking on its name in the column <em>Accessions</em>. At the bottom of the page, click <em>Download</em> and store the matrix in a text file on your computer.</p></li>
+<li><p>Open a connection to <a href="http://teaching.rsat.eu/">RSAT teaching</a> server (<a href="http://teaching.rsat.eu/" class="uri">http://teaching.rsat.eu/</a>). In the menu, open the <strong>matrix tools</strong> section and open the <strong>convert-matrix</strong> form. Paste the matrix downloaded from footprintDB, and select the appropriate input format (note that the <em>footprintDB</em> format is a slight variation on the <em>transfac</em> format).</p></li>
 <li><p>Compute the counts, frequencies, weights, consensus, parameters and logo for your matrix of interest, using an organism-specific background model estimated on all the non-coding upstream sequences from <em>Escherichia coli K12 mg1655</em>.</p></li>
 </ol>
 <p>Inspect carefully the results, with a particular attention to the parameters. Compare the strict and degenerate consensus, evaluate the maximal and minimal weight, and the information content of the matrix.</p>
