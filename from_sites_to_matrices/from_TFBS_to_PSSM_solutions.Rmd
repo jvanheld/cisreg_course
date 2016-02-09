@@ -1,0 +1,195 @@
+---
+title: "Solution to the exercise - from TF binding sites to position-specific scoring matrices"
+author: "Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+
+```{r knitr setup, include=FALSE,  eval=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo=TRUE, eval=TRUE, cache=FALSE, message=FALSE, warning=FALSE, comment = "")
+```
+
+## Introduction
+
+In this document we show the solution of the exercise "From TF binding sites to position-specific weight matrices" using the R language. We display both the code and the results. This document was generated with R markdown [from_TFBS_to_PSSM_solutions.Rmd](from_TFBS_to_PSSM_solutions.Rmd).
+
+## Site sequences
+
+```{r sequences}
+## Encode the sequences in a vector
+sequences <- c( "AAAAACCG",
+                "AAAACCGG",
+                "AATTGGGG",
+                "ATTGTGGG")
+print(as.data.frame(sequences))
+```
+
+
+
+## Alignment matrix
+
+
+```{r alignment matrix}
+## Build an alignment matrix, with one row per site 
+## and one column per aligned position
+alignment <- t(as.data.frame(strsplit(sequences, "")))
+colnames(alignment) <- 1:ncol(alignment)
+row.names(alignment) <- paste(sep="_", "site", 1:nrow(alignment))
+
+kable(alignment, align="c")
+
+```
+
+## 1. Count matrix
+
+*Build a position-specific scoring matrix indicating the residue counts per position (count matrix).*
+
+```{r count matrix computation}
+## Compute a count matrix from the alignment table
+counts <- data.frame()
+residues <- c("A", "C", "G", "T")
+for (r in residues) {
+  counts <- rbind(counts, apply(alignment==r, 2, sum))
+}
+colnames(counts) <- 1:ncol(counts)
+row.names(counts) <- residues
+
+kable(counts, align="c")
+```
+
+## 2. Raw frequencies (pseudo-weight = 0)
+
+*From this count matrix, derive a frequency matrix.*
+
+```{r frequency matrix}
+freq <- counts / apply(counts, 2, sum)
+kable(freq, align="c")
+```
+
+
+## 3. Corrected frequencies
+
+*Compute a pseudo-weight smoothed frequency matrix, with pseudo-weights of 1, 10 and 100, respectively.*
+
+
+### Equal prior probabilities
+
+In this exercise we use equiprobable nucleotides, prior residue frequencies are thus set to $p=0.25$ for each residue.
+
+```{r equiprobable prior frequencies}
+
+equal.priors <- vector()
+equal.priors[residues] <- 1/length(residues)
+
+kable(data.frame(equal.priors), align="c")
+```
+
+
+### Pseudo-weight = 1
+
+```{r corrected frequencies with pseudo-weight 1}
+k <- 1 ## Arbitrary value for the pseudo-weight
+
+## Compute corrected frequencies
+corrected.freq <- (counts + k/length(residues)) / apply(counts + k*0.25, 2, sum)
+
+kable(corrected.freq, align="c", digits=3)
+```
+  
+  
+### Pseudo-weight = 10
+
+```{r corrected frequencies with pseudo-weight 10}
+k <- 10 ## Arbitrary value for the pseudo-weight
+
+## Compute corrected frequencies
+corrected.freq <- (counts + k/length(residues)) / apply(counts + k*0.25, 2, sum)
+
+kable(corrected.freq, align="c", digits=3)
+```
+  
+### Pseudo-weight = 100
+
+```{r corrected frequencies with pseudo-weight 100}
+k <- 100 ## Arbitrary value for the pseudo-weight
+
+## Compute corrected frequencies
+corrected.freq <- (counts + k/length(residues)) / apply(counts + k*0.25, 2, sum)
+
+kable(corrected.freq, align="c", digits=3)
+```
+  
+  
+## 4. Weight matrices, no pseudo-weight, equal priors
+
+*Compute the weight matrices corresponding to the frequency matrices with no pseudo-weight, assuming equiprobable residues.*
+
+```{r weights with equal priors and no pseudo-weight}
+## Compute weights
+weights <- log(freq / 0.25)
+
+kable(weights, align="c", digits=2)
+```
+  
+
+## 5. Weight matrix with equal priors and pseudo-weight=1
+
+```{r weights with equal priors}
+k <- 1 ## Arbitrary value for the pseudo-weight
+
+## Compute corrected frequencies
+corrected.freq <- (counts + k/length(residues)) / apply(counts + k*0.25, 2, sum)
+weights <- log(corrected.freq / 0.25)
+
+kable(weights, align="c", digits=2)
+```
+  
+## 6. Unequal priors
+
+*Compute the weight matrices with a pseudo-weight=1 and the following prior probabilities: A=0.3, T=0.3, C=0.2, G=0.2.*
+
+
+```{r define unequal priors}
+## Define nucleotide-specific residue priors
+unequal.priors <- c("A"=0.3, "C"=0.2, "G"=0.2, "T"=0.3)
+kable(data.frame(unequal.priors))
+```
+
+```{r frequencies with unequal priors}
+
+## Arbitrary value for the pseudo-weight
+k <- 1 
+
+## Compute corrected frequencies
+corrected.freq <- (counts + k*unequal.priors) / apply(counts + k*unequal.priors, 2, sum)
+kable(corrected.freq, align="c", digits=2, 
+      caption=paste("Frequency matrix with unequal priors and pseudo-weight=",k))
+
+```
+
+```{r weights with unequal priors}
+weights <- log(corrected.freq / unequal.priors)
+kable(weights, align="c", digits=2, caption = paste("Weight matrix with unequal priors and pseudo-weight =",k))
+
+```
+
+## 7. Interpretation of the results.
+
+
+
+
+
