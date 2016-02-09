@@ -63,18 +63,25 @@ Resources
 FootprintDB provides a convenient unified interface to consult a wide variety of transcription factor databases. We will use this interface to choose a test case for the subsequent exercises. 
 
 1. Open a connection to **footprintDB** ([http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/)).
+
 2. In the menu on the left side, click **Databases**.
+
 3. Inspect the table of databases in order to get an idea of the diversity of data sources, organisms, and evaluate the number of transcription factors, motifs and binding sites for the different source databases.
+
 4. In the row corresponding to **RegulonDB**, click on the link *Transcription factors*. At this stage, **each student should select a transcription factor of interest**, and write its name on the white board (to avoid duplicates). Note that the factor *AraC* will be used as study case by the teacher, please thus avoid to select the same factor.
+
 5. Read the description of your TF of interest. Evaluate the number of annotated binding sites for this factor.
 
 ***Note**: for the next exercises we recommend to select a factor with a reasonable number of annotated sites (5 to 20). Factor with less than 5 binding sites are not suitable to build a reliable weight matrix. Factors with numerous binding sites are fine, but since there is a part of manual work in the subsequent steps, you might spend a lot of time on it.*
 
-6. Download the matrix of the transcription factor you chose, and store it in a text file. 
+6. Come back to the footprintDB [Databases](http://floresta.eead.csic.es/footprintdb/index.php?databases) page. In the row corresponding to **RegulonDB**, right-click on the link *[DNA Binding Motifs](http://floresta.eead.csic.es/footprintdb/index.php?database=3&type=motif&page=1)*.
 
-7. In the **matrix tools** section of  [RSAT](http://teaching.rsat.eu/), open the **convert-matrix** form. Paste the matrix downloaded from footprintDB, and select the appropriate input format (note that the *footprintDB* format is a slight variation on the *transfac* format).
 
-8. Compute the counts, frequencies, weights, consensus, parameters and logo for your matrix of interest, using an organism-specific background model estimated on all the non-coding upstream sequences from *Escherichia coli K12 mg1655*.
+7. Open the page of your transcription factor by clicking on its name in the column *Accessions*. At the bottom of the page, click *Download* and store the matrix in a text file on your computer. 
+
+8. Open a connection to [RSAT teaching](<http://teaching.rsat.eu/>) server (<http://teaching.rsat.eu/>). In the menu, open the **matrix tools** section and open the **convert-matrix** form. Paste the matrix downloaded from footprintDB, and select the appropriate input format (note that the *footprintDB* format is a slight variation on the *transfac* format).
+
+9. Compute the counts, frequencies, weights, consensus, parameters and logo for your matrix of interest, using an organism-specific background model estimated on all the non-coding upstream sequences from *Escherichia coli K12 mg1655*.
 
 Inspect carefully the results, with a particular attention to the parameters. Compare the strict and degenerate consensus, evaluate the maximal and minimal weight, and the information content of the matrix.
 
