@@ -1,0 +1,111 @@
+---
+title: "Cis-regulation 2015 - Course content"
+author: "Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+
+## Web site for this course
+
+[http://jvanheld.github.io/cisreg_course/](http://jvanheld.github.io/cisreg_course/)
+
+## Teachers
+
+| Abbrev | Name  |
+|----------|--------------------------------------------------|
+| JCM | Jaime Castro Mondragon |
+| DP |  Denis Puthier |
+| JvH | [Jacques van Helden](http://jacques.van-helden.perso.luminy.univ-amu.fr/) |
+| | |
+
+## Resources
+
+| Resource | Link |
+|---------------------------------------|---------------------------------------------------------------|
+| Glossary | [concept definitions](../html/concepts.html) |
+| Regulatory Sequence Analysis Tools (RSAT) | [http://rsat.eu/](http://rsat.eu/) |
+| RSAT teaching material | [http://rsa-tools.github.io/teaching/](http://rsa-tools.github.io/teaching/) |
+| RSAT course (slides) | [http://rsa-tools.github.io/course/](http://rsa-tools.github.io/course/) |
+| footprintDB | [http://floresta.eead.csic.es/footprintdb/](http://floresta.eead.csic.es/footprintdb/) |
+| MEME suite| [http://meme-suite.org/](http://meme-suite.org/) |
+| | | 
+
+## Content table
+
+| Date | From  | To    | Subject | Teacher | Links  |
+|------------|-------|--------------------------------|---------|----------|--------|
+| Mon 17/10 | 09:00 | 10:30 | Characterizing and representing TF-DNA interactions <br>(from sites to motifs) | JvH | [[RSAT](http://rsat.eu/)]<br>[[tutorial *from sites to motifs*](../from_sites_to_matrices/from_sites_to_matrices.html)] |
+| Mon 17/10 | 11:00 | 12:30 | Introduction to motif database | JvH  | [[footprintDB](http://floresta.eead.csic.es/footprintdb/)]<br>[[JASPAR](http://jaspar.genereg.net/)]<br>[[HOCOMOCO](http://hocomoco.autosome.ru/)]<br>[[RegulonDB](http://regulondb.ccg.unam.mx/)]|
+| Mon 17/10 | 14:00 | 15:30 | ChIP-seq analysis | DP | [[slides](../chip-seq/slides/chipseq__roscoff2015.pdf)]<br>[[tutorial *mapping*](../chip-seq/practical/chip-seq.html)] |
+| Wed 21/10 | 16:00 | 17:30 | ChIP-seq analysis | DP | [[tutorial *peak annotation*](../chip-seq/practical/annotation.html)]<br>[[tutorial *peak-motifs*](http://dputhier.github.io/EBA_2015_ChIP-Seq/tutorial/04_motif/motif_tutorial.html)]|
+| | | | | |
+
+<!--
+| Mon 19/10 | 11:00 | 13:00 | Scanning sequences to predict binding sites <br>(from motifs to sites) | JvH  | [[RSAT](http://rsat.eu/)] *dna-pattern*, *matrix-scan*, *permute-matrix*, *random-seq*<br>[[tutorial *E.coli promoter scanning*](../sequence_scanning/promoter_scanning_ecoli.html)] |
+| Mon 19/10 | 14:00 | 16:00 | Estimating the reliability of binding site predictions<br>(score distributions) | JvH  | [[RSAT](http://rsat.eu/)] *convert-background-model*, *matrix-distrib*, *matrix-quality* |
+| Mon 19/10 | 16:00 | 18:00 | Discovering motifs in regulatory sequences <br>(from sequences to motifs) | JvH  | [[RSAT](http://rsat.eu/)] *oligo-analysis*, *dyad-analysis*, *position-analysis*, *random-genes* <br>[[MEME](http://meme-suite.org/)] |
+| Tue 20/10 | 09:00 | 13:00 | Structure/sequence relationships <br>(from structures to motifs) | BCM |[[footprintDB](http://floresta.eead.csic.es/footprintdb/)]<br>[[tutorial *structures/motifs*](../structure/struct-regulation.html)] |
+| Fri 23/10 | 09:00 | 10:45 | Motif comparison and clustering | Jacques + JCM | [[RSAT](http://rsat.eu/)] *matrix-clustering*<br>[[slides](../cluster_motifs/CisReg_motif_clustering.pdf)]<br>[[tutorial *matrix-clustering*](../cluster_motifs/cluster_ChIP_seq_peaks.html)] |
+| Fri 23/10 | 11:00 | 12:30 | Phylogenetic footprints | Jacques  | [[RSAT](http://rsat.eu/)] *footprint-disco*<br>[[tutorial *footprint-disco*](../phylogenetic_footprints/discovering_conserved_cisreg_elements.html)]|
+| Fri 23/10 | 14:00 | 16:00 | Définition des travaux personnels |  JvH + DP | [Description des TP](http://jvanheld.github.io/cisreg_course/html/cisreg_personal_work_2015.html)  |
+| Fri 23/10 | 14:00 | 16:00 | Réponses aux questions des étudiants, clarifications, recherche de cas d'étude pour le travail personnel  | JvH + DP | |
+| Tur 05/11 | 14:00 | 18:00 | Presentation des travaux personnels | DP + JvH | |-->
+
+* * * 
+
+<!--
+## Concepts
+
+Basic concepts for the analysis of cis-regulatory elements.
+Teachers: Bruno Contreras Moreira & Jacques van Helden.
+
+
+### Topics
+
+1. JvH Introduction to the course
+2. Bruno: Transcription factor binding: structure and sequence. **Practical:** opening a connection to structure databases and play with some TF. 
+
+3. JvH: Experimental methods to characterize TFBS (EMSA, footprints, SELEX, ChIP-chip, ChIP-seq, PBA).
+4. JvH: Representations of TF binding specificity: from binding sites to mofifs (consensus, IUPAC, PSSM, sequence logos). Practical: **RSAT convert-matrix**
+
+
+5. Bruno: TF databases: 
+
+      - JASPAR, 
+      - TRANSFAC (mainly vertebrate, commercial), 
+      - **3D footprints**
+      - AthaMap (A. thaliana)
+      - RegulonDB (E.coli)
+      - HOCOMOCO (Human)
+      - footprintDB (compendium)
+      - ...
+
+### Practicals
+
+- how to build a matrix from binding sites
+- deriving frequencies and logos from count matrices
+- deriving frequencies and logos from structures of protein/DNA complexes
+
+
+## 
+
+## Motif comparison and clustering 
+
+Jaime & Jacques
+2h theory + 2h practicals
+
+-->
+
