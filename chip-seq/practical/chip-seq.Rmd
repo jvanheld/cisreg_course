@@ -1,5 +1,5 @@
 ---
-title: "ChIP-Seq -- Quality filtering and read mapping --"
+title: "ChIP-Seq -- Quality filtering, read mapping and Peak annotation --"
 author: "Denis Puthier"
 date: '`r Sys.Date()`'
 output:
@@ -366,4 +366,19 @@ MACS running using these options should generate 4 result files:
 
 </div>
 
+
+## Statictics on the whole full peak dataset
+
+Retrieve the full list of peaks for ESR1 (i.e not restricted to chromosome 21) from [here](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/MACS_GSM986060__siGATA_ER_E2_r1_SRX176857_peaks.bed).
+
+Load them in IGV and Galaxy.
+
+<div class="exo">
+> - How many peaks have been called by MACS on the full genome ?
+> - What is the largest peak in the dataset ?  Use basic Galaxy commands. 
+> - What is the peak with the highest score ? Use basic Galaxy commands. 
+> - What are blacklisted region as presented in the [ENCODE website](https://sites.google.com/site/anshulkundaje/projects/blacklists) ?
+> - Delete these blacklisted regions from the dataset using bedtools (substractbed).
+
+</div>
 
