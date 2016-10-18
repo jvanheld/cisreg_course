@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jacques van Helden" />
 
-<meta name="date" content="2016-10-17" />
+<meta name="date" content="2016-10-18" />
 
 <title>Scanning sequences to predict transcription factor binding sites</title>
 
@@ -103,7 +103,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Scanning sequences to predict transcription factor binding sites</h1>
 <h4 class="author"><em>Jacques van Helden</em></h4>
-<h4 class="date"><em>2016-10-17</em></h4>
+<h4 class="date"><em>2016-10-18</em></h4>
 
 </div>
 
@@ -121,6 +121,7 @@ $(document).ready(function () {
 <li><a href="#computing-the-probability-of-a-degenerate-consensus">Computing the probability of a degenerate consensus</a></li>
 <li><a href="#generating-a-consensus-from-weights">Generating a consensus from weights</a></li>
 <li><a href="#consensus-matches-among-the-annotated-binding-sites">Consensus matches among the annotated binding sites</a></li>
+<li><a href="#retrieving-all-the-e.coli-promoter-sequences">Retrieving all the E.coli promoter sequences</a></li>
 <li><a href="#scanning-all-the-promoters-with-a-consensus">Scanning all the promoters with a consensus</a></li>
 </ul></li>
 <li><a href="#scanning-sequences-with-a-position-specific-scoring-matrix">Scanning sequences with a position-specific scoring matrix</a><ul>
@@ -314,6 +315,20 @@ $(document).ready(function () {
 <li><p>Scan the annotated site sequences with the degenerate consensus produced by <strong>convert-matrix</strong>, and count the number of recovered sites.</p></li>
 </ol>
 <p>Note: The option <strong>match count table</strong> enables to directly obtain the count of occurrences for one or more patterns in each input sequence.</p>
+</div>
+<div id="retrieving-all-the-e.coli-promoter-sequences" class="section level3">
+<h3>Retrieving all the E.coli promoter sequences</h3>
+<ol start="6" style="list-style-type: decimal">
+<li><p>We will now retrieve the non-coding sequences located upstream of all the genes from <strong>Escherichia coli</strong> strain K12 substrain MG1655.</p>
+<ol style="list-style-type: lower-alpha">
+<li>In the left menu of the RSAT Web site, open the <strong>Sequence tools</strong> box and click on <strong>retrieve sequences</strong>.</li>
+<li><p>Select the organism *Escherichia_coli_K_12_substr__MG1655_uid57779* in the pop-up menu.</p>
+<p>Trick: when you click on the <strong>Organism</strong> pop-up menu, the number of organisms displayed may be relatively large depending on the RSAT server (for example, there are several thousands of bacteria). You can type a subset of the species name in order to select the matching organisms. For example, typing “MG1655” will restrict the list of displayed species and allow you to easily select the desired one.</p></li>
+<li><p>Besides <strong>Genes</strong>, click the radio button <em>all</em>. You thus don’t ned to fill up the Genes text area, since you want all the genes of <em>E.coli</em>.</p></li>
+<li><p>Leave all other parameters unchanged and press <strong>GO</strong>.</p></li>
+</ol></li>
+</ol>
+<p>After a few seconds the server will show you the retrieve-seq result page, with a link to the sequences (fasta file), and a <strong>Next Step</strong> table proposing you to send the resulting sequences as input to other RSAT tools for further analysis.</p>
 </div>
 <div id="scanning-all-the-promoters-with-a-consensus" class="section level3">
 <h3>Scanning all the promoters with a consensus</h3>

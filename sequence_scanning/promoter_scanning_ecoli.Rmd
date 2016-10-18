@@ -170,6 +170,22 @@ Using the [IUPAC code for ambiguous nucleotides](../../html/concepts.html#iupac)
 
 Note: The option **match count table** enables to directly obtain the count of occurrences for one or more patterns in each input sequence.
 
+### Retrieving all the E.coli promoter sequences
+
+6. We will now retrieve the non-coding sequences located upstream of all the genes from **Escherichia coli** strain K12 substrain MG1655. 
+
+    a. In the left menu of the RSAT Web site, open the **Sequence tools** box and click on **retrieve sequences**. 
+    b. Select the organism *Escherichia_coli_K_12_substr__MG1655_uid57779* in the pop-up menu. 
+    
+        Trick: when you click on the **Organism** pop-up menu, the number of organisms displayed may be relatively large depending on the RSAT server (for example, there are several thousands of bacteria). You can type a subset of the species name in order to select the matching organisms. For example, typing "MG1655" will restrict the list of displayed species and allow you to easily select the desired one. 
+        
+    c. Besides **Genes**, click the radio button *all*. You thus don't ned to fill up the Genes text area, since you want all the genes of *E.coli*.
+    
+    d. Leave all other parameters unchanged and press **GO**. 
+
+After a few seconds the server will show you the retrieve-seq result page, with a link to the sequences (fasta file), and a **Next Step**  table proposing you to send the resulting sequences as input to other RSAT tools for further analysis. 
+
+
 ### Scanning all the promoters with a consensus
 
 7. Use the tool **retrieve-seq** followed by the tool **dna-pattern** to scan all E.coli promoters (same strain as above) with the two consensus defined above (*ad hoc* and produced by convert-matrix), and estimate the number of recovered operons.
