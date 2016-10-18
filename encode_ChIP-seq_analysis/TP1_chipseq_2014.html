@@ -1,0 +1,220 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../html/course.css" media="screen,projection" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>AMU M2 BBSG - SBBCU16L - Méthodes bioinformatiques pour la cis-régulation</title>
+  </head>
+  <body>
+
+    <h1>Méthodes bioinformatiques pour la cis-régulation (AMU SBBCU16L)<br>Travaux personnels</h1>
+
+    <p>L'évaluation de ce module d'enseignement sera basé sur deux
+      travaux personnels. Chaque étudiant appliquera l'ensemble des
+      méthodes vues au cours pour analyser un cas d'étude particulier,
+      et répondre à une série de questions ciblées.</p>
+
+
+
+    <h2>Travail 1: Analyse des données de ChIP-seq</h2>
+    
+    <h3>Buts de l'exercice</h3>
+
+    <p>Dans cet exercice, nous explorerons les pics générés par le
+      consortium du projet ENCODE. Chaque étudiant analysera les pics de
+      ChIp-seq générés par ENCODE pour un un facteur transcriptionnel de
+      son choix.</p>
+
+    <h3>Ressources</h3>
+
+    <table class="simple">
+      <tr>
+	<td>List of all ENCODE datasets</td>
+	<td>http://encodeproject.org/ENCODE/downloads.html</td>
+      </tr>
+
+      <tr>
+	<td>ENCODE TF binding sites from Haib</td>
+	<td>
+	  <p>Original data repository: 
+	    <br><a target="_blank" href="http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeHaibTfbs/">http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeHaibTfbs/</a>
+	  </p>
+	  <p>Download from UCSC (much more convenient interface)
+	    <br><a target="_blank" href="http://genome.ucsc.edu/cgi-bin/hgFileUi?db=hg19&g=wgEncodeHaibTfbs">http://genome.ucsc.edu/cgi-bin/hgFileUi?db=hg19&g=wgEncodeHaibTfbs</a>
+	</td>
+      </tr>
+
+      <tr><td>JASPAR</td>
+	<td><a target="_blank" href="http://jaspar.genereg.net/">http://jaspar.genereg.net/</a></td>
+      </tr>
+
+      <!--      <tr>
+		<td>Local copy of ENCODE peaks</td>
+		<td><a target="_blank" href="/export/storage/users/rsat/chip-seq_course/encode_chip-seq/data/wgEncodeHaibTfbs/">
+		    /export/storage/users/rsat/chip-seq_course/encode_chip-seq/data/wgEncodeHaibTfbs/</a></td>
+      </tr>
+      -->
+    </table>
+    
+    <h3>Collecte des données</h3>
+
+    <div class="protocol">
+      <ol>
+	<li><p>Ouvrez la page des sites de liaison <a target="_blank"
+						      href="http://genome.ucsc.edu/cgi-bin/hgFileUi?db=hg19&g=wgEncodeHaibTfbs">ENCODE/HAIB</a>
+	    sur UCSC, et identifiez quelques facteurs transcriptionnels
+	    analysés dans l'étude ENCODE.
+	</p></li>
+
+	<li><p>
+	    <span class="concept">Facteur d'intérêt</span>
+	    <br>Ouvrez la page de
+	    <a target="_blank"
+	       href="http://jaspar.genereg.net/">Jaspar</a> et identifiez
+	    un facteur transcriptionnel inclus dans l'analyse
+	    ENCODE. 
+	</p></li>
+
+	<li><p>
+	    <span class="concept">Motif de référence</span>
+	    <br>Cliquez sur le logo pour faire apparaître la matrice,et
+	    sauvegardez-la dans un dossier local de votre ordinateur
+	    (format .tab). 
+	</p></li>
+
+	<li><p>
+	    <span class="concept">Pics</span>
+	    <br>Téléchargez les pics d'ENCODE pour votre facteur
+	    d'intérêt. 
+	    <div class="tips">
+	      <ul>
+		<li>Chaque jeu de données ENCODE contient 2
+		  réplicats. Téléchargez les deux jeux de pics
+		  correspondants.</li>
+		<li>Pourobtenir les séquences des pics, utilisez le
+		  programme RSAT fetch sequences.</li>
+	      </ul>
+	</p></li>
+	
+	
+	<li><p><span class="concept">Jeux de contrôle</span> 
+	    <br>A chaque étape des exercices ci-dessous, vous
+	    évaluerez la significativité des résultats en les
+	    comparant à ceux obtenus avec deux jeux de contrôle.</p>
+	  <ol>
+	    <li><p><span class="concept">Séquences aléatoires</span>
+		<br>Générez des séquences aléatoires (même nombre et même
+		taille moyenne que le premier jeu de pics), et sauvegardez
+		les sur votre odinateur, dans un fichier
+		nommé <tt>randseq_N[nb_seq]_L[taille_moyenne].fasta</tt>. 
+	    </p></li>
+	    
+	    <li><p><span class="concept">Fragments aléatoires</span>
+		<br>Sélectionnez des fragments aléatoires (même nombre et
+		mêmes tailles que le premier jeu de pics), et sauvegardez
+		les sur votre odinateur, dans un fichier
+		nommé <tt>randfragments_N[nb_seq]_L[taille_moyenne].fasta</tt>.
+	    </p></li>
+	  </ol>
+	</li>
+	
+      </ol>
+      </div>
+
+      <h3>Questions</h3>
+
+      <div class="exo">
+	<ol>
+	  
+	  <li><h4>Description du jeu de données</h4> 
+	    <p>Décrivez en 5 à 10 lignes le jeu de pics que vous avez
+	      sélectionné. En particulier, indiquez le type tissulaire,
+	      la fonction du facteur transcriptionnel (cherchez les
+	      informations sur Uniprot, PubMed ou toute autre source),
+	      le nombre de pics dans chacun des deux réplicats.
+	  </p></li>
+	  
+	  <li>
+	    <h4>Reproductibilité des résultats de ChIP-seq</h4>
+	    
+	    <p>Dans le projet ENCODE, chaque expérience a été
+	      réalisée en 2 réplicats.  Calculez l'intersection entre les
+	      pics obtenus dans les deux réplicats, et évaluez la
+	      significativité de cette intersection.</p>
+	    <div class="tips">
+	      <ul>
+		<li>Pour comparer deux jeux de pics, vous pouvez
+		  utiliser
+		  l'outil <span class="program">compare-features</span>.
+		</li>
+		<li>Le calcul théorique de la significativité de
+		  l'intersection entre deux jeux de pics n'est pas
+		  trivial. Une approche pragmatique consiste à
+		  sélectionner des pics aléatoires
+		  (<span class="program">random-genome-fragments</span>)
+		  de même nombre et taille que l'un des deux jeux de
+		  données, et à calculer l'intersection. Ceci fournira
+		  une estimation de l'espérance aléatoire pour la taille
+		  de l'intersection. En répétant l'opération quelques
+		  fois, vous obtiendrez également une estimation de
+		  l'écart-type.</li>
+	      </ul>
+	    </div>
+	  </li>
+	</ol>
+      </div>
+
+      <p>Pour simplifier le travail, les exercices
+	suivants seront basés uniquement sur le premier jeu de
+	pics. Si le temps le permet, vous pouvez toutefois
+	analyser séparément les deux jeux de pics et évaluer la
+	reproductibilité de chaque étape d'analyse. </p>
+      <div class="exo">
+	<ol start="4">
+	  <li><h4>Enrichissement fonctionnel</h4>
+	    <p>
+	      Analysez l'enrichissement fonctionnel du premier jeu de
+	      pics avec l'outil <a target="_blank"
+				   href="http://bejerano.stanford.edu/great/public/html/">GREAT</a>. Interprétez
+	      les résultats. Quelles sont les classes fonctionnelles
+	      présentant l'enrichissement le plus significatif&nbsp;?
+	      Ceci correspond-til à la fonction connue du facteur
+	      d'intérêt&nbsp;? Comparez ces résultats avec ceux des jeux
+	      de contrôle.
+	    </p>
+	  </li>
+	  
+	  <li>
+	    <h4>Analyse de l'enrichissement pour le motif de référence</h4> 
+	    <p>Le jeu de pics est-il enrichi en sites prédits pour le
+	      facteur immunoprécipité&nbsp;?</p>
+	    <p class="tips">Pour évaluer l'enrichissement, utilisez
+	      l'outil <span class="program">matrix-quality</span></p>
+	  </li>
+	  
+	  <li><h4>Découverte de motifs</h4>
+	    <p>Analysez les séquences des pics avec l'outil
+	      <span class="program">peak-motifs</span>
+	      de <a target="_blank" href="http://www.rsat.eu">RSAT</a> et
+	      avec <a target="_blank"
+		      href="http://meme.nbcr.net/meme/cgi-bin/meme-chip.cgi">MEME-ChIP</a>.
+	      <ol type="a">
+		<li>découvre-t-ton des motifs significatifs dans le jeu
+		  de pics&nbsp;?</li>
+		<li>Correspondent-ils ) ceux du facteur immunoprécipité?</li>
+		<li>Trouvons-nous également des motifs correspondant à
+		  d'autres facteurs ? Ces facteurs semblent-ils
+		  pertinents, sur base de la biologie du facteur
+		  immunoproécipité&nbsp;?</lI>
+		<li>Comparez les résultats et ceux obtenus avec les jeux
+		  de contrôle.</li>
+	  </p></li>
+	  
+	  </ol>
+      </div>
+      
+      
+      <hr>
+      
+  </body>
+</html>
+

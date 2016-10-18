@@ -52,6 +52,7 @@ output:
 | Mon 17/10 | 14:00 | 15:30 | ChIP-seq analysis | DP | [[slides](../chip-seq/slides/chipseq__roscoff2015.pdf)]<br>[[tutorial *mapping*](../chip-seq/practical/chip-seq.html)] |
 | Wed 21/10 | 16:00 | 17:30 | ChIP-seq analysis | DP |  [[tutorial *peak annotation*](../chip-seq/practical/annotation.html)]<br>[[tutorial *peak-motifs*](http://dputhier.github.io/EBA_2015_ChIP-Seq/tutorial/04_motif/motif_tutorial.html)]|
 | Tue 18/10 | 09:00 | 10:30 | Scanning sequences to predict binding sites <br>(from motifs to sites) | JvH  | [[01.4.PSSM_theory](http://rsa-tools.github.io/course/pdf_files/01.4.PSSM_theory.pdf)]<br>[[02.3.pattern_matching_matrices](http://rsa-tools.github.io/course/pdf_files/02.3.pattern_matching_matrices.pdf)]<br>[[01.3.sequence_models](http://rsa-tools.github.io/course/pdf_files/01.3.sequence_models.pdf)]<br>[[RSAT](http://rsat.eu/)] *dna-pattern*, *matrix-scan*, *permute-matrix*, *random-seq*<br>[[tutorial *E.coli promoter scanning*](../sequence_scanning/promoter_scanning_ecoli.html)] |
+| Tue 18/10 | 15:10 | 16:55 | ENCODE | JvH  | [travail personnel](../encode_ChIP-seq_analysis/TP1_chipseq_2014.html)|
 | | | | | |
 
 
