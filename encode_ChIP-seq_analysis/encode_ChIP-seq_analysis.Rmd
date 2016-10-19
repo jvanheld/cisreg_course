@@ -37,7 +37,8 @@ knitr::opts_chunk$set(echo = TRUE)
 |        | [Encode data matrix](https://genome.ucsc.edu/ENCODE/dataMatrix/encodeDataMatrixHuman.html)
 |        | [ENCODE ChIP-seq experiment matrix](https://genome.ucsc.edu/ENCODE/dataMatrix/encodeChipMatrixHuman.html) |
 | HOCOMOCO | Human + Mouse transcription factor database (<http://hocomoco.autosome.ru/>)|
-| RSAT | Regulatory Sequence Analysis Tools (<htp://rsat.eu/>) |
+| RSAT | Regulatory Sequence Analysis Tools (<http://rsat.eu/>) |
+| bed format | <https://genome.ucsc.edu/FAQ/FAQformat#format1> |
 
 ## Getting peak coordinates from ENCODE/HAIB
 
