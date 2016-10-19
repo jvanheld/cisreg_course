@@ -1,0 +1,67 @@
+---
+title: "ENCODE ChIP-seq peak analysis"
+author: "Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  md_document:
+    variant: markdown_github
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 2
+  word_document:
+    toc: yes
+    toc_depth: 2
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Motif analysis in ENCODE ChIP-seq peaks
+
+## Resources
+
+| Name | URL / description |
+|----------------|-------------------------------------------------|
+| ENCODE | ENCODE access page at UCSC (<https://genome.ucsc.edu/ENCODE/>) |
+|        | [Encode data matrix](https://genome.ucsc.edu/ENCODE/dataMatrix/encodeDataMatrixHuman.html)
+|        | [ENCODE ChIP-seq experiment matrix](https://genome.ucsc.edu/ENCODE/dataMatrix/encodeChipMatrixHuman.html) |
+| HOCOMOCO | Human + Mouse transcription factor database (<http://hocomoco.autosome.ru/>)|
+| RSAT | Regulatory Sequence Analysis Tools (<htp://rsat.eu/>) |
+
+## Getting peak coordinates from ENCODE/HAIB
+
+- open a connection to the ENCODE/HAIB TF binding site Web page
+<http://genome.ucsc.edu/cgi-bin/hgFileUi?db=hg19&g=wgEncodeHaibTfbs>
+
+    **Note:** when you access this page, it can take a few minutes to download the (huge) list of results. Don't despair, once it is loaded, the queries will be very fast.  
+
+- Click on the box below **Antibody Target **, and select a transcription factor of interest (e.g. Foxa2). The list of displayed experiments is reduced to only show those corresponding to your factor. 
+
+- Click on the box below **View**, and select **peaks**. The list is yet reduced to only show the peak files.
+
+- Download the peak files in a new folder on your computer (e.g. Fox2_peaks) and uncompress the gzip files. 
+
+## Getting sequences from peak coordinates
+
+- Open a connection to the Regulatory Sequence Analysis Tools (RSAT) Web site: <http://rsat.eu/>
+
+- Select one server (e.g. [RSAT Teaching](http://teaching.rsat.eu/)).
+
+- In the left menu, open the section **NGS - ChIP-seq** and click on the tool **Fetch sequences from UCSC**. 
+
+
+- Under **Upload a file from your computer**, ...
+
+
+<font color="red">TO BE CONTINUED</font>
