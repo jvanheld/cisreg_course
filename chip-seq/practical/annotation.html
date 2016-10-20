@@ -114,13 +114,12 @@ $(document).ready(function () {
 <li><a href="#global-objective">Global Objective</a></li>
 <li><a href="#data-set">Data set</a></li>
 </ul></li>
-<li><a href="#peak-distribution-around-tss">Peak distribution around TSS</a></li>
-<li><a href="#relate-peaks-to-genes">Relate peaks to genes</a><ul>
-<li><a href="#using-nebula-server">Using Nebula server</a></li>
+<li><a href="#loading-the-data">Loading the data</a></li>
+<li><a href="#comparing-replicates">Comparing replicates</a></li>
+<li><a href="#relate-peaks-to-go-terms">Relate peaks to GO terms</a><ul>
 <li><a href="#using-ceas">Using CEAS</a></li>
 </ul></li>
 <li><a href="#visualize-chip-enrichment-around-a-given-feature">Visualize ChIP enrichment around a given feature</a></li>
-<li><a href="#relate-peaks-to-go-terms">Relate peaks to GO terms</a></li>
 <li><a href="#integrative-chip-seq-analysis-of-regulatory-elements">Integrative ChIP-seq analysis of regulatory elements</a></li>
 </ul>
 </div>
@@ -313,45 +312,47 @@ $(document).ready(function () {
 </table>
 </div>
 </div>
-<div id="peak-distribution-around-tss" class="section level2">
-<h2>Peak distribution around TSS</h2>
-<p>We will use the <a href="https://nebula.curie.fr/">Nebula Galaxy server</a> to perform this analysis.</p>
+<div id="loading-the-data" class="section level2">
+<h2>Loading the data</h2>
+<p>Reload IGV. Load the bigWig files and bed files in the genome browser. Use colored tracks to distinguish between GATA3 KO and WT condition. Organize properly the files with peaks below corresponding bigwigs.</p>
+<div class="exo">
+<ul>
+<li>What about the H3K4me1 track ? Does it looks like ESR1 track ?</li>
+<li>Using galaxy search for the most enriched peak relative to input (best score) for one ESR1 sample and one H3K4me1 sample.</li>
+<li>Using galaxy, draw the distribution of peak size for ESR1 and H3K4me1. Do they look the same.</li>
+<li>For each bed the 7th column contains the summit position relative to the start position. For one sample convert it to a bed format and load it into IGV.</li>
+<li>Extend the summit position by 100 nucleotides in 5’ and 3’ using bedtools. Laod the result in IGV.</li>
+</ul>
+</div>
+</div>
+<div id="comparing-replicates" class="section level2">
+<h2>Comparing replicates</h2>
+<p>Reproducibility may be an issue in ChIP-Seq experiment. Select one condition (WT or GATA KO).</p>
+<div class="exo">
+<ul>
+<li>What are the number of peaks in each replicate.</li>
+<li>Using intersectBed from the Bedtools suite (available in Galaxy or command line), compare the peaks shared by the 3 replicates (WT or KO). You could draw a venn diagram with this information.</li>
+<li>Create a bed file containing peaks that overlap in all tree replicates.</li>
+</ul>
+</div>
+</div>
+<div id="relate-peaks-to-go-terms" class="section level2">
+<h2>Relate peaks to GO terms</h2>
+<p>For that specific step we will use the GREAT annotation tools. Connect to <a href="http://great.stanford.edu">GREAT web server</a> and perform a GO annotation for the ESR1 peaks. Alternatively GREAT can be launch directly from UCSC web server (using Table browser Custom track and by selecting send to GREAT).</p>
 <div class="protocol">
 <blockquote>
 <ul>
-<li>Connect to the Nebula Galaxy server.</li>
-<li>Upload a MACS result (bed file).</li>
-<li>Select ** NGS: Peak Annotation &gt; Get peak distribution around TSS (Transcription factors)**</li>
-<li>Start the analysis.</li>
+<li>Connect the <a href="http://great.stanford.edu">GREAT</a> web server <a href="http://great.stanford.edu"><a href="http://great.stanford.edu" class="uri">http://great.stanford.edu</a></a></li>
+<li>select the genome assembly version (hg19)</li>
+<li>Upload or paste the peaks obtained previously in BED format (e.g intersect from the 3 replicates).</li>
+<li>use the whole genome as background and run the software</li>
+<li>Try using other parameters (“marked” regions). What about the results ?</li>
+<li>Check the result with a negative control (use randomBed in Galaxy to produce random regions).</li>
 </ul>
 </blockquote>
 </div>
 <div class="exo">
-<p>What can we conclude from this result ? Do you see any limit in the approach ?</p>
-</div>
-</div>
-<div id="relate-peaks-to-genes" class="section level2">
-<h2>Relate peaks to genes</h2>
-<div id="using-nebula-server" class="section level3">
-<h3>Using Nebula server</h3>
-<p>In this step, we will try to associate gene names to peaks that are close to known gene annotations using tools from Nebula server..</p>
-<p><strong>Procedure</strong></p>
-<div class="protocol">
-<blockquote>
-<ul>
-<li>Connect to the Nebula Galaxy server.</li>
-<li>Upload a MACS result (bed file).</li>
-<li>Select <strong>Genomic annotation of Chip-Seq peaks</strong>.</li>
-<li>Select the corresponding organism and select appropriate parameters to run the software</li>
-<li>Start the analysis.</li>
-<li>Redo the analysis for a second set of peaks (e.g control <em>vs</em> siRNA treated)</li>
-</ul>
-</blockquote>
-</div>
-<div class="exo">
-<p>What can we conclude from this result ? Do you see any limit in the approach ?</p>
-</div>
-<p><strong>Question:</strong> How many genes are in common between the two peak series?</p>
+<p>Examine the enriched functional categories ? Are they biologically meaningful given what you know about ESR1 ?</p>
 </div>
 <div id="using-ceas" class="section level3">
 <h3>Using CEAS</h3>
@@ -374,7 +375,7 @@ $(document).ready(function () {
 <blockquote>
 <ul>
 <li>Download the required annotation file (here all UCSC annotated genes) from the UCSC genome browser (go to Table Browser, UCSC Genes and download the annotation as bed file. Save this locally).</li>
-<li>Use the obtained annotation file and the previously computed bigWig profile (from your history) as an input to “computeMatrix”.</li>
+<li>Use the obtained annotation file and the previously computed bigWig profile (from your history) as an input to “computeMatrix”. You could select for instance H3K4me1.</li>
 <li>Use ‘reference point’ as the output option and ‘beginning of region’ as this reference point (TSS).</li>
 <li>Using the “heatmapper”, load the obtained matrix data and fill the desired options to plot the heat map.</li>
 <li>Perform the analysis both with a ChIP for a chromatin mark and a transcription factor.</li>
@@ -383,25 +384,6 @@ $(document).ready(function () {
 </div>
 <div class="exo">
 <p>Do you see any differences between the two choosen dataset ?</p>
-</div>
-</div>
-<div id="relate-peaks-to-go-terms" class="section level2">
-<h2>Relate peaks to GO terms</h2>
-<p>For that specific step we will use the GREAT annotation tools. Connect to <a href="http://great.stanford.edu">GREAT web server</a> and perform a GO annotation for the ESR1 peaks. Alternatively GREAT can be launch directly from UCSC web server (using Table browser Custom track and by selecting send to GREAT).</p>
-<div class="protocol">
-<blockquote>
-<ul>
-<li>Connect the <a href="http://great.stanford.edu">GREAT</a> web server <a href="http://great.stanford.edu"><a href="http://great.stanford.edu" class="uri">http://great.stanford.edu</a></a></li>
-<li>select the genome assembly version (hg19)</li>
-<li>Upload or paste the peaks obtained previously in BED format</li>
-<li>use the whole genome as background and run the software</li>
-<li>Try using other parameters (“marked” regions). What about the results ?</li>
-<li>Check the result with a negative control (use randomBed in Galaxy to produce random regions).</li>
-</ul>
-</blockquote>
-</div>
-<div class="exo">
-<p>Examine the enriched functional categories ? Are they biologically meaningful given what you know about ESR1 ?</p>
 </div>
 </div>
 <div id="integrative-chip-seq-analysis-of-regulatory-elements" class="section level2">
