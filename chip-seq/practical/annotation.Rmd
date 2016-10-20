@@ -178,7 +178,15 @@ What are the TFs associated to your peaks?
 
 
 
+## Some idea for your project
 
+- Analyse inter-replicate reproducibility.
+- Impact of MACS score (-log10(p-value)) on motif discovery ?
+- Impact of genomic location (intragenic, intergenic, promoter,...) on the discovery of alternative motifs.
+- Differential analysis using ad-hoc software.
+- Are there any genomic bias in peak appearing/disappearing in GATA KO condition ?
+- Impact of the select region of the peak on motif discovery. Does summit +/- n bp provide better result than full peak ?
+- Are there any genomic bias related to peak size ? If yes, is that related to a given condition ?
 
 
 
