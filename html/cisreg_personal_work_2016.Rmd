@@ -86,3 +86,8 @@ Le rapport inclura
 - Reproductibilité de l'analyse (notamment par le rapport complet, en annexe, des commandes effectuées et des paramètres).
 
 ****************************************************************
+## Retour au cours 2016
+
+[Cours 2016](course_contents_cisreg_2016.html)
+
+****************************************************************
