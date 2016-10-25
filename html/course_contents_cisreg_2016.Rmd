@@ -65,7 +65,15 @@ output:
 
 ## White/green board pictures
 
-[White/green board pictures](../white_board_pictures_2016/)
+![2016-10-19_01a_demarche_travaux-personnels.jpg](../white_board_pictures_2016/2016-10-19_01a_demarche_travaux-personnels.jpg)
+![2016-10-19_01b_demarche_travaux-personnels.jpg](../white_board_pictures_2016/2016-10-19_01b_demarche_travaux-personnels.jpg)
+![2016-10-19_01c_demarche_travaux-personnels.jpg](../white_board_pictures_2016/2016-10-19_01c_demarche_travaux-personnels.jpg)
+![2016-10-19_01d_structure_rapport.jpg](../white_board_pictures_2016/2016-10-19_01d_structure_rapport.jpg)
+![2016-10-19_01e_structure_rapport.jpg](../white_board_pictures_2016/2016-10-19_01e_structure_rapport.jpg)
+![2016-10-19_02_structure_gene.jpg](../white_board_pictures_2016/2016-10-19_02_structure_gene.jpg)
+![2016-10-19_03_organisation_operons.jpg](../white_board_pictures_2016/2016-10-19_03_organisation_operons.jpg)
+![2016-10-21_01_encode_workflow.JPG](../white_board_pictures_2016/2016-10-21_01_encode_workflow.JPG)
+
 
 ## Travaux personnels
 
