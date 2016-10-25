@@ -27,7 +27,7 @@ output:
 ## Modalités pratiques
 
 - Le travail personnel peut être réalisé soit en binôme soit en solo.  
-- Date-limite pour la remise des rapports: lundi 31 octobre 2016. 
+- Date-limite pour la remise des rapports: dimanche 6 novembre 2016 à 23h42. 
 - Rapports à envoyer par email à  <Jacques.van-Helden@univ-amu.fr> **et** à  <Denis.Puthier@univ-amu.fr>. Si les annexes sont trop pesantes, nous vous suggérons de les placer sur un site spécialisé pour le transfert de fichiers volumineux.
 
 ****************************************************************
