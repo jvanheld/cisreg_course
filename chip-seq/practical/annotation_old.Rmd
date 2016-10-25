@@ -1,0 +1,188 @@
+---
+title: "ChIP-Seq -- ChIP-seq annotation and visualization --"
+author: "Denis Puthier"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    css: style.css
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+
+## ChIP-seq annotation and visualization
+
+
+### Global Objective
+Given a set of ChIP-seq peaks annotate them in order to find associated genes, genomic categories and functional terms.
+
+### Data set
+For this practical session, the ChIP-seq data and peaks related to following publication will be used: “GATA3 acts upstream of FOXA1 in mediating ESR1 binding by shaping enhancer accessibility.”, [Theodorou _et al_](http://www.ncbi.nlm.nih.gov/pubmed/23172872).
+
+
+The following pre-processed datasets are available:
+
+| file						| format |
+|------------------|--------|
+|[siGATA_ER_E2_r1_SRX176857_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_ER_E2_r1_SRX176857_peaks.bed)| bed |
+|[siGATA_ER_E2_r2_SRX176859_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_ER_E2_r2_SRX176859_peaks.bed)| bed |
+|[siGATA_ER_E2_r3_SRX176861_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_ER_E2_r3_SRX176861_peaks.bed)| bed |
+|[siGATA_H3K4me1_E2_r1_SRX176879_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_H3K4me1_E2_r1_SRX176879_peaks.bed)| bed |
+|[siNT_ER_E2_r1_SRX176856_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_ER_E2_r1_SRX176856_peaks.bed)| bed |
+|[siNT_ER_E2_r2_SRX176858_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_ER_E2_r2_SRX176858_peaks.bed)| bed |
+|[siNT_ER_E2_r3_SRX176860_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_ER_E2_r3_SRX176860_peaks.bed)| bed |
+|[siNT_H3K4me1_E2_r1_SRX176878_peaks.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_H3K4me1_E2_r1_SRX176878_peaks.bed)| bed |
+
+| file  					| format |
+|------------------|--------|
+|[siGATA_ER_E2_r1_SRX176857_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_ER_E2_r1_SRX176857_summits.bed)| bed |
+|[siGATA_ER_E2_r2_SRX176859_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_ER_E2_r2_SRX176859_summits.bed)| bed |
+|[siGATA_ER_E2_r3_SRX176861_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_ER_E2_r3_SRX176861_summits.bed)| bed |
+|[siGATA_H3K4me1_E2_r1_SRX176879_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siGATA_H3K4me1_E2_r1_SRX176879_summits.bed)| bed |
+|[siNT_ER_E2_r1_SRX176856_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_ER_E2_r1_SRX176856_summits.bed)| bed |
+|[siNT_ER_E2_r2_SRX176858_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_ER_E2_r2_SRX176858_summits.bed)| bed |
+|[siNT_ER_E2_r3_SRX176860_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_ER_E2_r3_SRX176860_summits.bed)| bed |
+|[siNT_H3K4me1_E2_r1_SRX176878_summits.bed](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/peaks/siNT_H3K4me1_E2_r1_SRX176878_summits.bed)| bed |
+
+
+| file  					| format |
+|------------------|--------|
+|[MCF_input_r3_SRX176888.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/MCF_input_r3_SRX176888.bigWig)| bigWig |
+|[siGATA_ER_E2_r1_SRX176857.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siGATA_ER_E2_r1_SRX176857.bigWig)| bigWig |
+|[siGATA_ER_E2_r2_SRX176859.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siGATA_ER_E2_r2_SRX176859.bigWig)| bigWig |
+|[siGATA_ER_E2_r3_SRX176861.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siGATA_ER_E2_r3_SRX176861.bigWig)| bigWig |
+|[siGATA_H3K4me1_E2_r1_SRX176879.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siGATA_H3K4me1_E2_r1_SRX176879.bigWig)| bigWig |
+|[siNT_ER_E2_r1_SRX176856.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siNT_ER_E2_r1_SRX176856.bigWig)| bigWig |
+|[siNT_ER_E2_r2_SRX176858.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siNT_ER_E2_r2_SRX176858.bigWig)| bigWig |
+|[siNT_ER_E2_r3_SRX176860.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siNT_ER_E2_r3_SRX176860.bigWig)| bigWig |
+|[siNT_H3K4me1_E2_r1_SRX176878.bigWig](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/ag/bw/siNT_H3K4me1_E2_r1_SRX176878.bigWig)| bigWig |
+
+
+## Peak distribution around TSS
+
+We will use the [Nebula Galaxy server](https://nebula.curie.fr/) to perform this analysis. 
+
+<div class="protocol">
+
+> - Connect to the Nebula Galaxy server.
+> - Upload a MACS result (bed file).
+> - Select ** NGS: Peak Annotation > Get peak distribution around TSS (Transcription factors)**
+> - Start the analysis.
+
+</div>
+
+<div class="exo">
+What can we conclude from this result ? Do you see any limit in the approach ?
+</div>
+
+## Relate peaks to genes
+
+### Using Nebula server
+
+In this step, we will try to associate gene names to peaks that are close to known gene annotations using  tools from Nebula server..
+
+**Procedure**
+
+<div class="protocol">
+
+> - Connect to the Nebula Galaxy server.
+> - Upload a MACS result (bed file).
+> - Select **Genomic annotation of Chip-Seq peaks**.
+> - Select the corresponding organism and select appropriate parameters to run the software
+> - Start the analysis.
+> - Redo the analysis for a second set of peaks (e.g control *vs* siRNA treated)
+
+</div>
+
+<div class="exo">
+What can we conclude from this result ? Do you see any limit in the approach ?
+</div>
+
+**Question:** How many genes are in common between the two peak series?
+
+### Using CEAS
+
+In the TAGC galaxy instance. CEAS (Cis-regulatory Element Annotation System) is a tool for characterizing genome-wide protein-DNA interaction patterns from ChIP-chip and ChIP-Seq of both sharp and broad binding factors. It provides statistics on ChIP enrichment at important genome features such as specific chromosome, promoters, gene bodies, or exons, and infers genes most likely to be regulated by a binding factor.
+
+<div class="protocol">
+
+> - Select **NGS: Peak Calling > CEAS Annotate intervals and scores with genome features**.
+> - Use the appropriate settings and click **Execute**.
+
+</div>
+
+What can we  say about the enrichment.
+
+
+## Visualize ChIP enrichment around a given feature
+
+Using the “deepTools heatmapper” we will try to visualize the local enrichment around the TSS for all known genes. Before drawing the heatmap we need to prepare the data by computing a summary matrix of the  local ChIP enrichment using “deepTools computeMatrix”.
+
+<div class="protocol">
+
+> - Download the required annotation file (here all UCSC annotated genes) from the UCSC genome browser (go to Table Browser, UCSC Genes and download the annotation as bed file. Save this locally). 
+> - Use the obtained annotation file and the previously computed bigWig profile (from your history) as an input to “computeMatrix”. 
+> - Use 'reference point’ as  the output option and 'beginning of region’ as this reference point (TSS).
+> - Using the “heatmapper”, load the obtained matrix data and fill the desired options to plot the heat map.
+> - Perform the analysis both with a ChIP for a chromatin mark and a transcription factor.
+
+</div>
+
+<div class="exo">
+Do you see any differences between the two choosen dataset ?
+</div>
+
+## Relate peaks to GO terms
+
+For that specific step we will use the GREAT annotation tools. Connect to [GREAT web server](http://great.stanford.edu) and perform a GO annotation for the ESR1 peaks. Alternatively GREAT can be launch directly from UCSC web server (using Table browser Custom track and by selecting send to GREAT). 
+
+<div class="protocol">
+
+> - Connect the [GREAT](http://great.stanford.edu) web server [http://great.stanford.edu](http://great.stanford.edu)
+> - select the genome assembly version (hg19)
+> - Upload or paste the peaks obtained previously in BED format
+> - use the whole genome as background and run the software
+> - Try using other parameters ("marked" regions). What about the results ?
+> - Check the result with a negative control (use randomBed in Galaxy to produce random regions).
+
+</div> 
+
+<div class="exo">
+Examine the enriched functional categories ? Are they biologically meaningful given what you know about ESR1 ?
+</div>
+
+## Integrative ChIP-seq analysis of regulatory elements
+
+In this part, we will use the ReMap (http://tagc.univ-mrs.fr/remap/index.php) software to compare the peaks obtained in the peaks calling tutorial to an extensive regulatory catalog of 8 million transcription factor binding regions defined by collecting all the peaks from ChIP-seq experiments from the ENCODE project + other public datasets from the GEO database. Note that on the ReMap Web site, the term "site" is used to denote a ChIP-seq peak, rather than the precise binding location of a transcription factor
+
+<div class="protocol">
+
+> - Connect the [ReMap](http://tagc.univ-mrs.fr/remap/index.php) web server
+> - Go to the Annotation Tool
+> - upload or paste the peaks in BED format (select BED format in the data format selector)
+> - Add your email and run the software with default parameters
+
+</div> 
+
+<div class="exo">
+What are the TFs associated to your peaks?
+</div>
+
+
+
+
+
+
+
+
+
+
