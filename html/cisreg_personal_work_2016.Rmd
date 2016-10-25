@@ -1,0 +1,88 @@
+---
+title: "Cisreg course 2015 - Personal work"
+author: "Denis Puthier and Jacques van Helden"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  md_document:
+    variant: markdown_github
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 2
+  word_document:
+    toc: yes
+    toc_depth: 2
+---
+
+
+****************************************************************
+## Modalités pratiques
+
+- Le travail personnel peut être réalisé soit en binôme soit en solo.  
+- Date-limite pour la remise des rapports: lundi 31 octobre 2016. 
+- Rapports à envoyer par email à  <Jacques.van-Helden@univ-amu.fr> **et** à  <Denis.Puthier@univ-amu.fr>. Si les annexes sont trop pesantes, nous vous suggérons de les placer sur un site spécialisé pour le transfert de fichiers volumineux.
+
+****************************************************************
+## But du travail
+
+Le but du travail est de mettre en oeuvre les concepts théoriques et les pratiques enseignées au cours pour analyser un ou plusieurs jeux de pics obtenus par la méthode de ChIP-seq. 
+
+Chaque binôme (ou solo) choisira un ou plusieurs jeux de pics dans ENCODE, et complètera la table de synthèse:  <https://docs.google.com/spreadsheets/d/1us2jnPQue7hXs1ucbF1Bbj9kmK9WMLfAJS8Qwm2Xli0/edit#gid=0>
+
+Chaque groupe choisira une question particulière à laquelle il est possible de répondre en effectuant un nombre raisonnable d'analyses (par exemple 2 ou 3 résultats de ChIP-seq, avec 2 répliques par résultat). 
+
+Quelques exemples de questions envisageables (mais vous pouvez définir d'autres questions si vous le souhaitez). 
+
+1. Pour un facteur transcriptionnel d'intérêt, analyser les pics obtenus dans différents types cellulaires. Partir des pics définis par ENCODE/Haib.
+
+2. Pour un type cellulaire donné, comparer les pics de 2 ou 3 facteurs impliqués dans les mêmes processus biologiques. 
+
+3. Analyser les motifs découverts dans les pics d'un facteur transcriptionnel + comparer les localisations des pics de ce facteur avec les régions chomatiniennnes liées à la régulation (marques d'enhancers, de promoteurs) dans le même type cellulaire. 
+
+4. Pour une expérience de ChIP-seq donnée (un facteur dans un type cellulaire, 2 répliques),  faire tourner une ou plusieurs approches de découverte de motifs (par exemple RSAT peak-motifs, MEME-chip) et comparer les résultats.  Récupérer l'ensemble des motifs découverts par les différentes approches, et faire tourner *matrix-clustering* pour les comparer. 
+
+### Notes
+
+1. **Les travaux se baseront sur les pics définis par ENCODE/Haib**, <font color="#BB0000">les étapes précédentes, telles que l'alignement des bibliothèques de lectures et le peak-calling, ne font pas partie de ce travail-ci</font>. L'analyse des données brutes de NGS est abordée dans le cadre du cours d'analyse des données à haut débit donné par Denis Puthier. 
+
+2. **Contrôles négatifs**: quel que soit le programme d'analyse de pics que vous utiliserez, n'oubliez pas d'effectuer un contrôle négatif en soumettant à ce même programme un jeu de pics aléatoires. 
+
+****************************************************************
+## Structure attendue pour le rapport
+
+Le rapport inclura
+
+1. Une **introduction** sommaire résumant les caractéristiques du facteur transcriptionnel choisi (domaine de liaison à l'ADN, fonction régulatrice, ...).
+
+2. Une section **But du travail** indiquant le but général de l'analyse, et les objectifs particuliers (correspondant par exemple aux différentes tâches décrites ci-dessous).
+
+3. Une section **Matériel et méthodes** fournissant une description *synthétique et lisible* des choix méthodologiques (outils et paramètres).
+
+4. Une section **Résultats et discussion**.
+
+5. Une brève section **Conclusion et perspectives**.
+
+6. Un **annexe** fournissant la liste complète des paramètres utilisés pour chaque outil. Cette annexe devrait permettre à un lecteur de reproduire vos analyses. 
+
+    - Pour les outils RSAT, la façon la plus simple d'assurer la traçabilité est de récupérer la première ligne de chaque fichier de résultat, qui indique la commande exécutée dans la console unix. 
+    
+    - Si un outil comporte un grand nombre d'options, n'indiquez que celles que vous avez modifiées par rapport aux valeurs par défaut. 
+
+**Le rapport ne doit pas excéder 5 pages, sans compter les annexes. **
+
+## Critères d'évaluation
+
+- Clarté de la formulation (question posée, synthèse des résultats).
+- Justification des choix méthodologiques (à quoi servent les outils ? comment avez-vous choisi les paramètres ?).
+- Qualité de l'interprétation des résultats (pertinence des conclusions).
+- Reproductibilité de l'analyse (notamment par le rapport complet, en annexe, des commandes effectuées et des paramètres).
+
+****************************************************************
