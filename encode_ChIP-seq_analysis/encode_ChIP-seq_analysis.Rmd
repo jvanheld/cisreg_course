@@ -1,5 +1,5 @@
 ---
-title: "ENCODE ChIP-seq peak analysis"
+title: "Tutorial: motif analysis in ENCODE ChIP-seq peaks"
 author: "Jacques van Helden"
 date: '`r Sys.Date()`'
 output:
@@ -27,9 +27,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Motif analysis in ENCODE ChIP-seq peaks
 
-## Resources
+# Resources
 
 | Name | URL / description |
 |----------------|-------------------------------------------------|
@@ -37,10 +36,12 @@ knitr::opts_chunk$set(echo = TRUE)
 |        | [Encode data matrix](https://genome.ucsc.edu/ENCODE/dataMatrix/encodeDataMatrixHuman.html)
 |        | [ENCODE ChIP-seq experiment matrix](https://genome.ucsc.edu/ENCODE/dataMatrix/encodeChipMatrixHuman.html) |
 | HOCOMOCO | Human + Mouse transcription factor database (<http://hocomoco.autosome.ru/>)|
+| JASPAR | Eukaryote transcription factor database (<http://hocomoco.autosome.ru/>)|
 | RSAT | Regulatory Sequence Analysis Tools (<http://rsat.eu/>) |
 | bed format | <https://genome.ucsc.edu/FAQ/FAQformat#format1> |
 
-## Getting peak coordinates from ENCODE/HAIB
+****************************************************************
+# Getting peak coordinates from ENCODE/HAIB
 
 - open a connection to the ENCODE/HAIB TF binding site Web page
 <http://genome.ucsc.edu/cgi-bin/hgFileUi?db=hg19&g=wgEncodeHaibTfbs>
@@ -87,7 +88,7 @@ chr1    323847  324216  peak6   33      .       109.140 -1      -1
 
 - Leave all other parameters unchanged and click **GO**. 
 
-### What happens now ?
+## What happens now?
 
 The file with your peak coordinates is first transferred from your computer to the RSAT server, which then sends a request to the UCSC genome browser: *"I give you peak coordinates, please return the corresponding sequences"*. The resulting sequences are stored on the RSAT server, and a result form is generated with three links: 
 
@@ -102,9 +103,10 @@ The file with your peak coordinates is first transferred from your computer to t
 
 - once you have saved these two files, you are ready to submit your sequence to the next step of the analysis. In the **Next step** box below the result links, click on **peak-motifs**. This sends the URL of your sequence file to the *peak-motifs* form, and fills up the title box with the sequence file name. 
 
-## Discovering motifs in ChIP-seq peak sequences
+****************************************************************
+# Discovering motifs in ChIP-seq peak sequences
 
-### What the tool does
+## What the tool does
 
 The RSAT tool *peak-motifs* implements a workflows which combines a lot of other RSAT tools in order to extract as much information as possible from your peak sequences: 
 
@@ -122,7 +124,7 @@ The RSAT tool *peak-motifs* implements a workflows which combines a lot of other
 
 5. **Predicted binding sites**: after motif discovery, peak motifs scans the peak sequences to predict the location of binding sites, and computes a positional distribution of these predicted sites + some statistics about peak coverage (how many peaks have at least 1, 2, 3,... occurrences of the motif).
 
-### Analysing ENCODE peaks with peak-motifs
+## Running peak-motifs
 
 We will leave almost all the parameters unchanged, except for the selection of reference databases. 
 
@@ -133,8 +135,45 @@ We will leave almost all the parameters unchanged, except for the selection of r
 
 - Click **GO**. As soon as your query has been submitted to the server, you should receive an email with a link to the future result page. 
 
-<font color="red">TO BE CONTINUED</font>
+## What happens now?
+
+The full analysis can take a while, since the ENCODE broad peak files are quite large (several tens of thousands of peaks, covering several tens of Mb of sequences). The *peak-motifs* tool is able to deal with such large files, but some steps require time. 
+
+The results will be progressively displayed on the Web result page (you can check from time to time). Until completion, the result page displays a warning <font color="red">Status: running...</font>, but you can already analyse the partial results as they appear. 
+
+After completion of the analysis, the result page will be updated and a gray box will be displayed at the top, with links to the discovered motifs + their colored consensus sequences. 
+
+[![**Figure: peak motifs result header** for the analysis of the ENCODE/Haib peakset wgEncodeHaibTfbsA549Foxa2V0416102Etoh02PkRep1.broadPeak](images/peak-motifs_result_header.png)](images/peak-motifs_result_header.png)
+
+- At this stage, we strongly recommend you to click on the link **Download all results (peak-motifs_archive.zip)**, in order to keep a copy of the full results on your computer. Indeed, the results will only be kept on the server for a few days. It is important to keep a trace of all the elements of the analysis, since this ensures the tractability of each element of the results (sequence stats, composition, discovered motifs, candidate factors, predicted binding sites).
+
+****************************************************************
+# Going further
+
+We suggest hereafter some additional sources of information about motif analysis from ChIP-seq peaks. 
+
+- Description and evaluation of *RSAT peak-motifs*. 
+
+    - Thomas-Chollier M, Herrmann C, Defrance M, Sand O, Thieffry D, van Helden J. (2012). RSAT peak-motifs: motif analysis in full-size ChIP-seq datasets. Nucleic Acids Res 40(4): e31. [PMID 22156162](http://www.ncbi.nlm.nih.gov/pubmed/22156162)
 
 
 
+- Protocol for the utilization of *RSAT peak-motifs*. 
+
+    - Thomas-Chollier M, Darbo E, Herrmann C, Defrance M, Thieffry D, van Helden J. (2012). A complete workflow for the analysis of full-size ChIP-seq (and similar) data sets using peak-motifs. Nat Protoc 7(8): 1551-1568. [PMID 22836136](http://www.ncbi.nlm.nih.gov/pubmed/22836136)
+
+
+
+- Protocols for the analysis of ChIP-seq peaks in plants: 
+
+
+    - Contreras-Moreira B, Castro-Mondragon JA, Rioualen C,	Cantalapiedra CP, van Helden J. (2016). RSAT::Plants: Motif	Discovery Within Clusters of Upstream Sequences in Plant Genomes. Methods Mol Biol. 1482:279-95. doi:	10.1007/978-1-4939-6396-6_18. [PMID 27557774](http://www.ncbi.nlm.nih.gov/pubmed/27557774)
+
+	   - Helden J. (2016). RSAT::Plants: Motif Discovery in ChIP-Seq Peaks of Plant Genomes. Methods Mol Biol. 1482:297-322. doi: 10.1007/978-1-4939-6396-6_19. [PMID 27557775](http://www.ncbi.nlm.nih.gov/pubmed/27557775)
+
+
+
+****************************************************************
+
+*Contact and bug reports: <Jacques.van-Helden@univ-amu.fr>*
 
