@@ -18,8 +18,24 @@ output:
   word_document: default
 ---
 
+<style>
+.imgContainer {
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+}
+.imgContainer img {
+  width: 100px;
+
+}
+</style>
+
 
 ## CHiP-Seq dataset description
+
+<div class="imgContainer">
+<a href ="https://www.ncbi.nlm.nih.gov/pubmed" ><img src="https://www.screenshotmachine.com/serve.php?img=ncbi-nlm-nih-gov-FULL-65c97f.png" > </a>
+</div>
 
 For this tutorial we will use CHiP-Seq datasets produced by [Theodorou *et al*](http://www.ncbi.nlm.nih.gov/pubmed/23172872). The authors used ChIP-Seq technology in order to systematically identify ESR1 binding regions across the human genome. Importantly, they demonstrated that knock-down of GATA3 through siRNA greatly affect ESR1 binding. The corresponding abstract of this article is provided below.
 
@@ -37,6 +53,10 @@ suggestive of its functionality. Chromatin loops at the TFF locus involving ESR1
 ------------------------------------------------------------------------
 
 ### Getting informations about the experiment using the GEO and SRA websites
+
+<div class="imgContainer">
+<a href ="https://www.ncbi.nlm.nih.gov/sra" ><img src="https://www.screenshotmachine.com/serve.php?img=ncbi-nlm-nih-gov-FULL-b73f14.png"> </a>
+</div>
 
 Gene Expression Omnibus ([GEO](http://www.ncbi.nlm.nih.gov/geo/)) is a
 public repository that provide tools to submit, access and mine
@@ -77,6 +97,10 @@ web sites propose search engines to query their databases.
 
 ## Connecting to the Galaxy server
 
+<div class="imgContainer">
+<a href ="http://pedagogix-tagc.univ-mrs.fr/galaxy/" ><img src="https://www.screenshotmachine.com/serve.php?img=pedagogix-tagc-univ-mrs-fr-FULL-0af9c0.png"> </a>
+</div>
+
 
 <div class="protocol">
 
@@ -90,6 +114,9 @@ web sites propose search engines to query their databases.
 
 ## Quality control of sequencing data
 
+<div class="imgContainer">
+<a href ="http://www.bioinformatics.babraham.ac.uk/index.html" ><img src="https://www.screenshotmachine.com/serve.php?img=bioinformatics-babraham-ac-uk-FULL-15880f.png" > </a>
+</div>
 
 ### Loading fastq files in galaxy
 
@@ -102,12 +129,11 @@ http://denis.puthier.perso.luminy.univ-amu.fr/COURSES/CHIP-SEQ/PRACTICAL/data/si
 ```
 <div class="protocol">
 
-> - In the upper left corner, click on **Unnamed history** and rename this workspace to 'ER\_chr21\_mapping'.
-> - In the left menu, select **Get Data &gt; Upload File**. set File format as **fastqsanger**, copy and paste the URL above in the **URL/text** area and set genome to **hg19**.
-> - Select **NGS TOOLS &gt; NGS: QC and manipulation &gt; FASTQ Groomer**.
-> - Set **File to groom** to 'siNT\_ER\_E2\_r3.SRR540192.chr21.andNoise.fastq', and press **Execute**
-> - Rename the output of the previous step into 'siNT\_ER\_E2\_r3.chr21.groom' (use the pencil that is associated to each item of the history to edit their attributes).
-
+> - In the upper left corner, click on **Unnamed history** and rename this workspace to 'ESR1\_mapping'.
+> - In the left menu, select **Get Data &gt; Upload File**. set File format as **fastqsanger** and set genome to **hg19**. Select **Paste/Fetch data** and copy and paste the URL above in the **text area**. 
+> - Press **Start** then **Close**.
+> - In the history panel, rename the dataset as **siNT\_ER\_E2\_r3** (use the pencil that is associated to each item of the history to edit their attributes).
+> - Have a look at the dataset using the "view data" (the eyes) that is associated to each item of the history.
 </div>
 
 ### Quality control with FastQC
@@ -119,10 +145,10 @@ random and diverse.
 
 <div class="protocol">
 
-> - Use **NGS TOOLS &gt; NGS: QC and manipulation &gt; FastQC:Read QC**.
-> - Select 'siNT\_ER\_E2\_r3.chr21.groom' in **Short read data from your current history** dropdown list. Press **execute**.
-> - Display the data for the corresponding result in your **history**
-    (right panel).
+> - Search for **fastqc** in the toolbox (upper-left position in the tool panel).
+> - Select 'siNT\_ER\_E2\_r3' in **Short read data from your current history** dropdown list. 
+> - Press **execute**.
+> - Look at the html result file (right panel).
 
 </div>
 
@@ -136,6 +162,9 @@ random and diverse.
 
 ## Read trimming and filtering
 
+<div class="imgContainer">
+<a href ="https://github.com/najoshi/sickle" ><img src="https://www.screenshotmachine.com/serve.php?img=github-com-FULL-c2e083.png" > </a>
+</div>
 
 Read trimming is a pre-processing step in which input read ends with poor quality values are cut (most generally the right end). However one should keep in mind that this step is crucial when working with numerous aligners such as bowtie. Indeed as bowtie does not perform
 "hard-clipping" (that is clip sequence NOT present in the reference) it may be unable to align a large fraction of the dataset when poor quality ends are kept. Several software may be used to perform sequence trimming :
@@ -150,8 +179,8 @@ Here we will use sickle.
 <div class="protocol">
 
 > -   Search for the **sickle** tool using the galaxy search engine (upper left corner). Select **sickle** tool.
-> -   From **reads fastq file** dropdown list select'siNT\_ER\_E2\_r3.SRR540192.chr21.andNoise.groom'. Set **Quality Threshold** to 20, **Length Threshold** to 25, **min\_len** to 25 and press **execute**.
-> -   Rename the output into siNT\_ER\_E2\_r3.chr21.sickle
+> -   From **reads fastq file** dropdown list select'siNT\_ER\_E2\_r3'. Set **Quality Threshold** to 20, **Length Threshold** to 25, **min\_len** to 25 and press **execute**.
+> -   Rename the output into **siNT\_ER\_E2\_r3.sickle**
 > -   Perform a new fastqc analysis using the trimmed read as input. The number of reads should be reduced.
 > -   Check the proportion of duplicate reads ('Sequence Duplication Levels'). High level of PCR duplicates means that you provided to little material for sequencing (poor library complexity).
 
@@ -160,6 +189,10 @@ Here we will use sickle.
 ------------------------------------------------------------------------
 
 ## Mapping reads with bowtie
+
+<div class="imgContainer">
+<a href ="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml" ><img src="https://www.screenshotmachine.com/serve.php?img=bowtie-bio-sourceforge-net-FULL-1c06bc.png" > </a>
+</div>
 
 Among the genome aligners, bowtie is one of a most popular mostly because it can achieve fast alignment of millions of reads. Although,
 the mapping strategy differs between version 1 and 2, the overall pipeline is identical. Bowtie uses a "seed and extend" strategy meaning
@@ -191,6 +224,7 @@ as follow:
 > - Set **Select the reference genome** to **Human chr21 (hg19).**.
 > - Use the default settings.
 > - Click on execute.
+> - Search **flagstat** from the toolbox. Run the tool on the output bam file. This should provide you with descriptive stats for regarding the mapped reads.
 
 </div>
 
@@ -199,21 +233,61 @@ as follow:
 ## Removing duplicates
 
 Duplicates PCR may indicate problems during library construction (poor library complexity). This step is really to be done in case previous analysis (e.g Fastqc) clearly pointed out such a problem (or if piling-up are observed in the genome browser).
-The PCR duplicates can be removed using the **rmDup** command in Galaxy.
+The PCR duplicates can be removed using the **rmDup** command in Galaxy. 
 
 <div class="protocol">
 
-> - From the tool panel, select **NGS: SAM Tools &gt; rmdup remove PCR duplicates**. 
+> - From the tool panel, select **rmdup**. 
 > - Select the bam file and set **Is data paired-end** to **BAM is single-end**.
 > - Click on execute.
+> - Perform descriptive statistics using **flagstat**.
+> - Check the mean MAPQ using **sam-stats**.
+ 
+</div>
+
+Note that you may also have alternatively used **Filter BAM datasets on a variety of attributes** that also propose tools for deleting duplicates. 
+
+<div class="exo">
+
+> - Does the number of alignments differ from input BAM after duplicate removal ? 
 
 </div>
+
+------------------------------------------------------------------------
+
+## Removing read with poor mapping quality
+
+
+**From the bowtie manual:** "Aligners characterize their degree of confidence in the point of origin by reporting a mapping quality: a non-negative integer Q = -10 log10 p, where p is an estimate of the probability that the alignment does not correspond to the read's true point of origin. Mapping quality is sometimes abbreviated MAPQ, and is recorded in the SAM MAPQ field". This information is available in the 5th column in SAM files (see [samtools format specification file](https://samtools.github.io/hts-specs/SAMv1.pdf)).
+
+<div class="protocol">
+
+> - Select **Filter BAM datasets on a variety of attributes** from the toolbox.
+> - Set **Select BAM property to filter on** to **mapQuality**.
+> - Set **Filter on read mapping quality (phred scale)** to 30.
+> - Use flagstats to check the number of read left after filtering. 
+> - Check that the overall mean of MAPQ is improved after filtering using **sam-stats**.
+
+<div class="exo">
+> - Does the number of alignments differs from input BAM after MAPQ filters ? 
+</div>
+
+> - **Rename the BAM file to siNT\_ER\_E2\_r3_final**.
+> - Download the final **.bam** and **.bai** files produced by the galaxy pipeline (note that when clicking on the download icon of a bam dataset you should see two files, the *.bam/dataset and the *.bai/index).
+</div>
+
+
+
+The resulting BAM file is to be used for peak calling and subsequent steps.
 
 
 ------------------------------------------------------------------------
 
 ## Viewing the results with Integrated Genome Browser (IGV).
 
+<div class="imgContainer">
+<a href ="http://software.broadinstitute.org/software/igv/" ><img src="https://www.screenshotmachine.com/serve.php?img=software-broadinstitute-org-FULL-afc727.png" > </a>
+</div>
 
 The [Integrative Genomics Viewer](http://www.broadinstitute.org/igv/home) (IGV) is a high-performance visualization tool for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based and next-generation sequence data, and genomic annotations.
 
@@ -221,14 +295,11 @@ The [Integrative Genomics Viewer](http://www.broadinstitute.org/igv/home) (IGV) 
 
 > - **Download IGV** and launch it with 750 MB or 1.2 Gb depending of your machine.
 > - Select **hg19** genome and go to chromosome 21.
-> - Download the **.bam** and **.bai** files produced by bowtie.
-> - Download the **.bam** and **.bai** files produced by rmDup.
-> - **Load** the bam files into IGV.
+> - Use **File > Load from file** to load the bam files into IGV.
 > - Go to **TMPRSS3** gene. Zoom.
-> - click on the left panel of the corresponding track and **set Color alignment by** > read strand. 
+> - Click on the left panel of the corresponding track and **set Color alignment by > read strand**. 
 > - Look at the overall signal in this region (zoom on peak regions). **Does it looks as expected** ?
-> - Do you observe some **duplicate reads** in the non-filtered bam ?
-> - In order to produce a coverage file (**tdf** format), from IGV select **Tools > Run Igvtools**. 
+> - In order to produce a coverage file (**tdf** format), Select **Tools > Run Igvtools** inside IGV. 
 > - Select **command > count**, select input file and browse to the bam file produced by rmDup (! not the *.bai)). Press Run.
 > - Close the igvtools window.
 > - **Load** the **tdf** file.
@@ -237,49 +308,66 @@ The [Integrative Genomics Viewer](http://www.broadinstitute.org/igv/home) (IGV) 
 
 </div>
 
-**NB:**The tdf file is a IGV specific format that is closed to the
-bigWig format (the compressed version of wig format).
-
+**NB:**The tdf file is a IGV specific format that is closed to the bigWig format (the compressed version of wig format). However, it is advised to also produce bigWig file that may be helpful as required by various software.
 
 ------------------------------------------------------------------------
 
-## Removing read with poor mapping quality
-
-**From the bowtie manual:** "Aligners characterize their degree of confidence in the point of origin by reporting a mapping quality: a non-negative integer Q = -10 log10 p, where p is an estimate of the probability that the alignment does not correspond to the read's true point of origin. Mapping quality is sometimes abbreviated MAPQ, and is recorded in the SAM MAPQ field". This information is available in the 5th column a a SAM file.
-
-<div class="protocol">
-
-> - Select **NGS: SAM Tools > Filter BAM or SAM on flags, fields, and tags using Sambamba** from the toolbox.
-> - Filter the BAM filtered on duplicates based on mapping quality (30).
-> - Use flagstats to check the number of read left. 
-> - Check that the overall mean of MAPQ is improved after filtering using **NGS: SAM Tools > sam-stats**
-
-</div>
-
-The resulting BAM file is to be used for peak calling and subsequent steps.
 
 ## Mapping reads with bowtie (input)
-Using the same procedure, to align reads obtained from the input sample. 
 
-Input reads can be obtained [here](http://denis.puthier.perso.luminy.univ-amu.fr/COURSES/CHIP-SEQ/PRACTICAL/data/MCF_input_r3_SRX176888_chr21_Noise.fastq.gz).
+Galaxy allow one to extract and run workflows. We will use a Galaxy workflow to apply the same Galaxy pipeline as used for ChIP sample to the input sample.
 
-**NB:** galaxy allow one to extract and run workflow. If you feel very comfortable with galaxy, you can use this solution. Alternatively, just run the same steps as the previous analysis.
+Fastq file for the input can be obtained here:
+
+```{}
+http://denis.puthier.perso.luminy.univ-amu.fr/COURSES/CHIP-SEQ/PRACTICAL/data/MCF_input_r3_SRX176888_chr21_Noise.fastq.gz
+```
+
 
 <div class="protocol">
 
-> - load the results for input into IGV. 
+> - Use **History options > Extract workflow**. Set **Workflow name** to **read_mapping**. Press **Create Workflow**. 
+> - Use **History options > Create new**.
+> - Set the history name to **Input mapping**.
+> - Use **Get Data > Upload file** in the toolbox to retrieve the input fastq file.
+> - Use ***Top menu > Workflow**.
+> - Select the **read_mapping** and click **edit**. Carefully inspect the workflow. Close the workflow (upper-right icon > close).
+> - Use ***Top menu > Workflow**.
+> - Select the **read_mapping** and click **run**. Set **Input Dataset** to the downloaded fastq file (input).
+> - Press **Run workflow** at the bottom of the page.
+> - Rename the last bam file produced to **input**.
+> - Download the final **.bam** and **.bai** (**input**). Note that when clicking on the download icon of a bam dataset you should see two files, the *.bam/dataset and the *.bai/index.
+> - load the bam file into IGV.
+> - In order to produce a coverage file (**tdf** format), Select **Tools > Run Igvtools** inside IGV. 
+> - Select **command > count**, select input file and browse to the bam file (! not the *.bai)). Press Run.
+> - Close the igvtools window.
+> - **Load** the **tdf** file.
+> - Re-order properly the tracks.
+</div>
+
+<div class="exo">
+
 > - Go to gene TFF1. What about the local input signal in this region.
 
 </div>
 
+------------------------------------------------------------------------
+
 
 ## Checking ChIP quality using SPP
 
-The R SPP package can be used to compute strand cross-correlation, one of the first criteria proposed to check the quality of a ChIP result.
+<div class="imgContainer">
+<a href ="http://software.broadinstitute.org/software/igv/" ><img src="https://www.screenshotmachine.com/serve.php?img=compbio-med-harvard-edu-FULL-2acc90.png" > </a>
+</div>
+
+
+The R SPP package can be used to compute strand cross-correlation, one of the first criteria proposed to check the quality of a ChIP result (see ["Design and analysis of ChIP-seq experiments for DNA-binding proteins"](www.nature.com.fr/nbt/journal/v26/n12/full/nbt.1508.html) by Peter V Kharchenko, 2008).
 The output of SPP is a diagram indicating observed strand cross-correlation on y axis as a function of relative strand shift. One expect a strong cross-correlation when the relative strand shift is closed to the expected fragment length.
 
 <div class="protocol">
 
+> - Create a new history named **Peak Calling**.
+> - Use **History options > Copy datasets** to put the bam files of the **ChIP** and Input samples** into this new history (**Peak Calling**).
 > - Select **SPP cross-correlation analysis package** tool.
 > - Select "chip-quality-check" as **Experiment name**.
 > - Select **Determine strand cross-correlation**  as **Select action to be performed**.
@@ -290,12 +378,102 @@ The output of SPP is a diagram indicating observed strand cross-correlation on y
 </div>
 
 
+## Checking ChIP quality using Deeptools fingerprint
+
+<div class="imgContainer">
+<a href ="http://deeptools.readthedocs.io/en/latest/" ><img src="https://www.screenshotmachine.com/serve.php?img=deeptools-readthedocs-io-FULL-4062e1.png" > </a>
+</div>
+
+
+A widely used method for testing ChIP quality was proposed by Diaz <i>et al</i> in their paper entitled ["Normalization, bias correction, and peak calling for ChIP-seq""](https://www.ncbi.nlm.nih.gov/pubmed/22499706). The [figure 3](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342857/figure/F3/) shows the general principle of the method which is based on the Lorenz curve. The [Lorenz curve](https://fr.wikipedia.org/wiki/Courbe_de_Lorenz#/media/File:Courbe_Lorenz_France_2010.png) is used in economic field and was developed by Max O. Lorenz in 1905 for representing inequality in the wealth distribution. See the [wikipedia article](https://fr.wikipedia.org/wiki/Courbe_de_Lorenz) for a more complete description.
+The general principle relies on finding whether income are equally/uniformly distributed among people. Here the objective is to see whether reads are uniformly distributed among equally-sized genomic windows.
+
+<div class="protocol">
+
+> - Serch **plotFingerprint** in the toolbox. 
+> - Select the ChIP and Input bam file using the shift key in **Bam file** menu.   
+> - Set **Region of the genome to limit the operation to** to chr21
+> - Select **Show advanced options**.
+> - Set **Bin size in bases** to 100.
+> -Set **Extend reads to the given average fragment size** to **A custom length** and **Extend reads to the given average fragment size** to 300.
+
+</div>
+
+<div class="exo">
+
+> - Does the diagram looks like as expected ?
+
+</div>
+
+
+------------------------------------------------------------------------
+
+## Peak calling
+
+<div class="imgContainer">
+<a href ="http://liulab.dfci.harvard.edu/MACS/00README.html" ><img src="https://www.screenshotmachine.com/serve.php?img=liulab-dfci-harvard-edu-FULL-3794ed.png" > </a>
+</div>
+
+Peak calling will be performed using MACS (MACS14).
+
+<div class="protocol">
+> - Select the tools MACS (1.4.1) in the toolbox and fill the form as below:
+>     - Experiment name : give a name for the MACS run.
+>     - Paired end sequencing: MACS can handle single or paired-end data; here we select single end.
+>     - ChIP-seq tag file : select a BAM file containing the treatment.
+>     - ChIP-seq control file : select the BAM file for the input
+>     - Effective genome size: use chromosome 21 size (48129895). Note that is a very particular case as we are working with a subset of the full dataset.
+>     - Tag size : these are Illumina datasets of read size 36.
+>     - Diagnosis report: ask for a report.
+>     - All other options should be set to default.
+
+</div>
+
+MACS running using these options should generate 4 result files:
+
+
+> - A html report describing the model built by MACS.
+> - A wig file for the treatment and control dataset.
+> - A bed file containing the peaks.
+> - Use the sort tool in the toolbox to sort MACS peaks according to the score.
+
+<div class="exo">
+> - In the html report look at the model.pdf file. What is the **d value** ?
+> - How many peaks have been called by MACS on chromosome 21 ?
+> - Order the peaks by intensity. Have a look at the most intense peaks.
+> - Where is the broader peak located ?
+> - What does the peaks.xls and negative_peaks.xls files contains ?
+> - What is the "summit" in peak.xls file ?
+
+</div>
+
+------------------------------------------------------------------------
+
+## Statistics on the full peak dataset
+
+Retrieve the full list of peaks for ESR1 (i.e not restricted to chromosome 21) from [here](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/MACS_GSM986060__siGATA_ER_E2_r1_SRX176857_peaks.bed).
+
+Load them in IGV and Galaxy.
+
+<div class="exo">
+> - How many peaks have been called by MACS on the full genome ?
+> - What is the largest peak in the dataset ?  Use basic Galaxy commands. 
+> - What is the peak with the highest score ? Use basic Galaxy commands. 
+> - What are blacklisted region as presented in the [ENCODE website](https://sites.google.com/site/anshulkundaje/projects/blacklists) ?
+> - Delete these blacklisted regions from the dataset using bedtools (substractbed).
+
+</div>
+
+<a href ="http://liulab.dfci.harvard.edu/MACS/00README.html" ><img src="img/fingerprint.png" width="300px"> </a>
+
+
+------------------------------------------------------------------------
+
+
 ## Creating bigwig tracks
 
-Wiggle files can be used to display coverage results over a genome. Bigwig files are compressed and indexed version of the [wiggle (*.wig) file](http://genome.ucsc.edu/goldenpath/help/wiggle.html). The bigWig format is the recommended format for almost all graphing track needs (wiggle is an older format). 
-
-
-We will create two bigWig, one for the ChIP and one for the input. We will next produce a combined file in which the background noise has 
+we have previously created tdf files to get coverage information in IGV. Wiggle files can also be used to display coverage results over a genome. Bigwig files are compressed and indexed version of the [wiggle (*.wig) file](http://genome.ucsc.edu/goldenpath/help/wiggle.html). 
+Producing a bigWig format can he handy as it is required for analysis by lots of downstream software. We will create two bigWig, one for the ChIP and one for the input. This bigwig will be normalized so that both tracks can be compared. Then, we will produce a combined file in which the background noise has 
 been subtracted from the signal.
 
 ### Coverage for individual bam files
@@ -312,7 +490,7 @@ been subtracted from the signal.
 > - In IGV, right click on the left panel : select **set data range**, and **set Max Value** to 100
 > - Repeat the same operation for the BAM file corresponding to the Input, and open the resulting bigwig file under the previous one in IGV.
 
-<\div>
+</div>
 
 ### Combined coverage file
 
@@ -325,62 +503,5 @@ We want to combine the treatment and input files into one signal file which shou
 > - Choose the SES normalization method in Method to use for scaling the largest sample to the smallest
 > - Choose compute difference (substract input from treatment) in How to compare the two files.
 > - In IGV, compare the individual coverage files (treatment and input) and the combined one.
-</div>
-
-
-------------------------------------------------------------------------
-
-## Peak calling
-
-Peak calling will be performed using MACS (MACS14).
-
-<div class="protocol">
-> - Select the tools MACS (1.4.1) in the toolbox and fill the form as below:
->     - Experiment name : give a name for the MACS run.
->     - Paired end sequencing: MACS can handle single or paired-end data; here we select single end.
->     - ChIP-seq tag file : select a BAM file containing the treatment.
->     - ChIP-seq control file : select the BAM file for the input
->     - Effective genome size: use chromosome 21 size (48129895).
->     - Tag size : these are Illumina datasets of read size 36.
->     - Diagnosis report: ask for a report.
->     - All other options should be set to default.
-
-</div>
-
-MACS running using these options should generate 4 result files:
-
-
-> - A html report describing the model built by MACS.
-> - A wig file for the treatment and control dataset.
-> - A bed file containing the peaks.
-> - Use the sort tool in the toolbox to sort MACS peaks according to the score.
-
-<div class="exo">
-> - How many peaks have been called by MACS on chromosome 21 ?
-> - Order the peaks by intensity. Have a look at the most intense peaks.
-> - Order the peaks by length. Have a look at the broader peaks.
-> - What does the summit.bed file contain ?
-> - What does the peaks.xls and negative_peaks.xls files contains ?
-> - Have a look at the set of negative peaks in IGV. What can we say ?
-> - Using Galaxy tools. Define the TSS regions for each genes. Compute the closest TSS of each peak.
-
-</div>
-
-------------------------------------------------------------------------
-
-
-## Statistics on the full peak dataset
-
-Retrieve the full list of peaks for ESR1 (i.e not restricted to chromosome 21) from [here](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/MACS_GSM986060__siGATA_ER_E2_r1_SRX176857_peaks.bed).
-
-Load them in IGV and Galaxy.
-
-<div class="exo">
-> - How many peaks have been called by MACS on the full genome ?
-> - What is the largest peak in the dataset ?  Use basic Galaxy commands. 
-> - What is the peak with the highest score ? Use basic Galaxy commands. 
-> - What are blacklisted region as presented in the [ENCODE website](https://sites.google.com/site/anshulkundaje/projects/blacklists) ?
-> - Delete these blacklisted regions from the dataset using bedtools (substractbed).
-
 </div>
 
