@@ -63,6 +63,10 @@ output:
 | Wed 19/10 | 16:00 | 17:30 | Motif comparison and clustering | JvH + JCM | [[RSAT](http://rsat.eu/)] *matrix-clustering*<br>[[slides](../cluster_motifs/CisReg_motif_clustering.pdf)]<br>[[tutorial *matrix-clustering*](../cluster_motifs/cluster_ChIP_seq_peaks.html)] |
 | | | | | |
 
+## Travaux personnels
+
+[Description des travaux personnels](cisreg_personal_work_2016.html)
+
 ## White/green board pictures
 
 ![2016-10-19_01a_demarche_travaux-personnels.jpg](../white_board_pictures_2016/2016-10-19_01a_demarche_travaux-personnels.jpg)
@@ -74,10 +78,6 @@ output:
 ![2016-10-19_03_organisation_operons.jpg](../white_board_pictures_2016/2016-10-19_03_organisation_operons.jpg)
 ![2016-10-21_01_encode_workflow.JPG](../white_board_pictures_2016/2016-10-21_01_encode_workflow.JPG)
 
-
-## Travaux personnels
-
-[Description des travaux personnels](cisreg_personal_work_2016.html)
 
 
 <!--

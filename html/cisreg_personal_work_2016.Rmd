@@ -1,5 +1,5 @@
 ---
-title: "Cisreg course 2015 - Personal work"
+title: "Cisreg course 2016 - Travail personnel"
 author: "Denis Puthier and Jacques van Helden"
 date: '`r Sys.Date()`'
 output:
