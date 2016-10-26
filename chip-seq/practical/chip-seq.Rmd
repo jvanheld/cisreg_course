@@ -52,14 +52,14 @@ suggestive of its functionality. Chromatin loops at the TFF locus involving ESR1
 
 ------------------------------------------------------------------------
 
-### Getting informations about the experiment using the GEO and SRA websites
+### Getting information about the experiment using the GEO and SRA websites
 
 <div class="imgContainer">
 <a href ="https://www.ncbi.nlm.nih.gov/sra" ><img src="https://www.screenshotmachine.com/serve.php?img=ncbi-nlm-nih-gov-FULL-b73f14.png"> </a>
 </div>
 
 Gene Expression Omnibus ([GEO](http://www.ncbi.nlm.nih.gov/geo/)) is a
-public repository that provide tools to submit, access and mine
+public repository that provides tools to submit, access and mine
 functional genomics data. Data may be related to array- or
 sequence-based technologies. For HTS data, GEO provides both processed
 data (such as \*.bam, \*.bed, \*.wig files) and links to raw data. Raw
@@ -85,11 +85,11 @@ web sites propose search engines to query their databases.
 
 <div class="exo">
 
-> -   What is the HTS platform used to sequence this sample ?
-> -   Is this experiment single-end or paire-end sequencing ?
-> -   How many runs (*i.e.* lanes) are associated to this sample ?
-> -   How many reads were produced (\# of Spots) ?
-> -   Select SRR540192 hyperlink. What is the sequence of the first read ?
+> -   What is the HTS platform used to sequence this sample?
+> -   Is this experiment single-end or paired-end sequencing?
+> -   How many runs (*i.e.* lanes) are associated to this sample?
+> -   How many reads were produced (\# of Spots)?
+> -   Select SRR540192 hyperlink. What is the sequence of the first read?
 </div>
 
 ------------------------------------------------------------------------
@@ -130,7 +130,7 @@ http://denis.puthier.perso.luminy.univ-amu.fr/COURSES/CHIP-SEQ/PRACTICAL/data/si
 <div class="protocol">
 
 > - In the upper left corner, click on **Unnamed history** and rename this workspace to 'ESR1\_mapping'.
-> - In the left menu, select **Get Data &gt; Upload File**. set File format as **fastqsanger** and set genome to **hg19**. Select **Paste/Fetch data** and copy and paste the URL above in the **text area**. 
+> - In the left menu, select **Get Data &gt; Upload File**. Set File format to **fastqsanger** and set genome to **hg19**. Select **Paste/Fetch data** and copy and paste the URL above in the **text area**. 
 > - Press **Start** then **Close**.
 > - In the history panel, rename the dataset as **siNT\_ER\_E2\_r3** (use the pencil that is associated to each item of the history to edit their attributes).
 > - Have a look at the dataset using the "view data" (the eyes) that is associated to each item of the history.
@@ -140,7 +140,7 @@ http://denis.puthier.perso.luminy.univ-amu.fr/COURSES/CHIP-SEQ/PRACTICAL/data/si
 
 [FastQC](http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc) aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis. FastQC can be run as a stand alone interactive application for the immediate analysis of small numbers of FastQ files, in a non-interactive mode (through shell commands) where it would be suitable for integrating into a larger analysis pipeline for the systematic processing of large numbers of files or through the Galaxy framework.
 
-It is important to stress that although the analysis results appear to give a pass/fail result, these evaluations must be taken in the context of what you expect from your library. A 'normal' sample as far as FastQC is concerned is random and diverse. Some experiments may be expected to produce libraries which are biased in particular ways. You should treat the summary evaluations therefore as pointers to where you should concentrate your attention and understand why your library may not look
+It is important to stress that although the analysis results appear to give a pass/fail result, these evaluations must be taken in the context of what you expect from your library. A 'normal' sample as far as FastQC is concerned is random and diverse. Some experiments may be expected to produce libraries that are biased in particular ways. You should treat the summary evaluations therefore as pointers to where you should concentrate your attention and understand why your library may not look
 random and diverse.
 
 <div class="protocol">
@@ -232,7 +232,7 @@ as follow:
 
 ## Removing duplicates
 
-Duplicates PCR may indicate problems during library construction (poor library complexity). This step is really to be done in case previous analysis (e.g Fastqc) clearly pointed out such a problem (or if piling-up are observed in the genome browser).
+Duplicates PCR may indicate problems during library construction (poor library complexity). This step is really to be done in case previous analysis (e.g. Fastqc) clearly pointed out such a problem (or if piling-up are observed in the genome browser).
 The PCR duplicates can be removed using the **rmDup** command in Galaxy. 
 
 <div class="protocol">
@@ -308,7 +308,7 @@ The [Integrative Genomics Viewer](http://www.broadinstitute.org/igv/home) (IGV) 
 
 </div>
 
-**NB:**The tdf file is a IGV specific format that is closed to the bigWig format (the compressed version of wig format). However, it is advised to also produce bigWig file that may be helpful as required by various software.
+**NB:** The tdf file is a IGV specific format that is closed to the bigWig format (the compressed version of wig format). However, it is advised to also produce bigWig file that may be helpful as required by various software.
 
 ------------------------------------------------------------------------
 
@@ -386,7 +386,7 @@ The output of SPP is a diagram indicating observed strand cross-correlation on y
 
 
 A widely used method for testing ChIP quality was proposed by Diaz <i>et al</i> in their paper entitled ["Normalization, bias correction, and peak calling for ChIP-seq""](https://www.ncbi.nlm.nih.gov/pubmed/22499706). The [figure 3](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342857/figure/F3/) shows the general principle of the method which is based on the Lorenz curve. The [Lorenz curve](https://fr.wikipedia.org/wiki/Courbe_de_Lorenz#/media/File:Courbe_Lorenz_France_2010.png) is used in economic field and was developed by Max O. Lorenz in 1905 for representing inequality in the wealth distribution. See the [wikipedia article](https://fr.wikipedia.org/wiki/Courbe_de_Lorenz) for a more complete description.
-The general principle relies on finding whether income are equally/uniformly distributed among people. Here the objective is to see whether reads are uniformly distributed among equally-sized genomic windows.
+The general principle relies on finding whether income are equally/uniformly distributed among people. Here the objective is to see whether reads are uniformly distributed among equally sized genomic windows.
 
 <div class="protocol">
 
