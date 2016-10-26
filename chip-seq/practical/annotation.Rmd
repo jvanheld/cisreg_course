@@ -19,17 +19,113 @@ output:
 ---
 
 
-## ChIP-seq annotation and visualization
+## Notes about file format
+
+### The BED format
+
+One of the expected result of a peak calling approach (see previous tutorial) is a set of peaks in bed format. The **BED format** also known as **BED6 format** is **the most widely used**. The [BED6](https://genome.ucsc.edu/FAQ/FAQformat#format1) contains the following information:
+
+ - **chrom** - The name of the chromosome (e.g. chr3, chrY, chr2...).
+ - **chromStart** - The starting position of the feature in the chromosome.
+ - **chromEnd** - The ending position of the feature in the chromosome.
+ - **name** - A name for the feature (e.g. gene name...).
+ - **score** - A score between 0 and 1000.
+ - **strand** - - Defines the strand - either '+' or '-'.
+
+An example BED record is provided below. 
 
 
-### Global Objective
-Given a set of ChIP-seq peaks annotate them in order to find associated genes, genomic categories and functional terms.
+<table style="margin: 10px;">
+<tbody>
+<tr>
+<td style="width: 50px;"><b>chrom</b></td>
+<td style="width: 50px;"><b>start</b></td>
+<td style="width: 50px;"><b>end</b></td>
+<td style="width: 50px;"><b>name</b></td>
+<td style="width: 50px;"><b>score</b></td>
+<td style="width: 50px;"><b>strand</b></td>
+</tr>
+<tr>
+<td style="width: 50px;">chr1</td>
+<td style="width: 50px;">123</td>
+<td style="width: 50px;">789</td>
+<td style="width: 50px;">feature_1</td>
+<td style="width: 50px;">0</td>
+<td style="width: 50px;">+</td>
+
+</tr>
+</tbody>
+</table>
+
+An alternative is the the BED3 format that only contains  the 3 first column.
+
+<table style="margin: 10px;">
+<tbody>
+<tr>
+<td style="width: 50px;"><b>chrom</b></td>
+<td style="width: 50px;"><b>start</b></td>
+<td style="width: 50px;"><b>end</b></td>
+</tr>
+<tr>
+<td style="width: 50px;">chr1</td>
+<td style="width: 50px;">123</td>
+<td style="width: 50px;">789</td>
+</tr>
+</tbody>
+</table>
+
+Finally a less conventional Bed format is the **BED12** format that is most generally used to store transcript coordinates (including all exon coordinates).
+
+Depending of the software producing the BED file, an additional first line (a header) containing a description can be found. See [UCSC BED format](https://genome.ucsc.edu/FAQ/FAQformat#format1) description for more information.
+
+### Coordinate system is zero-based half-open
+
+Several conventions exist to describe genome coordinates. The BED file format is said to be "zero-based, half-open".
+
+<img width="300px" src="http://pedagogix-tagc.univ-mrs.fr/courses/jgb53d-bd-prog/practicals/03_bedtools/zb.jpg">
+
+Zero-based means that the coordinate of the first nucleotide of a chromosome is defined as 0 .
+half-open means that the "End" coordinate is not part of the feature. In the example above, corresponding to a "chromosome" (Z) containing 12 nucleotides, the coordinates of the ATG (in red) sequence would be [4,7[. The corresponding entry would be described by the following row in a bed file **ChrZ    4       7**.
+	  
+This convention is somewhat confusing, since the ATG trinucleotide actually spans the region from the 5th to the 8th nucleotides of the sequence. However, this is the convention adopted by many genome centers, and we have to learn using it.
+
+### What should I in case of trouble with my BED file ?
+
+If you encounter issues with BED files in Galaxy you should try to:
+
+- **Delete** the **header** line if it exists.
+- **Convert** the file to a real BED6 format
+    - Most of the time the file contains the 3 first column.
+    - In some cases the order of the 3 last columns may be **swapped**.
+    - Sometimes the "strand" information is **not available**. You may use the **add** tool from Galaxy to append a "." to each line (indicating that strand is unknown).
+- **Sort** the BED files.
+  - Although it is not always mentioned some tools required BED files to be sorted by genomic coordinates. This can be performed using **SortBED** from the Bedtools suite. 
+
+
+## Global objective
+
+Given a set of ChIP-seq peaks annotate them in order to find associated genes, associated genomic elements (promoter, UTR, introns,...) and associated functional terms (through GO term analysis).
 
 ### Data set
 For this practical session, the ChIP-seq data and peaks related to following publication will be used: “GATA3 acts upstream of FOXA1 in mediating ESR1 binding by shaping enhancer accessibility.”, [Theodorou _et al_](http://www.ncbi.nlm.nih.gov/pubmed/23172872).
 
 
 The following pre-processed datasets are available:
+
+
+#### MACS peaks
+
+
+Each file contains 7 columns in "BED" format. 
+
+ - **chrom** - The name of the chromosome (e.g. chr3, chrY, chr2...).
+ - **chromStart** - The starting position of the feature in the chromosome.
+ - **chromEnd** - The ending position of the feature in the chromosome.
+ - **name** - A name for the feature (e.g. gene name...).
+ - **score** - The MACS score, -log10(p-value).
+ - **strand** - - Defines the strand - either '+' or '-'.
+ - **summit** - - The summit position in the bigwig file relative to chromStart.
+
 
 | Sample						| format |
 |-------------------|--------|
@@ -42,6 +138,11 @@ The following pre-processed datasets are available:
 | [siNT_ER_E2_r3](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/siNT_ER_E2_r3_SRX176860_peaks.bed) | bed|
 
 
+
+#### BAM files
+
+The BAM indexes are provided in the second table.
+
 | Sample						| format |
 |-------------------|--------|
 | [MCF_input_r3](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/MCF_input_r3_SRX176888_sort.bam) | bam|
@@ -53,7 +154,6 @@ The following pre-processed datasets are available:
 | [siNT_ER_E2_r2](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/siNT_ER_E2_r2_SRX176858_sort.bam) | bam|
 | [siNT_ER_E2_r3](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/siNT_ER_E2_r3_SRX176860_sort.bam) | bam|
 | [siNT_H3K4me1_E2_r1](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/siNT_H3K4me1_E2_r1_SRX176878_sort.bam) | bam|
-
 
 
 | Sample						| format |
@@ -69,6 +169,8 @@ The following pre-processed datasets are available:
 | [siNT_H3K4me1_E2_r1](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/siNT_H3K4me1_E2_r1_SRX176878_sort.bam.bai) | bam|
 
 
+#### Bigwig files
+
 | Sample						| format |
 |-------------------|--------|
 | [MCF_input_r3](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/MCF_input_r3_SRX176888.bigWig) | bigWig|
@@ -82,18 +184,18 @@ The following pre-processed datasets are available:
 | [siNT_H3K4me1_E2_r1](http://pedagogix-tagc.univ-mrs.fr/courses/data/ngs/td_chip_seq/all/siNT_H3K4me1_E2_r1_SRX176878.bigWig) | bigWig|
 
 
-## Loading the data
+### Loading the data
 
-Reload IGV. Load the bigWig files and bed files in the genome browser. Use colored tracks to distinguish between GATA3 KO and WT condition. Organize properly the files with peaks below corresponding bigwigs.
+Reload IGV. **Load the bigWig files and bed files** in the genome browser. Use colored tracks to distinguish between GATA3 KO and WT condition (**right-click on track name > Change track color**). **Reorder properly** the files with peaks below corresponding bigwigs.
 
 <div class="exo">
- - What about the H3K4me1 track ? Does it looks like ESR1 track ?
- - Using galaxy search for the most enriched peak relative to input (best score) for one ESR1 sample and one H3K4me1 sample.
- - Using galaxy, draw the distribution of peak size for ESR1 and  H3K4me1. Do they look the same.
- - For each bed the 7th column contains the summit position relative to the start position. For one sample convert it to a bed format and load it into IGV.
- - Extend the summit position by 100 nucleotides in 5' and 3' using bedtools. Laod the result in IGV.
-</div>
 
+- What about the H3K4me1 track ? Does it looks like ESR1 track ?
+- Using galaxy search for the most enriched peak relative to input (best score) for one ESR1 sample and one H3K4me1 sample. Use tool named: **Sort data in ascending or descending order**.
+- Using galaxy, draw the distribution of peak size for ESR1 and  H3K4me1. Do they look the same. Use the **cut** and **histogram** command.
+- For each bed the 7th column contains the summit position relative to the start position. For one sample convert it to a bed format and load it into IGV. Use **Compute an expression on every row** tool and **cut**.
+- Extend the summit position by 100 nucleotides in 5' and 3' using bedtools **SlopBed **. Load the result in IGV.
+</div>
 
 ## Comparing replicates
 
@@ -102,7 +204,7 @@ Reproducibility may be an issue in ChIP-Seq experiment. Select one condition (WT
 <div class="exo">
 
 - What are the number of peaks in each replicate.
-- Using intersectBed from the Bedtools suite (available in Galaxy or command line), compare the peaks shared by the 3 replicates (WT or KO). You could draw a venn diagram with this information. 
+- Using intersectBed (tool **Intersect intervals**) from the Bedtools suite (available in Galaxy or command line), compute the number of peaks shared by the 3 replicates (WT or KO). 
 - Create a bed file containing peaks that overlap in all tree replicates. 
 </div>
 
@@ -110,14 +212,16 @@ Reproducibility may be an issue in ChIP-Seq experiment. Select one condition (WT
 
 For that specific step we will use the GREAT annotation tools. Connect to [GREAT web server](http://great.stanford.edu) and perform a GO annotation for the ESR1 peaks. Alternatively GREAT can be launch directly from UCSC web server (using Table browser Custom track and by selecting send to GREAT). 
 
+
 <div class="protocol">
 
-> - Connect the [GREAT](http://great.stanford.edu) web server [http://great.stanford.edu](http://great.stanford.edu)
-> - select the genome assembly version (hg19)
-> - Upload or paste the peaks obtained previously in BED format (e.g intersect from the 3 replicates).
-> - use the whole genome as background and run the software
-> - Try using other parameters ("marked" regions). What about the results ?
-> - Check the result with a negative control (use randomBed in Galaxy to produce random regions).
+- **WARNING** GREAT REQUIRED A BED6 FORMAT WITHOUT ANY ADDITIONAL COLUMN. 
+- Connect the [GREAT](http://great.stanford.edu) web server [http://great.stanford.edu](http://great.stanford.edu)
+- select the genome assembly version (hg19)
+- Upload or paste the peaks obtained previously in BED format (e.g intersect from the 3 replicates).
+- use the whole genome as background and run the software
+- Try using other parameters ("marked" regions). What about the results ?
+- Check the result with a negative control (use randomBed in Galaxy to produce random regions).
 
 </div> 
 
@@ -126,14 +230,71 @@ Examine the enriched functional categories ? Are they biologically meaningful gi
 </div>
 
 
-### Using CEAS
+## Get the name of the closest transcript for each peak
 
-In the TAGC galaxy instance. CEAS (Cis-regulatory Element Annotation System) is a tool for characterizing genome-wide protein-DNA interaction patterns from ChIP-chip and ChIP-Seq of both sharp and broad binding factors. It provides statistics on ChIP enrichment at important genome features such as specific chromosome, promoters, gene bodies, or exons, and infers genes most likely to be regulated by a binding factor.
+It may be interesting, for each peak, to get the name of the closest transcript. Two this aim we require both transcript coordinates and a set of peaks in BED format. We will search the closest feature using the closestBed tool from Bedtools suite.  
+
+### Getting the coordinates of all the genes in the reference genome
+
+<div class="protocol">
+- Open a connexion to Galaxy
+- In the Tool search box, look for UCSC main table browser
+
+    - Choose the right **genome version** (e.g. hg19 for the study case)
+    - **Group**: *genes and gene predictions*
+    - **Track**: the *Refseq* genes are shared between several databases. 
+          - **Note**: refseq IDs refers to a sequence, not a gene, so if the same sequence is duplicated on the genome, sometimes the same refseq ID ill be associated to different positions. 
+    - **Output format**: bed
+    - **Send output to:** Galaxy
+    - Submit the query. 
+    - This opens a new form to specify the output parameters. Check the option **Whole gene**. 
+</div>
+
+So far, we obtained the list of all the Human transcripts, in **bed12** format. This format includes, in addition to the genomic coordinates (columns 1-3), the transcript ID, coordinates of the coding region, number of exons, list of exon starts and list of exon ends.
+
+We would like to select the 6 first columns to clearly visualized in IGV the selected regions. 
+
+<div class="protocol">
+- In the Tool search box, look for the tool named *cut* and open its form
+- Set **Cut columns** to c1, c2, c3,c4,c5,c6
+- Select **From** option and point to the bed12 file containing the coordinates of all the transcripts.
+- Now convert this **tabular file** back into a **Bed** file by using:
+    - **edit attributes > Convert format > Convert genomic intervals to BED**
+- Download the file and load it into IGV.
+<div class="exo">
+
+- What are the region that is spanned by the bed file ?
+- Is that what we need for subsequent analysis ?
+
+</div>
+
+### Search for closest gene using Bedtools
+
+Bedtools requires the BED file to bed sorted. 
+
 
 <div class="protocol">
 
-> - Select **NGS: Peak Calling > CEAS Annotate intervals and scores with genome features**.
-> - Use the appropriate settings and click **Execute**.
+- Use sortBed to create a sorted version of MACS Peak.
+- Is that what we need for subsequent analysis ?
+- Select **closestBed** from the toolbox.
+- Set **BED/VCF/GFF file** to sorted MACS peak.
+- Set **overlap intervals in this BED/VCF/GFF file?** to UCSC gene in BED6 format.
+- Set **How ties for closest feature should be handled** to **first**.
+- Set **In addition to the closest feature in B, report its distance to A as an extra column** to **Yes**.
+- Press **execute**.
+</div>
+
+
+## Using CEAS
+
+In the TAGC galaxy instance. CEAS (Cis-regulatory Element Annotation System) is a tool for characterizing genome-wide protein-DNA interaction patterns from ChIP-chip and ChIP-Seq of both sharp and broad binding factors. It provides statistics on ChIP enrichment at important genome features such as specific chromosome, promoters, gene bodies, or exons, and infers genes most likely to be regulated by a binding factor.
+Note that you may also upload your own annotations (e.g. peaks) to CEAS so that it can find for instance wether peaks from one FT are biased towards the peaks of another one. 
+
+<div class="protocol">
+
+- Select **CEAS Annotate intervals and scores with genome features**.
+- Use the appropriate settings and click **Execute**.
 
 </div>
 
@@ -146,16 +307,23 @@ Using the “deepTools heatmapper” we will try to visualize the local enrichme
 
 <div class="protocol">
 
-> - Download the required annotation file (here all UCSC annotated genes) from the UCSC genome browser (go to Table Browser, UCSC Genes and download the annotation as bed file. Save this locally). 
-> - Use the obtained annotation file and the previously computed bigWig profile (from your history) as an input to “computeMatrix”. You could select for instance H3K4me1.
-> - Use 'reference point’ as  the output option and 'beginning of region’ as this reference point (TSS).
-> - Using the “heatmapper”, load the obtained matrix data and fill the desired options to plot the heat map.
-> - Perform the analysis both with a ChIP for a chromatin mark and a transcription factor.
+- Select **computeMatrix** in the tool box.
+- Set **Regions to plot** to UCSC genes in BED6 format.
+- Set **Score file** to one of the bigWig file (for instance H3K4me1).
+- Set **computeMatrix has two main output options** to **reference point**.
+- Set **The reference point for the plotting** to **beginning of region (e.g. TSS)**.
+- Set **Distance upstream of the start site of the regions defined in the region file** to 2000.
+- Set **Distance downstream of the end site of the given regions** to 2000.
+- Select **Show advanced options**.
+- Set **Length, in bases, of non-overlapping bins used for averaging the score over the regions length** to 25.
+- Set **Convert missing values to 0?** to **Yes**.
+- Press **Execute**.
 
 </div>
 
 <div class="exo">
-Do you see any differences between the two choosen dataset ?
+- Perform the analysis both with a ChIP for a chromatin mark and a transcription factor.
+- Do you see any differences between the two choosen dataset ?
 </div>
 
 
@@ -165,10 +333,10 @@ In this part, we will use the ReMap (http://tagc.univ-mrs.fr/remap/index.php) so
 
 <div class="protocol">
 
-> - Connect the [ReMap](http://tagc.univ-mrs.fr/remap/index.php) web server
-> - Go to the Annotation Tool
-> - upload or paste the peaks in BED format (select BED format in the data format selector)
-> - Add your email and run the software with default parameters
+- Connect the [ReMap](http://tagc.univ-mrs.fr/remap/index.php) web server
+- Go to the Annotation Tool
+- upload or paste the peaks in BED format (select BED format in the data format selector)
+- Add your email and run the software with default parameters
 
 </div> 
 

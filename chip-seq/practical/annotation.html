@@ -11,7 +11,7 @@
 
 <meta name="author" content="Denis Puthier" />
 
-<meta name="date" content="2016-10-20" />
+<meta name="date" content="2016-10-26" />
 
 <title>ChIP-Seq – ChIP-seq annotation and visualization –</title>
 
@@ -104,19 +104,26 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">ChIP-Seq – ChIP-seq annotation and visualization –</h1>
 <h4 class="author"><em>Denis Puthier</em></h4>
-<h4 class="date"><em>2016-10-20</em></h4>
+<h4 class="date"><em>2016-10-26</em></h4>
 
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#chip-seq-annotation-and-visualization">ChIP-seq annotation and visualization</a><ul>
-<li><a href="#global-objective">Global Objective</a></li>
-<li><a href="#data-set">Data set</a></li>
+<li><a href="#notes-about-file-format">Notes about file format</a><ul>
+<li><a href="#the-bed-format">The BED format</a></li>
+<li><a href="#coordinate-system-is-zero-based-half-open">Coordinate system is zero-based half-open</a></li>
+<li><a href="#what-should-i-in-case-of-trouble-with-my-bed-file">What should I in case of trouble with my BED file ?</a></li>
 </ul></li>
+<li><a href="#global-objective">Global objective</a><ul>
+<li><a href="#data-set">Data set</a></li>
 <li><a href="#loading-the-data">Loading the data</a></li>
+</ul></li>
 <li><a href="#comparing-replicates">Comparing replicates</a></li>
-<li><a href="#relate-peaks-to-go-terms">Relate peaks to GO terms</a><ul>
+<li><a href="#relate-peaks-to-go-terms">Relate peaks to GO terms</a></li>
+<li><a href="#get-the-name-of-the-closest-transcript-for-each-peak">Get the name of the closest transcript for each peak</a><ul>
+<li><a href="#getting-the-coordinates-of-all-the-genes-in-the-reference-genome">Getting the coordinates of all the genes in the reference genome</a></li>
+<li><a href="#search-for-closest-gene-using-bedtools">Search for closest gene using Bedtools</a></li>
 <li><a href="#using-ceas">Using CEAS</a></li>
 </ul></li>
 <li><a href="#visualize-chip-enrichment-around-a-given-feature">Visualize ChIP enrichment around a given feature</a></li>
@@ -125,16 +132,136 @@ $(document).ready(function () {
 </ul>
 </div>
 
-<div id="chip-seq-annotation-and-visualization" class="section level2">
-<h2>ChIP-seq annotation and visualization</h2>
-<div id="global-objective" class="section level3">
-<h3>Global Objective</h3>
-<p>Given a set of ChIP-seq peaks annotate them in order to find associated genes, genomic categories and functional terms.</p>
+<div id="notes-about-file-format" class="section level2">
+<h2>Notes about file format</h2>
+<div id="the-bed-format" class="section level3">
+<h3>The BED format</h3>
+<p>One of the expected result of a peak calling approach (see previous tutorial) is a set of peaks in bed format. The <strong>BED format</strong> also known as <strong>BED6 format</strong> is <strong>the most widely used</strong>. The <a href="https://genome.ucsc.edu/FAQ/FAQformat#format1">BED6</a> contains the following information:</p>
+<ul>
+<li><strong>chrom</strong> - The name of the chromosome (e.g. chr3, chrY, chr2…).</li>
+<li><strong>chromStart</strong> - The starting position of the feature in the chromosome.</li>
+<li><strong>chromEnd</strong> - The ending position of the feature in the chromosome.</li>
+<li><strong>name</strong> - A name for the feature (e.g. gene name…).</li>
+<li><strong>score</strong> - A score between 0 and 1000.</li>
+<li><strong>strand</strong> - - Defines the strand - either ‘+’ or ‘-’.</li>
+</ul>
+<p>An example BED record is provided below.</p>
+<table style="margin: 10px;">
+<tbody>
+<tr>
+<td style="width: 50px;">
+<b>chrom</b>
+</td>
+<td style="width: 50px;">
+<b>start</b>
+</td>
+<td style="width: 50px;">
+<b>end</b>
+</td>
+<td style="width: 50px;">
+<b>name</b>
+</td>
+<td style="width: 50px;">
+<b>score</b>
+</td>
+<td style="width: 50px;">
+<b>strand</b>
+</td>
+</tr>
+<tr>
+<td style="width: 50px;">
+chr1
+</td>
+<td style="width: 50px;">
+123
+</td>
+<td style="width: 50px;">
+789
+</td>
+<td style="width: 50px;">
+feature_1
+</td>
+<td style="width: 50px;">
+0
+</td>
+<td style="width: 50px;">
++
+</td>
+</tr>
+</tbody>
+</table>
+<p>An alternative is the the BED3 format that only contains the 3 first column.</p>
+<table style="margin: 10px;">
+<tbody>
+<tr>
+<td style="width: 50px;">
+<b>chrom</b>
+</td>
+<td style="width: 50px;">
+<b>start</b>
+</td>
+<td style="width: 50px;">
+<b>end</b>
+</td>
+</tr>
+<tr>
+<td style="width: 50px;">
+chr1
+</td>
+<td style="width: 50px;">
+123
+</td>
+<td style="width: 50px;">
+789
+</td>
+</tr>
+</tbody>
+</table>
+<p>Finally a less conventional Bed format is the <strong>BED12</strong> format that is most generally used to store transcript coordinates (including all exon coordinates).</p>
+<p>Depending of the software producing the BED file, an additional first line (a header) containing a description can be found. See <a href="https://genome.ucsc.edu/FAQ/FAQformat#format1">UCSC BED format</a> description for more information.</p>
 </div>
+<div id="coordinate-system-is-zero-based-half-open" class="section level3">
+<h3>Coordinate system is zero-based half-open</h3>
+<p>Several conventions exist to describe genome coordinates. The BED file format is said to be “zero-based, half-open”.</p>
+<p><img width="300px" src="data:image/jpeg;base64,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UUUAFFFFAHEykf8AC9rYdz4YmP8A5NR121Y76DC3jWPxQZ38+PTnsBFgbdrSLIWz1zlQK2KACiiigAooooA4zwl/yU7xv/24f+iTXZ1jaRoRsPFGua19q8z+1fs/7ry8eV5SFeuec5z0GK2aACiiigAooooA4n4S/c8V/wDYz3381rtqxPCWgf2CurD7V9o/tDU57/8A1e3y/MIOzqc4x14z6Vt0AFFFFABRRRQBwv7P/wDyRvwz/wBen/s7V3VYfgHw+PCvg7TPDwuvtf2GERed5ezfyTnbk46+prcoAKKKKACuR+NYz8GvGw9fD1//AOk8lddWR410X/hI/But+HvtP2X+1NPnsvP2b/K82Nk3bcjON2cZGcdRQBf0txJptq69GhQj/vkVYqGxgFrZQWwbcIY1jBxjOBipqACiiigArivjT/yJdr/2MOh/+nW0rtaxPG+gf8JLoSaZ9r+y7L+yvPM8vf8A8e91FcbcZH3vK25zxnODjBANuiiigAooooAK4v4if8jl8N/+xjn/APTTqFdpWL4i0E6vrPhvUftXk/2JqT32zy93nbrS4t9mcjb/AMfG7PP3cY5yADaooooAKKKKACuG1T/kvnh3/sVtW/8ASrTq7msO68P+f4907xV9q2/YtLu9P+z+X9/z5beTfuzxj7PjGOd3UY5ANyiiigAooooAK4XwwxPxr8bJ2Gl6QfzN5/hXdVh6Z4fFl401vxJ9q3nVLW0t/J8vHl+QZud2ec+b6DGO+aANyiiigAooooAK4r4V/wDH14y/7Ga5/wDRUNdrWH4T8P8A9gza3J9r+0f2pqkmoY8vb5W9EXZ1OcbM5469KANyiiigAooooAK4z4Jf8kx0j/tt/wCjpK7OsbwRoR8NeF7TRDdfavs2/wDe+Xs3bnZumTj72OvagDZooooAKKKKAMH4jf8AJPfEn/YJuv8A0U1S+BP+RI0H/sG2/wD6KWrXiPTv7Y8PalpPneR9ttJbbzNu7ZvQruxkZxnOMin6FY/2Xolhpnm+b9kto4N+3G7YoXOO2cUAXKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACi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"></p>
+<p>Zero-based means that the coordinate of the first nucleotide of a chromosome is defined as 0 . half-open means that the “End” coordinate is not part of the feature. In the example above, corresponding to a “chromosome” (Z) containing 12 nucleotides, the coordinates of the ATG (in red) sequence would be [4,7[. The corresponding entry would be described by the following row in a bed file <strong>ChrZ 4 7</strong>.</p>
+<p>This convention is somewhat confusing, since the ATG trinucleotide actually spans the region from the 5th to the 8th nucleotides of the sequence. However, this is the convention adopted by many genome centers, and we have to learn using it.</p>
+</div>
+<div id="what-should-i-in-case-of-trouble-with-my-bed-file" class="section level3">
+<h3>What should I in case of trouble with my BED file ?</h3>
+<p>If you encounter issues with BED files in Galaxy you should try to:</p>
+<ul>
+<li><strong>Delete</strong> the <strong>header</strong> line if it exists.</li>
+<li><strong>Convert</strong> the file to a real BED6 format
+<ul>
+<li>Most of the time the file contains the 3 first column.</li>
+<li>In some cases the order of the 3 last columns may be <strong>swapped</strong>.</li>
+<li>Sometimes the “strand” information is <strong>not available</strong>. You may use the <strong>add</strong> tool from Galaxy to append a “.” to each line (indicating that strand is unknown).</li>
+</ul></li>
+<li><strong>Sort</strong> the BED files.</li>
+<li>Although it is not always mentioned some tools required BED files to be sorted by genomic coordinates. This can be performed using <strong>SortBED</strong> from the Bedtools suite.</li>
+</ul>
+</div>
+</div>
+<div id="global-objective" class="section level2">
+<h2>Global objective</h2>
+<p>Given a set of ChIP-seq peaks annotate them in order to find associated genes, associated genomic elements (promoter, UTR, introns,…) and associated functional terms (through GO term analysis).</p>
 <div id="data-set" class="section level3">
 <h3>Data set</h3>
 <p>For this practical session, the ChIP-seq data and peaks related to following publication will be used: “GATA3 acts upstream of FOXA1 in mediating ESR1 binding by shaping enhancer accessibility.”, <a href="http://www.ncbi.nlm.nih.gov/pubmed/23172872">Theodorou <em>et al</em></a>.</p>
 <p>The following pre-processed datasets are available:</p>
+<div id="macs-peaks" class="section level4">
+<h4>MACS peaks</h4>
+<p>Each file contains 7 columns in “BED” format.</p>
+<ul>
+<li><strong>chrom</strong> - The name of the chromosome (e.g. chr3, chrY, chr2…).</li>
+<li><strong>chromStart</strong> - The starting position of the feature in the chromosome.</li>
+<li><strong>chromEnd</strong> - The ending position of the feature in the chromosome.</li>
+<li><strong>name</strong> - A name for the feature (e.g. gene name…).</li>
+<li><strong>score</strong> - The MACS score, -log10(p-value).</li>
+<li><strong>strand</strong> - - Defines the strand - either ‘+’ or ‘-’.</li>
+<li><strong>summit</strong> - - The summit position in the bigwig file relative to chromStart.</li>
+</ul>
 <table>
 <thead>
 <tr class="header">
@@ -173,6 +300,10 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+</div>
+<div id="bam-files" class="section level4">
+<h4>BAM files</h4>
+<p>The BAM indexes are provided in the second table.</p>
 <table>
 <thead>
 <tr class="header">
@@ -265,6 +396,9 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+</div>
+<div id="bigwig-files" class="section level4">
+<h4>Bigwig files</h4>
 <table>
 <thead>
 <tr class="header">
@@ -313,17 +447,18 @@ $(document).ready(function () {
 </table>
 </div>
 </div>
-<div id="loading-the-data" class="section level2">
-<h2>Loading the data</h2>
-<p>Reload IGV. Load the bigWig files and bed files in the genome browser. Use colored tracks to distinguish between GATA3 KO and WT condition. Organize properly the files with peaks below corresponding bigwigs.</p>
+<div id="loading-the-data" class="section level3">
+<h3>Loading the data</h3>
+<p>Reload IGV. <strong>Load the bigWig files and bed files</strong> in the genome browser. Use colored tracks to distinguish between GATA3 KO and WT condition (<strong>right-click on track name &gt; Change track color</strong>). <strong>Reorder properly</strong> the files with peaks below corresponding bigwigs.</p>
 <div class="exo">
 <ul>
 <li>What about the H3K4me1 track ? Does it looks like ESR1 track ?</li>
-<li>Using galaxy search for the most enriched peak relative to input (best score) for one ESR1 sample and one H3K4me1 sample.</li>
-<li>Using galaxy, draw the distribution of peak size for ESR1 and H3K4me1. Do they look the same.</li>
-<li>For each bed the 7th column contains the summit position relative to the start position. For one sample convert it to a bed format and load it into IGV.</li>
-<li>Extend the summit position by 100 nucleotides in 5’ and 3’ using bedtools. Laod the result in IGV.</li>
+<li>Using galaxy search for the most enriched peak relative to input (best score) for one ESR1 sample and one H3K4me1 sample. Use tool named: <strong>Sort data in ascending or descending order</strong>.</li>
+<li>Using galaxy, draw the distribution of peak size for ESR1 and H3K4me1. Do they look the same. Use the <strong>cut</strong> and <strong>histogram</strong> command.</li>
+<li>For each bed the 7th column contains the summit position relative to the start position. For one sample convert it to a bed format and load it into IGV. Use <strong>Compute an expression on every row</strong> tool and <strong>cut</strong>.</li>
+<li>Extend the summit position by 100 nucleotides in 5’ and 3’ using bedtools <strong>SlopBed </strong>. Load the result in IGV.</li>
 </ul>
+</div>
 </div>
 </div>
 <div id="comparing-replicates" class="section level2">
@@ -332,7 +467,7 @@ $(document).ready(function () {
 <div class="exo">
 <ul>
 <li>What are the number of peaks in each replicate.</li>
-<li>Using intersectBed from the Bedtools suite (available in Galaxy or command line), compare the peaks shared by the 3 replicates (WT or KO). You could draw a venn diagram with this information.</li>
+<li>Using intersectBed (tool <strong>Intersect intervals</strong>) from the Bedtools suite (available in Galaxy or command line), compute the number of peaks shared by the 3 replicates (WT or KO).</li>
 <li>Create a bed file containing peaks that overlap in all tree replicates.</li>
 </ul>
 </div>
@@ -341,8 +476,8 @@ $(document).ready(function () {
 <h2>Relate peaks to GO terms</h2>
 <p>For that specific step we will use the GREAT annotation tools. Connect to <a href="http://great.stanford.edu">GREAT web server</a> and perform a GO annotation for the ESR1 peaks. Alternatively GREAT can be launch directly from UCSC web server (using Table browser Custom track and by selecting send to GREAT).</p>
 <div class="protocol">
-<blockquote>
 <ul>
+<li><strong>WARNING</strong> GREAT REQUIRED A BED6 FORMAT WITHOUT ANY ADDITIONAL COLUMN.</li>
 <li>Connect the <a href="http://great.stanford.edu">GREAT</a> web server <a href="http://great.stanford.edu"><a href="http://great.stanford.edu" class="uri">http://great.stanford.edu</a></a></li>
 <li>select the genome assembly version (hg19)</li>
 <li>Upload or paste the peaks obtained previously in BED format (e.g intersect from the 3 replicates).</li>
@@ -350,21 +485,71 @@ $(document).ready(function () {
 <li>Try using other parameters (“marked” regions). What about the results ?</li>
 <li>Check the result with a negative control (use randomBed in Galaxy to produce random regions).</li>
 </ul>
-</blockquote>
 </div>
 <div class="exo">
 <p>Examine the enriched functional categories ? Are they biologically meaningful given what you know about ESR1 ?</p>
+</div>
+</div>
+<div id="get-the-name-of-the-closest-transcript-for-each-peak" class="section level2">
+<h2>Get the name of the closest transcript for each peak</h2>
+<p>It may be interesting, for each peak, to get the name of the closest transcript. Two this aim we require both transcript coordinates and a set of peaks in BED format. We will search the closest feature using the closestBed tool from Bedtools suite.</p>
+<div id="getting-the-coordinates-of-all-the-genes-in-the-reference-genome" class="section level3">
+<h3>Getting the coordinates of all the genes in the reference genome</h3>
+<div class="protocol">
+<ul>
+<li>Open a connexion to Galaxy</li>
+<li><p>In the Tool search box, look for UCSC main table browser</p>
+<ul>
+<li>Choose the right <strong>genome version</strong> (e.g. hg19 for the study case)</li>
+<li><strong>Group</strong>: <em>genes and gene predictions</em></li>
+<li><strong>Track</strong>: the <em>Refseq</em> genes are shared between several databases.
+<ul>
+<li><strong>Note</strong>: refseq IDs refers to a sequence, not a gene, so if the same sequence is duplicated on the genome, sometimes the same refseq ID ill be associated to different positions.</li>
+</ul></li>
+<li><strong>Output format</strong>: bed</li>
+<li><strong>Send output to:</strong> Galaxy</li>
+<li>Submit the query.</li>
+<li>This opens a new form to specify the output parameters. Check the option <strong>Whole gene</strong>.</li>
+</ul></li>
+</ul>
+</div>
+<p>So far, we obtained the list of all the Human transcripts, in <strong>bed12</strong> format. This format includes, in addition to the genomic coordinates (columns 1-3), the transcript ID, coordinates of the coding region, number of exons, list of exon starts and list of exon ends.</p>
+<p>We would like to select the 6 first columns to clearly visualized in IGV the selected regions.</p>
+<div class="protocol">
+<ul>
+<li>In the Tool search box, look for the tool named <em>cut</em> and open its form</li>
+<li>Set <strong>Cut columns</strong> to c1, c2, c3,c4,c5,c6</li>
+<li>Select <strong>From</strong> option and point to the bed12 file containing the coordinates of all the transcripts.</li>
+<li>Now convert this <strong>tabular file</strong> back into a <strong>Bed</strong> file by using:
+<ul>
+<li><strong>edit attributes &gt; Convert format &gt; Convert genomic intervals to BED</strong></li>
+</ul></li>
+<li>Download the file and load it into IGV.
+<div class="exo">
+</li>
+<li>What are the region that is spanned by the bed file ?</li>
+<li>Is that what we need for subsequent analysis ?</li>
+</ul>
+</div>
+</div>
+<div id="search-for-closest-gene-using-bedtools" class="section level3">
+<h3>Search for closest gene using Bedtools</h3>
+<p>Bedtools requires the BED file to bed sorted.</p>
+<div class="protocol">
+<ul>
+<li>Use sortBed to create a sorted version</li>
+<li>Is that what we need for subsequent analysis ?</li>
+</ul>
+</div>
 </div>
 <div id="using-ceas" class="section level3">
 <h3>Using CEAS</h3>
 <p>In the TAGC galaxy instance. CEAS (Cis-regulatory Element Annotation System) is a tool for characterizing genome-wide protein-DNA interaction patterns from ChIP-chip and ChIP-Seq of both sharp and broad binding factors. It provides statistics on ChIP enrichment at important genome features such as specific chromosome, promoters, gene bodies, or exons, and infers genes most likely to be regulated by a binding factor.</p>
 <div class="protocol">
-<blockquote>
 <ul>
 <li>Select <strong>NGS: Peak Calling &gt; CEAS Annotate intervals and scores with genome features</strong>.</li>
 <li>Use the appropriate settings and click <strong>Execute</strong>.</li>
 </ul>
-</blockquote>
 </div>
 <p>What can we say about the enrichment.</p>
 </div>
@@ -373,7 +558,6 @@ $(document).ready(function () {
 <h2>Visualize ChIP enrichment around a given feature</h2>
 <p>Using the “deepTools heatmapper” we will try to visualize the local enrichment around the TSS for all known genes. Before drawing the heatmap we need to prepare the data by computing a summary matrix of the local ChIP enrichment using “deepTools computeMatrix”.</p>
 <div class="protocol">
-<blockquote>
 <ul>
 <li>Download the required annotation file (here all UCSC annotated genes) from the UCSC genome browser (go to Table Browser, UCSC Genes and download the annotation as bed file. Save this locally).</li>
 <li>Use the obtained annotation file and the previously computed bigWig profile (from your history) as an input to “computeMatrix”. You could select for instance H3K4me1.</li>
@@ -381,7 +565,6 @@ $(document).ready(function () {
 <li>Using the “heatmapper”, load the obtained matrix data and fill the desired options to plot the heat map.</li>
 <li>Perform the analysis both with a ChIP for a chromatin mark and a transcription factor.</li>
 </ul>
-</blockquote>
 </div>
 <div class="exo">
 <p>Do you see any differences between the two choosen dataset ?</p>
@@ -391,14 +574,12 @@ $(document).ready(function () {
 <h2>Integrative ChIP-seq analysis of regulatory elements</h2>
 <p>In this part, we will use the ReMap (<a href="http://tagc.univ-mrs.fr/remap/index.php" class="uri">http://tagc.univ-mrs.fr/remap/index.php</a>) software to compare the peaks obtained in the peaks calling tutorial to an extensive regulatory catalog of 8 million transcription factor binding regions defined by collecting all the peaks from ChIP-seq experiments from the ENCODE project + other public datasets from the GEO database. Note that on the ReMap Web site, the term “site” is used to denote a ChIP-seq peak, rather than the precise binding location of a transcription factor</p>
 <div class="protocol">
-<blockquote>
 <ul>
 <li>Connect the <a href="http://tagc.univ-mrs.fr/remap/index.php">ReMap</a> web server</li>
 <li>Go to the Annotation Tool</li>
 <li>upload or paste the peaks in BED format (select BED format in the data format selector)</li>
 <li>Add your email and run the software with default parameters</li>
 </ul>
-</blockquote>
 </div>
 <div class="exo">
 <p>What are the TFs associated to your peaks?</p>
